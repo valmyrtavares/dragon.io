@@ -8,49 +8,34 @@ form {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-form div {
+.form-row {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 15px;
 }
 
-form div label {
+.form-row .form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+.form-group label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
 }
 
-form div input {
+.form-group input {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
-}
-
-form div:nth-child(odd) {
-    margin-right: 10px;
-}
-
-form div:nth-child(even) {
-    margin-left: 10px;
-}
-
-form div:nth-child(odd),
-form div:nth-child(even) {
-    flex: 1;
-}
-
-form div:last-of-type {
-    flex: 2;
-}
-
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
 }
 
 button {
