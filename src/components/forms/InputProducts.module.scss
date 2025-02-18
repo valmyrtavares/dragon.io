@@ -1,0 +1,121 @@
+.formContainer {
+    max-width: 800px;
+    width: 2013px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    .formRow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;        
+        .formGroup {
+            flex: 1;
+            margin-right: 10px;
+            label {
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #333;
+            }
+            input {
+                padding: 10px;
+                font-size: 17px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        .formGroup:last-child {
+           margin-right: 0;
+        }
+    }
+    .containerImages{
+        display: flex;
+        flex-wrap:wrap;
+        .imageItem{
+            display: flex;
+            background-color: red;
+        }
+
+    }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.containerImages {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    /* Espaço entre os itens */
+    align-items: center;
+    /* Garante alinhamento uniforme */
+}
+
+.imageItem {
+    display: flex;
+    flex-direction: row;
+    /* Mantém os itens na horizontal */
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    min-width: 90px;
+    /* Ajuste fino para melhor encaixe */
+    max-width: fit-content;
+    /* Ajuste dinâmico ao conteúdo */
+    white-space: nowrap;
+    /* Evita quebra de linha dentro do item */
+}
+
+.imageItem p {
+    margin: 0;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.imageItem button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+
+.imageItem button:hover {
+    background: darkred;
+}

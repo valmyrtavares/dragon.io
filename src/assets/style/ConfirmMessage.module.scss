@@ -1,0 +1,60 @@
+
+.container {
+        background-color: #333;
+        /* Dark gray background */
+        width: 100%;
+        /* Full viewport width */
+        height: 100vh;
+        /* Full viewport height */
+        display: flex;
+        justify-content: center;
+        /* Center horizontally */
+        align-items: center;
+        /* Center vertically */
+        position: fixed;
+        top: 0%;
+        left: 0%;
+    
+    .geralContainerConfirmMessage{
+        position: relative;
+        background-color: white;
+        padding:1%;
+        .containerBtn{
+            display: flex;
+            justify-content: space-around;
+            button{
+                max-width: 150px;
+            }
+        }
+        .containerCpf{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+    
+            input {
+                font-size: 25px;
+                height:40px;
+                border-radius:10%;
+                width: 30%;
+                max-width: 800px;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+    
+            a {
+                text-align: center;
+                font-size: 30px;
+                color: blue;
+                text-decoration: underline;
+                margin-top: 10px;
+            }
+        }
+    }
+}
