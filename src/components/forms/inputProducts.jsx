@@ -3,14 +3,16 @@ import style from './InputProducts.module.scss';
 
 const InputProducts = () => {
   const [formData, setFormData] = useState({
-    processador: '',
-    placaMae: '',
-    armazenamento: '',
-    gabinete: '',
-    fonte: '',
-    placaDeVideo: '',
-    quantidadeDeCabos: '',
-    idade: '',
+    title: '',
+    price: '',
+    cpu: '',
+    motherBoard: '',
+    storage: '',
+    tower: '',
+    font: '',
+    graphicsCard: '',
+    amoutCables: '',
+    ages: '',
     link: '',
     imagens: [],
   });
@@ -80,13 +82,15 @@ const InputProducts = () => {
       <form className={style.formContainer} onSubmit={handleSubmit}>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="title">Título/Apliceação:</label>
-            <input
-              type="text"
-              id="title"
-              value={formData.processador}
-              onChange={handleChange}
-            />
+            <label htmlFor="title">Título/Aplicação:</label>
+            <select id="title" value={formData.title} onChange={handleChange}>
+              <option value="">Selecione sua opção</option>
+              <option value="Gamer">Gamer</option>
+              <option value="Office">Office</option>
+              <option value="Render">Render</option>
+              <option value="Doméstico">Doméstico</option>
+              <option value="Edição de Video">Edição de Video</option>
+            </select>
           </div>
           <div className={style.formGroup}>
             <label htmlFor="price">Preço:</label>
@@ -100,11 +104,11 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="processador">Processador:</label>
+            <label htmlFor="processador">CPU:</label>
             <input
               type="text"
-              id="processador"
-              value={formData.processador}
+              id="cpu"
+              value={formData.cpu}
               onChange={handleChange}
             />
           </div>
@@ -113,65 +117,62 @@ const InputProducts = () => {
             <input
               type="text"
               id="motherBoard"
-              value={formData.placaMae}
+              value={formData.motherBoard}
               onChange={handleChange}
             />
           </div>
         </div>
         <div className={style.formRow}>
-          <div className={style.formGroup}>
-            <label htmlFor="computerMemory">Armazenamento:</label>
-            <input
-              type="text"
-              id="armazenamento"
-              value={formData.armazenamento}
-              onChange={handleChange}
-            />
-          </div>
           <div className={style.formGroup}>
             <label htmlFor="graphicsCard">Placa de Video:</label>
             <input
               type="text"
               id="graphicsCard"
-              value={formData.gabinete}
+              value={formData.graphicsCard}
               onChange={handleChange}
             />
           </div>
-        </div>
-
-        <div className={style.formRow}>
           <div className={style.formGroup}>
             <label htmlFor="font">Fonte:</label>
             <input
               type="text"
               id="font"
-              value={formData.fonte}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={style.formGroup}>
-            <label htmlFor="placaDeVideo">Placa de Vídeo:</label>
-            <input
-              type="text"
-              id="placaDeVideo"
-              value={formData.placaDeVideo}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div className={style.formRow}>
-          <div className={style.formGroup}>
-            <label htmlFor="quantidadeDeCabos">Quantidade de Cabos:</label>
-            <input
-              type="text"
-              id="quantidadeDeCabos"
-              value={formData.quantidadeDeCabos}
+              value={formData.font}
               onChange={handleChange}
             />
           </div>
         </div>
 
         <div className={style.formRow}>
+          <div className={style.formGroup}>
+            <label htmlFor="quantidadeDeCabos">Quantidade de Cabos:</label>
+            <input
+              type="text"
+              id="amoutCables"
+              value={formData.amoutCables}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={style.formGroup}>
+            <label htmlFor="font">Gabinete:</label>
+            <input
+              type="text"
+              id="tower"
+              value={formData.tower}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className={style.formRow}>
+          <div className={style.formGroup}>
+            <label htmlFor="quantidadeDeCabos">Data da Compra</label>
+            <input
+              type="text"
+              id="ages"
+              value={formData.ages}
+              onChange={handleChange}
+            />
+          </div>
           <div className={style.formGroup}>
             <label htmlFor="imagens">Imagens:</label>
             <input
@@ -181,7 +182,10 @@ const InputProducts = () => {
               onChange={handleImageUpload}
             />
           </div>
-          <div className={style.formGroup}>
+        </div>
+
+        <div className={style.linkAddImgContainer}>
+          <div className={style.linkField}>
             <label htmlFor="idade">Link da imagem:</label>
             <input
               type="text"
@@ -189,6 +193,11 @@ const InputProducts = () => {
               value={formData.link}
               onChange={handleChange}
             />
+          </div>
+          <div className={style.btn}>
+            <button type="button" onClick={addImage}>
+              Adicione imagem
+            </button>
           </div>
         </div>
         <div className={style.containerImages}>
@@ -206,9 +215,7 @@ const InputProducts = () => {
               </div>
             ))}
         </div>
-        <button type="button" onClick={addImage}>
-          Adicione imagem
-        </button>
+
         <button type="submit">Salvar</button>
       </form>
     </>
