@@ -73,7 +73,10 @@ const ConfirmMessage = ({ setCloseMessage, message }) => {
         setClose={setBriefMessage}
         {!firstMessage && (
           <div className={style.containerCpf}>
-            <h1>Se é cliente preencha o campo com seu cpf ou cadastre-se</h1>
+            <h1>
+              Já vendeu pela Dragon Computadores? Se sim entre com seu cpf caso
+              contrário, cadastre-se!
+            </h1>
             <input
               type="text"
               value={cpf}

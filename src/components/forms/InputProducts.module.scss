@@ -32,6 +32,33 @@
            margin-right: 0;
         }
     }
+    .formTextareaColumn{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        .textareaColumn {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            align-items: end;
+            height:140px;
+            height:200px;
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+            height: 30px;
+        }
+        
+                textarea{
+                    padding: 10px;
+                    font-size: 17px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    min-height: 150px;
+                }
+            }
+    }
     .linkAddImgContainer{
         display:grid;
         align-self: center;
@@ -83,6 +110,14 @@
             background-color: red;
         }
 
+    }
+    .btnContainer{
+        display: flex;
+        justify-content: space-around;
+        gap: gap;
+        button{
+            max-width: 380px;
+        }
     }
  
 }

@@ -1,25 +1,59 @@
 import { useState, useEffect } from 'react';
 import style from './InputProducts.module.scss';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const InputProducts = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     title: '',
     price: '',
     cpu: '',
     motherBoard: '',
+    cpuText: '',
     storage: '',
     tower: '',
     font: '',
+    memory: '',
     graphicsCard: '',
+    cooling: '',
     amoutCables: '',
     ages: '',
     link: '',
+    motherBoardText: '',
     imagens: [],
   });
 
   useEffect(() => {
     console.log(' Formulario de dados   ', formData);
-  }, [formData]);
+    console.log(' ID  ', id);
+    if (id) {
+      const storedProduct = localStorage.getItem('products');
+
+      if (storedProduct && storedProduct.length > 0) {
+        const products = JSON.parse(storedProduct); // Converta a string em um array
+        console.log('Produto Selecionado   ', products[id]);
+        setFormData({
+          title: products[id].title,
+          price: products[id].price,
+          cpu: products[id].cpu,
+          motherBoard: products[id].motherBoard,
+          cpuText: products[id].cpuText,
+          storage: products[id].storage,
+          tower: products[id].tower,
+          font: products[id].font,
+          memory: products[id].memory,
+          graphicsCard: products[id].graphicsCard,
+          cooling: products[id].cooling,
+          amoutCables: products[id].amoutCables,
+          ages: products[id].ages,
+          link: products[id].link,
+          motherBoardText: products[id].motherBoardText,
+          imagens: products[id].imagens,
+        });
+      }
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -39,22 +73,35 @@ const InputProducts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    if (id) {
+      storedProducts[id] = formData;
+      localStorage.setItem('products', JSON.stringify(storedProducts));
+      return;
+    }
     storedProducts.push(formData);
     localStorage.setItem('products', JSON.stringify(storedProducts));
     alert('Produto adicionado com sucesso!');
     setFormData({
-      processador: '',
-      placaMae: '',
-      armazenamento: '',
-      gabinete: '',
-      fonte: '',
-      placaDeVideo: '',
-      quantidadeDeCabos: '',
-      idade: '',
+      title: '',
+      price: '',
+      cpu: '',
+      motherBoard: '',
+      storage: '',
+      tower: '',
+      cpuText: '',
+      motherBoardText: '',
+      font: '',
+      graphicsCard: '',
+      memory: '',
+      cooling: '',
+      amoutCables: '',
+      ages: '',
       link: '',
       imagens: [],
     });
+    navigate('/');
   };
 
   const addImage = () => {
@@ -75,6 +122,16 @@ const InputProducts = () => {
     }));
   };
   const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
+
+  const DeleteCard = () => {
+    const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+
+    if (id) {
+      storedProducts.splice(id, 1);
+      localStorage.setItem('products', JSON.stringify(storedProducts));
+      return;
+    }
+  };
 
   return (
     <>
@@ -118,6 +175,26 @@ const InputProducts = () => {
               type="text"
               id="motherBoard"
               value={formData.motherBoard}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className={style.formRow}>
+          <div className={style.formGroup}>
+            <label htmlFor="processador">Memória:</label>
+            <input
+              type="text"
+              id="memory"
+              value={formData.memory}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={style.formGroup}>
+            <label htmlFor="motherBoard">Refrigeração:</label>
+            <input
+              type="text"
+              id="cooling"
+              value={formData.cooling}
               onChange={handleChange}
             />
           </div>
@@ -200,6 +277,24 @@ const InputProducts = () => {
             </button>
           </div>
         </div>
+        <div className={style.formTextareaColumn}>
+          <div className={style.textareaColumn}>
+            <label htmlFor="motherBoardText">Texto da Placa Mãe:</label>
+            <textarea
+              id="motherBoardText"
+              value={formData.motherBoardText}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={style.textareaColumn}>
+            <label htmlFor="cpuText">Texto do CPU:</label>
+            <textarea
+              id="cpuText"
+              value={formData.cpuText}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
         <div className={style.containerImages}>
           {formData &&
             formData.imagens &&
@@ -215,8 +310,16 @@ const InputProducts = () => {
               </div>
             ))}
         </div>
-
-        <button type="submit">Salvar</button>
+        <div className={style.btnContainer}>
+          <button type="submit">Salvar</button>
+          <button
+            type="button"
+            onClick={DeleteCard}
+            disabled={id === undefined}
+          >
+            Excluir
+          </button>
+        </div>
       </form>
     </>
   );

@@ -1,0 +1,99 @@
+.SingleProductBox {
+    width: 1500px;
+ 
+    display: grid;
+    grid-template-columns: 10% 50% 40%;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    overflow: hidden; // Impede que imagens vazem para fora
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+.containerSideMenu{
+display:flex;
+flex-direction: column;
+justify-content: space-between;
+    .imageThumbnails {
+        max-height: 60vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-right: 5px;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .thumbnail {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
+        }
+    }
+}
+
+    .mainImage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 0; // Garante que a imagem não sobreponha elementos superiores
+
+        img {
+            max-width: 400px;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            position: relative;
+            z-index: -1; // Coloca a imagem atrás de outros elementos
+        }
+    }
+
+    .productDetails {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        gap: 10px;
+        padding: 10px;
+        z-index: 1; // Garante que os detalhes do produto fiquem acima da imagem principal
+
+        h2,h3{
+            font-size: 1.2rem;
+            color: #333;
+            margin:0;
+            font-weight: bold;
+            span{
+                font-weight: normal;
+                
+            }
+        }
+        h3{
+            padding:2%;
+        }
+    }
+}

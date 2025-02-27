@@ -15,6 +15,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<ShowCase />} />
             <Route path="/form" element={<InpuProducts />} />
+            <Route path="/form/:id" element={<InpuProducts />} />
             <Route path="/singleProduct/:id" element={<SingleProductBox />} />
             <Route path="/register" element={<CreateCustomer />} />
           </Routes>
