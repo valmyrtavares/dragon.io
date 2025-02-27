@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import style from './InputProducts.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
+import ConfirmMessage from '../Messages/ConfirmMessage';
 
 const InputProducts = () => {
+  const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -123,18 +125,29 @@ const InputProducts = () => {
   };
   const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
 
-  const DeleteCard = () => {
+  const DeleteCard = (openClosePopup) => {
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
-
     if (id) {
-      storedProducts.splice(id, 1);
-      localStorage.setItem('products', JSON.stringify(storedProducts));
-      return;
+      if (openClosePopup) {
+        storedProducts.splice(id, 1);
+        localStorage.setItem('products', JSON.stringify(storedProducts));
+        setOpenCloseConfirmMessage(false);
+        navigate('/');
+        return;
+      }
+      setOpenCloseConfirmMessage(true);
     }
   };
 
   return (
-    <>
+    <div className={style.productFormContainer}>
+      {openCloseConfirmMessage && (
+        <ConfirmMessage
+          defaultMessage="Você está prestes a excluir esse card. Tem certeza que quer continuar"
+          setCloseMessage={setOpenCloseConfirmMessage}
+          goOn={() => DeleteCard(true)}
+        />
+      )}
       <h1>Formulário para máquinas Dragon</h1>
       <form className={style.formContainer} onSubmit={handleSubmit}>
         <div className={style.formRow}>
@@ -314,14 +327,14 @@ const InputProducts = () => {
           <button type="submit">Salvar</button>
           <button
             type="button"
-            onClick={DeleteCard}
+            onClick={() => DeleteCard(false)}
             disabled={id === undefined}
           >
             Excluir
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

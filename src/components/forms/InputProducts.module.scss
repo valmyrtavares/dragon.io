@@ -1,87 +1,27 @@
-.formContainer {
-    max-width: 800px;
-    width: 2013px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    .formRow {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;        
-        .formGroup {
-            flex: 1;
-            margin-right: 10px;
-            label {
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #333;
-            }
-            input, select {
-                padding: 10px;
-                font-size: 17px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-        }
-        .formGroup:last-child {
-           margin-right: 0;
-        }
-    }
-    .formTextareaColumn{
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        .textareaColumn {
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            align-items: end;
-            height:140px;
-            height:200px;
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-            height: 30px;
-        }
-        
-                textarea{
-                    padding: 10px;
-                    font-size: 17px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    width: 100%;
-                    box-sizing: border-box;
-                    min-height: 150px;
-                }
-            }
-    }
-    .linkAddImgContainer{
-        display:grid;
-        align-self: center;
-        grid-template-columns: 1fr 1fr;
-        .btn{
+.productFormContainer{
+
+    .formContainer {
+        max-width: 800px;
+        width: 2013px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .formRow {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
-            button{
-                margin:0
-            }
-        }
-        .linkField {
+            margin-bottom: 15px;        
+            .formGroup {
                 flex: 1;
                 margin-right: 10px;
-                margin-bottom: 15px;
                 label {
                     margin-bottom: 5px;
                     font-weight: bold;
                     color: #333;
                 }
-        
-                input{
+                input, select {
                     padding: 10px;
                     font-size: 17px;
                     border: 1px solid #ccc;
@@ -90,36 +30,99 @@
                     box-sizing: border-box;
                 }
             }
-            .btn{       
-                    display: flex;
-                    justify-content: space-between;
-                    margin-bottom: 15px;
-                    align-items: end;
+            .formGroup:last-child {
+               margin-right: 0;
+            }
+        }
+        .formTextareaColumn{
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            .textareaColumn {
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                align-items: end;
+                height:140px;
+                height:200px;
+            label {
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #333;
+                height: 30px;
+            }
+            
+                    textarea{
+                        padding: 10px;
+                        font-size: 17px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        min-height: 150px;
+                    }
+                }
+        }
+        .linkAddImgContainer{
+            display:grid;
+            align-self: center;
+            grid-template-columns: 1fr 1fr;
+            .btn{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
                 button{
-                    padding:10px 4px;
-                    max-height: 48px;
+                    margin:0
                 }
             }
-        
-    }
-    .containerImages{
-        display: flex;
-        flex-wrap:wrap;
-        .imageItem{
+            .linkField {
+                    flex: 1;
+                    margin-right: 10px;
+                    margin-bottom: 15px;
+                    label {
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                        color: #333;
+                    }
+            
+                    input{
+                        padding: 10px;
+                        font-size: 17px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        width: 100%;
+                        box-sizing: border-box;
+                    }
+                }
+                .btn{       
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 15px;
+                        align-items: end;
+                    button{
+                        padding:10px 4px;
+                        max-height: 48px;
+                    }
+                }
+            
+        }
+        .containerImages{
             display: flex;
-            background-color: red;
+            flex-wrap:wrap;
+            .imageItem{
+                display: flex;
+                background-color: red;
+            }
+    
         }
-
-    }
-    .btnContainer{
-        display: flex;
-        justify-content: space-around;
-        gap: gap;
-        button{
-            max-width: 380px;
+        .btnContainer{
+            display: flex;
+            justify-content: space-around;
+            gap: gap;
+            button{
+                max-width: 380px;
+            }
         }
+     
     }
- 
 }
 
 

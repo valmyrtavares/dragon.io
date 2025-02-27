@@ -1,7 +1,7 @@
 import React from 'react';
 import style from '../assets/style/Header.module.scss';
 import { Link } from 'react-router-dom';
-import ConfirmMessage from './Messages/ConfirmMessage';
+import ConfirmMessage from './Messages/InitialMessageCustomer';
 
 const Header = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] =

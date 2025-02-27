@@ -17,6 +17,7 @@
         left: 0%;
     
     .geralContainerConfirmMessage{
+        font-size: 10px;
         position: relative;
         background-color: white;
         padding:1%;
@@ -55,6 +56,12 @@
                 color: blue;
                 text-decoration: underline;
                 margin-top: 10px;
+            }
+            .register{
+                cursor: pointer;
+                color: blue;
+                text-decoration: underline;
+                font-size: 20px;
             }
         }
     }

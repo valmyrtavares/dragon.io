@@ -5,7 +5,6 @@ import style from '../../assets/style/setBriefMessage.module.scss';
 const BriefMessage = ({ message, setClose, setCloseMessage }) => {
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('FOI CERTO');
       setClose(false);
       setCloseMessage(false);
     }, 4000);
