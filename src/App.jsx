@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <div>
-        <Router>
+        <Router basename="/dragon.io">
           <Header />
           <Routes>
             <Route path="/" element={<ShowCase />} />
