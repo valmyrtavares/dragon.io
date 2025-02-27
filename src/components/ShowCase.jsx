@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import style from './Showcase.module.scss';
+import style from '../assets/style/ShowCase.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 const ShowCase = () => {

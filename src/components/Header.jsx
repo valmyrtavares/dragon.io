@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Header.module.scss';
+import style from '../assets/style/Header.module.scss';
 import { Link } from 'react-router-dom';
 import ConfirmMessage from './Messages/ConfirmMessage';
 

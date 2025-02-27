@@ -1,4 +1,4 @@
-import style from './SingleProductBox.module.scss';
+import style from '../assets/style/SingleProductBox.module.scss';
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 
