@@ -5,12 +5,13 @@ import InpuProducts from './components/forms/inputProducts';
 import Header from './components/Header';
 import SingleProductBox from './components/SingleProductBox';
 import CreateCustomer from './components/forms/CreateCustomer';
+import UserRules from './components/rules/userRules';
 
 const App = () => {
   return (
     <>
       <div>
-        <Router basename="/dragon.io">
+        <Router basename="/">
           <Header />
           <Routes>
             <Route path="/" element={<ShowCase />} />
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/form/:id" element={<InpuProducts />} />
             <Route path="/singleProduct/:id" element={<SingleProductBox />} />
             <Route path="/register" element={<CreateCustomer />} />
+            <Route path="/user-rules" element={<UserRules />} />
           </Routes>
         </Router>
       </div>
