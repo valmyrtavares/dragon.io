@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <div>
-        <Router basename="/dragon.io">
+        <Router>
           <Header />
           <Routes>
             <Route path="/" element={<ShowCase />} />
@@ -28,3 +28,5 @@ const App = () => {
 };
 
 export default App;
+
+// "homepage": "https://valmyrtavares.github.io/dragon.io",

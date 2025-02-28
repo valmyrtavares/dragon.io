@@ -37,6 +37,9 @@ const Header = () => {
               Quero Vender
             </a>
           </li>
+          <li>
+            <Link to="/user-rules">Regras</Link>
+          </li>
         </ul>
       </nav>
     </header>
