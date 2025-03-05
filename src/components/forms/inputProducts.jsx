@@ -4,9 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmMessage from '../Messages/ConfirmMessage';
 import { GlobalContext } from '../../GlobalContext'; //
 import { useContext } from 'react';
+import BriefMessage from '../Messages/BriefMessabe';
+import React from 'react';
 
 const InputProducts = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
+  const [briefMessage, setBriefMessage] = React.useState(false);
   const { cpf } = useContext(GlobalContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -63,7 +66,8 @@ const InputProducts = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    let { id, value } = e.target;
+    value = value.toUpperCase();
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
@@ -90,7 +94,6 @@ const InputProducts = () => {
     formData.customerCpf = cpf;
     storedProducts.push(formData);
     localStorage.setItem('products', JSON.stringify(storedProducts));
-    alert('Produto adicionado com sucesso!');
     setFormData({
       title: '',
       price: '',
@@ -110,7 +113,7 @@ const InputProducts = () => {
       link: '',
       imagens: [],
     });
-    navigate('/');
+    setBriefMessage(true);
   };
 
   const addImage = () => {
@@ -148,6 +151,13 @@ const InputProducts = () => {
 
   return (
     <div className={style.productFormContainer}>
+      {briefMessage && (
+        <BriefMessage
+          message="Seu produto foi criado com sucesso. Ele será avaliado e em breve estará disponível para venda."
+          setClose={setBriefMessage}
+          adress="/"
+        />
+      )}
       {openCloseConfirmMessage && (
         <ConfirmMessage
           defaultMessage="Você está prestes a excluir esse card. Tem certeza que quer continuar"

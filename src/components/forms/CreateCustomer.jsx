@@ -33,12 +33,11 @@ const CreateCustomer = () => {
         ...form,
         [name]: formattedDate,
       });
-    } else {
-      setForm({
-        ...form,
-        [name]: value,
-      });
     }
+    setForm({
+      ...form,
+      [name]: value,
+    });
   };
 
   const formatField = (name, value) => {
