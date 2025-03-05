@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../assets/style/CreateCustomer.module.scss';
+import BriefMessage from '../Messages/BriefMessabe';
 
 const CreateCustomer = () => {
   const [form, setForm] = React.useState({
@@ -10,17 +11,66 @@ const CreateCustomer = () => {
     cnpj: '',
     purchaseDate: '',
   });
+  const [briefMessage, setBriefMessage] = React.useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
+
+    const formattedValue = formatField(name, value);
+
+    if (name === 'cpf' || name === 'cnpj' || name === 'phone') {
+      setForm({
+        ...form,
+        [name]: formattedValue,
+      });
+      return;
+    }
+
+    if (name === 'purchaseDate') {
+      const [year, month, day] = value.split('-');
+      const formattedDate = `${day}-${month}-${year}`;
+      setForm({
+        ...form,
+        [name]: formattedDate,
+      });
+    } else {
+      setForm({
+        ...form,
+        [name]: value,
+      });
+    }
+  };
+
+  const formatField = (name, value) => {
+    if (name === 'cpf') {
+      return value
+        .replace(/\D/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    } else if (name === 'cnpj') {
+      return value
+        .replace(/\D/g, '')
+        .replace(/(\d{2})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1/$2')
+        .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
+    } else if (name === 'phone') {
+      return value
+        .replace(/\D/g, '')
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{4,5})(\d{4})$/, '$1-$2');
+    }
+    return value;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (form.cpf === '' && form.cnpj === '') {
+      alert('Por favor, preencha o campo CPF ou CNPJ.');
+      return;
+    }
+
     const customers = JSON.parse(localStorage.getItem('customer')) || [];
     customers.push(form);
     localStorage.setItem('customer', JSON.stringify(customers));
@@ -32,10 +82,17 @@ const CreateCustomer = () => {
       cnpj: '',
       purchaseDate: '',
     });
+    setBriefMessage(true);
   };
 
   return (
     <div className={styles.container}>
+      {briefMessage && (
+        <BriefMessage
+          message="Seu cadastro foi criado com sucesso, agora vc pode cadastrar o seu produto"
+          setClose={setBriefMessage}
+        />
+      )}
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputContainer}>
           <label>Name:</label>
@@ -60,6 +117,7 @@ const CreateCustomer = () => {
           <input
             type="text"
             name="phone"
+            maxLength="15"
             value={form.phone}
             onChange={handleChange}
           />
@@ -69,6 +127,7 @@ const CreateCustomer = () => {
           <input
             type="text"
             name="cpf"
+            maxLength="14"
             value={form.cpf}
             onChange={handleChange}
           />
@@ -78,6 +137,7 @@ const CreateCustomer = () => {
           <input
             type="text"
             name="cnpj"
+            maxLength="18"
             value={form.cnpj}
             onChange={handleChange}
           />
@@ -85,7 +145,7 @@ const CreateCustomer = () => {
         <div className={styles.inputContainer}>
           <label>Data de Compra:</label>
           <input
-            type="text"
+            type="date"
             name="purchaseDate"
             value={form.purchaseDate}
             onChange={handleChange}
