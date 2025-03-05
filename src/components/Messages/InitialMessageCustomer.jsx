@@ -1,7 +1,8 @@
-import React from 'react';
 import style from '../../assets/style/ConfirmMessage.module.scss';
 import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
 import BriefMessage from './BriefMessabe';
+import { GlobalContext } from '../../GlobalContext'; //
 
 // eslint-disable-next-line react/prop-types
 const InitialMessageCustomer = ({ setCloseMessage, message }) => {
@@ -10,12 +11,13 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
   const [briefMessage, setBriefMessage] = React.useState(false);
   const [briefMessageCpfNotFounded, setBriefMessageCpfNotFounded] =
     React.useState(false);
+  const { setCpf, setCurrentCustomer } = useContext(GlobalContext);
 
-  const [cpf, setCpf] = React.useState('');
+  const [currentCpf, setCurrentCpf] = React.useState('');
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setCpf(value);
+    setCurrentCpf(value);
   };
 
   const registerAndClose = () => {
@@ -24,14 +26,18 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
   };
 
   const checkoutCpf = () => {
-    if (cpf) {
-      const customers = JSON.parse(localStorage.getItem('customer')) || [];
-      const customerExists = customers.some((customer) => customer.cpf === cpf);
+    if (currentCpf) {
+      const customers = JSON.parse(localStorage.getItem('customer')) || []; //grabbing the customer from local storage
+      const customerExists = customers.filter(
+        //compare the currentCpf with the cpf in the local storage
+        (customer) => customer.cpf === currentCpf
+      );
       if (customerExists) {
+        setCpf(currentCpf); //set the currentCpf in the global context
+        setCurrentCustomer(customerExists); //set the complete data customer in the global context
         setCloseMessage(false);
-        navigate('/form');
+        navigate('/user-rules');
       } else {
-        console.log('Temos um CPF   ', cpf);
         setBriefMessageCpfNotFounded(true);
         navigate('/register');
       }
@@ -83,7 +89,7 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
             </h1>
             <input
               type="text"
-              value={cpf}
+              value={currentCpf}
               onChange={handleChange}
               onBlur={checkoutCpf}
               maxLength="11"

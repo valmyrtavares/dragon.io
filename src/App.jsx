@@ -6,24 +6,23 @@ import Header from './components/Header';
 import SingleProductBox from './components/SingleProductBox';
 import CreateCustomer from './components/forms/CreateCustomer';
 import UserRules from './components/rules/userRules';
+import { GlobalProvider } from './GlobalProvider';
 
 const App = () => {
   return (
-    <>
-      <div>
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<ShowCase />} />
-            <Route path="/form" element={<InpuProducts />} />
-            <Route path="/form/:id" element={<InpuProducts />} />
-            <Route path="/singleProduct/:id" element={<SingleProductBox />} />
-            <Route path="/register" element={<CreateCustomer />} />
-            <Route path="/user-rules" element={<UserRules />} />
-          </Routes>
-        </Router>
-      </div>
-    </>
+    <GlobalProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<ShowCase />} />
+          <Route path="/form" element={<InpuProducts />} />
+          <Route path="/form/:id" element={<InpuProducts />} />
+          <Route path="/singleProduct/:id" element={<SingleProductBox />} />
+          <Route path="/register" element={<CreateCustomer />} />
+          <Route path="/user-rules" element={<UserRules />} />
+        </Routes>
+      </Router>
+    </GlobalProvider>
   );
 };
 

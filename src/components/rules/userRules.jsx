@@ -1,6 +1,32 @@
 import style from '../../assets/style/UserRules.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../../GlobalContext'; //
+import React, { useContext } from 'react';
 
 const UserRules = () => {
+  const [isAccepted, setIsAccepted] = React.useState(false);
+  const { cpf } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    const checked = event.target.checked;
+    setIsAccepted(checked);
+
+    let customer = JSON.parse(localStorage.getItem('customer')) || {};
+
+    if (!Array.isArray(customer)) {
+      console.error("Erro: 'customer' não é um array", customer);
+      return;
+    }
+    const currentClient = customer.find((cust) => cust.cpf === cpf);
+    if (currentClient) {
+      const updatedCustomer = customer.map((cust) =>
+        cust.cpf === cpf ? { ...cust, acceptTerms: checked } : cust
+      );
+      localStorage.setItem('customer', JSON.stringify(updatedCustomer));
+      navigate('/form');
+    }
+  };
   return (
     <div className={style.containerRules}>
       <h2>Regras de Uso para Anunciantes na Plataforma Dragon Computadores</h2>
@@ -12,7 +38,6 @@ const UserRules = () => {
           utilizam a plataforma da Dragon Computadores para divulgar e vender
           computadores usados.
         </li>
-        li
       </ul>
       <ul>
         2. 2. Responsabilidades do Anunciante:
@@ -98,7 +123,14 @@ const UserRules = () => {
         aos usuários.
       </p>
       <div className={style.acceptTerms}>
-        <input type="checkbox" id="acceptTerms" name="acceptTerms" />
+        <input
+          type="checkbox"
+          id="acceptTerms"
+          name="acceptTerms"
+          checked={isAccepted}
+          onChange={handleChange}
+        />
+
         <label htmlFor="acceptTerms">
           Eu aceito os termos de uso para publicar o meu computador na vitrine
           da Dragon Computadores

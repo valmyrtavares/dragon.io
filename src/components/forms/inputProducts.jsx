@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import style from './InputProducts.module.scss';
+import style from '../../assets/style/InputProducts.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmMessage from '../Messages/ConfirmMessage';
 
