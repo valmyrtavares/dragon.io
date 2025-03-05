@@ -67,7 +67,15 @@ const InputProducts = () => {
 
   const handleChange = (e) => {
     let { id, value } = e.target;
-    value = value.toUpperCase();
+    if (
+      id !== 'title' &&
+      id !== 'ages' &&
+      id !== 'motherBoardText' &&
+      id !== 'cpuText' &&
+      id !== 'link'
+    ) {
+      value = value.toUpperCase();
+    }
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
@@ -170,7 +178,12 @@ const InputProducts = () => {
         <div className={style.formRow}>
           <div className={style.formGroup}>
             <label htmlFor="title">Título/Aplicação:</label>
-            <select id="title" value={formData.title} onChange={handleChange}>
+            <select
+              id="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+            >
               <option value="">Selecione sua opção</option>
               <option value="Gamer">Gamer</option>
               <option value="Office">Office</option>
@@ -183,6 +196,7 @@ const InputProducts = () => {
             <label htmlFor="price">Preço:</label>
             <input
               type="text"
+              required
               id="price"
               value={formData.placaMae}
               onChange={handleChange}
@@ -194,6 +208,7 @@ const InputProducts = () => {
             <label htmlFor="processador">CPU:</label>
             <input
               type="text"
+              required
               id="cpu"
               value={formData.cpu}
               onChange={handleChange}
@@ -203,6 +218,7 @@ const InputProducts = () => {
             <label htmlFor="motherBoard">Placa Mãe:</label>
             <input
               type="text"
+              required
               id="motherBoard"
               value={formData.motherBoard}
               onChange={handleChange}
@@ -214,6 +230,7 @@ const InputProducts = () => {
             <label htmlFor="processador">Memória:</label>
             <input
               type="text"
+              required
               id="memory"
               value={formData.memory}
               onChange={handleChange}
@@ -223,6 +240,7 @@ const InputProducts = () => {
             <label htmlFor="motherBoard">Refrigeração:</label>
             <input
               type="text"
+              required
               id="cooling"
               value={formData.cooling}
               onChange={handleChange}
@@ -274,7 +292,7 @@ const InputProducts = () => {
           <div className={style.formGroup}>
             <label htmlFor="quantidadeDeCabos">Data da Compra</label>
             <input
-              type="text"
+              type="date"
               id="ages"
               value={formData.ages}
               onChange={handleChange}
@@ -309,7 +327,7 @@ const InputProducts = () => {
         </div>
         <div className={style.formTextareaColumn}>
           <div className={style.textareaColumn}>
-            <label htmlFor="motherBoardText">Texto da Placa Mãe:</label>
+            <label htmlFor="motherBoardText">ESPECIFICAÇÕES PLACA MÃE:</label>
             <textarea
               id="motherBoardText"
               value={formData.motherBoardText}
