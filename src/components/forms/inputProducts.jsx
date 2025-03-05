@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import style from '../../assets/style/InputProducts.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmMessage from '../Messages/ConfirmMessage';
+import { GlobalContext } from '../../GlobalContext'; //
+import { useContext } from 'react';
 
 const InputProducts = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
+  const { cpf } = useContext(GlobalContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -23,6 +26,7 @@ const InputProducts = () => {
     ages: '',
     link: '',
     motherBoardText: '',
+    customerCpf: '',
     imagens: [],
   });
 
@@ -50,6 +54,7 @@ const InputProducts = () => {
           amoutCables: products[id].amoutCables,
           ages: products[id].ages,
           link: products[id].link,
+          customerCpf: cpf,
           motherBoardText: products[id].motherBoardText,
           imagens: products[id].imagens,
         });
@@ -82,6 +87,7 @@ const InputProducts = () => {
       localStorage.setItem('products', JSON.stringify(storedProducts));
       return;
     }
+    formData.customerCpf = cpf;
     storedProducts.push(formData);
     localStorage.setItem('products', JSON.stringify(storedProducts));
     alert('Produto adicionado com sucesso!');
@@ -96,6 +102,7 @@ const InputProducts = () => {
       motherBoardText: '',
       font: '',
       graphicsCard: '',
+      customerCpf: '',
       memory: '',
       cooling: '',
       amoutCables: '',
