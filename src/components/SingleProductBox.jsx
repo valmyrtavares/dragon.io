@@ -32,6 +32,20 @@ const SingleProductBox = () => {
     }
   }, [productSelected]);
 
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 650);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className={style.SingleProductBox}>
       <div className={style.containerSideMenu}>
@@ -48,10 +62,11 @@ const SingleProductBox = () => {
               </div>
             ))}
         </div>
-        <Link to={`/form/${id}`}>Edição administrador</Link>
+        {!isMobile && <Link to={`/form/${id}`}>Edição administrador</Link>}
       </div>
       <div className={style.mainImage}>
         <img src={selectedImage} alt="Selected" />
+        {isMobile && <Link to={`/form/${id}`}>Edição administrador</Link>}
       </div>
       {productSelected && (
         <div className={style.productDetails}>

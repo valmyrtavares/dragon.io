@@ -22,7 +22,7 @@ const ShowCase = () => {
   return (
     <div className={style.showcaseContainer}>
       <h1>Vitrine de Produtos</h1>
-      <div>
+      <div className={style.scrollContainer}>
         {products.length > 0 ? (
           <div className={style.productsGrid}>
             {products.map((product, index) => (
@@ -38,8 +38,8 @@ const ShowCase = () => {
                     className={style.productImage}
                   />
                 </div>
-                <h3>{product.title}</h3>
-                <h3>R$ {product.price},00</h3>
+                <h3 className={style.title}>{product.title}</h3>
+                <h3 className={style.price}>R$ {product.price},00</h3>
               </div>
             ))}
           </div>

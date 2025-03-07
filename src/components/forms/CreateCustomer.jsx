@@ -97,6 +97,7 @@ const CreateCustomer = () => {
         <div className={styles.inputContainer}>
           <label>Name:</label>
           <input
+            required
             type="text"
             name="name"
             value={form.name}
@@ -106,6 +107,7 @@ const CreateCustomer = () => {
         <div className={styles.inputContainer}>
           <label>Email:</label>
           <input
+            required
             type="email"
             name="email"
             value={form.email}
@@ -115,6 +117,7 @@ const CreateCustomer = () => {
         <div className={styles.inputContainer}>
           <label>Phone:</label>
           <input
+            required
             type="text"
             name="phone"
             maxLength="15"
@@ -145,6 +148,7 @@ const CreateCustomer = () => {
         <div className={styles.inputContainer}>
           <label>Data de Compra:</label>
           <input
+            required
             type="date"
             name="purchaseDate"
             value={form.purchaseDate}
