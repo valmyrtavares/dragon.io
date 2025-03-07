@@ -32,7 +32,7 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
         //compare the currentCpf with the cpf in the local storage
         (customer) => customer.cpf === currentCpf
       );
-      if (customerExists) {
+      if (customerExists.length > 0) {
         setCpf(currentCpf); //set the currentCpf in the global context
         setCurrentCustomer(customerExists); //set the complete data customer in the global context
         setCloseMessage(false);
