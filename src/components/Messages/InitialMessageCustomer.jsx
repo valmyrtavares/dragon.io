@@ -30,8 +30,9 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
       const customers = JSON.parse(localStorage.getItem('customer')) || []; //grabbing the customer from local storage
       const customerExists = customers.filter(
         //compare the currentCpf with the cpf in the local storage
-        (customer) => customer.cpf === currentCpf
+        (customer) => customer.cpf.replace(/[.-]/g, '') === currentCpf
       );
+
       if (customerExists.length > 0) {
         setCpf(currentCpf); //set the currentCpf in the global context
         setCurrentCustomer(customerExists); //set the complete data customer in the global context

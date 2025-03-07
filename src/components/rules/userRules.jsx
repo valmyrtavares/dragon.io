@@ -18,10 +18,14 @@ const UserRules = () => {
       console.error("Erro: 'customer' não é um array", customer);
       return;
     }
-    const currentClient = customer.find((cust) => cust.cpf === cpf);
+    const currentClient = customer.find(
+      (cust) => cust.cpf.replace(/[.-]/g, '') === cpf
+    );
     if (currentClient) {
       const updatedCustomer = customer.map((cust) =>
-        cust.cpf === cpf ? { ...cust, acceptTerms: checked } : cust
+        cust.cpf.replace(/[.-]/g, '') === cpf
+          ? { ...cust, acceptTerms: checked }
+          : cust
       );
       localStorage.setItem('customer', JSON.stringify(updatedCustomer));
       navigate('/form');
