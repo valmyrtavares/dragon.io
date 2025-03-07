@@ -49,6 +49,12 @@
                 border: 1px solid #ccc;
                 border-radius: 5px;
             }
+            @media (max-width: 650px) {
+                input {                       
+                        width: 80%;  
+                        font-size:16px                   
+                    }
+            }
     
             a {
                 text-align: center;
@@ -60,7 +66,7 @@
             .register{
                 cursor: pointer;
                 color: blue;
-                text-decoration: underline;
+                text-decoration: none;
                 font-size: 20px;
             }
         }
