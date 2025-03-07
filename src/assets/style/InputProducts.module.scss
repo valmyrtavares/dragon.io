@@ -1,3 +1,46 @@
+@media (max-width: 650px) {
+    .productFormContainer {
+        .formContainer {
+            width: 100% !important;
+            width: 100%;
+            padding: 10px;
+            .formRow {
+                flex-direction: column;
+                .formGroup {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+            }
+            .formTextareaColumn {
+                grid-template-rows: 1fr;
+                .textareaColumn {
+                    grid-template-rows: 1fr;
+                    height: auto;
+                }
+            }
+            .linkAddImgContainer {
+                display:grid;
+                grid-template-columns: 1fr !important;
+                .linkField, .btn {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+            }
+            .containerImages {
+                justify-content: center;
+            }
+            .btnContainer {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                button {
+                    width: 100%;
+                    max-width: none;
+                }
+            }
+        }
+    }
+}
 .productFormContainer{
 
     .formContainer {

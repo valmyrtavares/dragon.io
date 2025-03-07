@@ -173,7 +173,7 @@ const InputProducts = () => {
           goOn={() => DeleteCard(true)}
         />
       )}
-      <h1>Formulário para máquinas Dragon</h1>
+      <h2>Formulário para máquinas Dragon</h2>
       <form className={style.formContainer} onSubmit={handleSubmit}>
         <div className={style.formRow}>
           <div className={style.formGroup}>
