@@ -19,6 +19,13 @@
 display:flex;
 flex-direction: column;
 justify-content: space-between;
+.adminContainer{
+    button, a{
+        background-color: transparent;
+        min-width: 200px;
+        color:black;
+    }
+}
     .imageThumbnails {
         max-height: 60vh;
         overflow-y: auto;

@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '../../assets/style/CreateCustomer.module.scss';
-import BriefMessage from '../Messages/BriefMessabe';
+import BriefMessage from '../Messages/BriefMessage';
+import { useContext } from 'react';
+import { GlobalContext } from '../../GlobalContext'; //
 
 const CreateCustomer = () => {
   const [form, setForm] = React.useState({
@@ -12,6 +14,7 @@ const CreateCustomer = () => {
     purchaseDate: '',
   });
   const [briefMessage, setBriefMessage] = React.useState(false);
+  const { setCpf, setCurrentCustomer } = useContext(GlobalContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,6 +75,8 @@ const CreateCustomer = () => {
 
     const customers = JSON.parse(localStorage.getItem('customer')) || [];
     customers.push(form);
+    setCpf(form.cpf);
+    setCurrentCustomer(form);
     localStorage.setItem('customer', JSON.stringify(customers));
     setForm({
       name: '',

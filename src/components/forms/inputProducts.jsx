@@ -4,13 +4,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmMessage from '../Messages/ConfirmMessage';
 import { GlobalContext } from '../../GlobalContext'; //
 import { useContext } from 'react';
-import BriefMessage from '../Messages/BriefMessabe';
+import BriefMessage from '../Messages/BriefMessage';
 import React from 'react';
 
 const InputProducts = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
   const [briefMessage, setBriefMessage] = React.useState(false);
-  const { cpf } = useContext(GlobalContext);
+  const { cpf, login } = useContext(GlobalContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -21,6 +21,7 @@ const InputProducts = () => {
     cpuText: '',
     storage: '',
     tower: '',
+    adApproved: false,
     font: '',
     memory: '',
     graphicsCard: '',
@@ -47,6 +48,7 @@ const InputProducts = () => {
           price: products[id].price,
           cpu: products[id].cpu,
           motherBoard: products[id].motherBoard,
+          adApproved: products[id].adApproved,
           cpuText: products[id].cpuText,
           storage: products[id].storage,
           tower: products[id].tower,
@@ -92,14 +94,16 @@ const InputProducts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    debugger;
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
+      formData.customerCpf = formatCpf(cpf);
       storedProducts[id] = formData;
       localStorage.setItem('products', JSON.stringify(storedProducts));
+      navigate('/');
       return;
     }
-    formData.customerCpf = cpf;
+    formData.customerCpf = formatCpf(cpf);
     storedProducts.push(formData);
     localStorage.setItem('products', JSON.stringify(storedProducts));
     setFormData({
@@ -122,6 +126,9 @@ const InputProducts = () => {
       imagens: [],
     });
     setBriefMessage(true);
+  };
+  const formatCpf = (cpf) => {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   };
 
   const addImage = () => {
@@ -198,7 +205,7 @@ const InputProducts = () => {
               type="text"
               required
               id="price"
-              value={formData.placaMae}
+              value={formData.price}
               onChange={handleChange}
             />
           </div>
@@ -368,6 +375,27 @@ const InputProducts = () => {
           >
             Excluir
           </button>
+        </div>
+        <div className={style.formRow}>
+          {login && (
+            <div className={style.formGroup}>
+              <label htmlFor="adApproved">Aprovar Anúncio:</label>
+              <input
+                type="checkbox"
+                id="adApproved"
+                checked={formData.adApproved}
+                onChange={(e) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    adApproved: e.target.checked,
+                  }))
+                }
+              />
+              <span>
+                Somente os inputs checados aparecerão na área de cliente.
+              </span>
+            </div>
+          )}
         </div>
       </form>
     </div>

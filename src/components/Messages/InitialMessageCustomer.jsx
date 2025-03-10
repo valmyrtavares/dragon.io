@@ -1,6 +1,6 @@
 import style from '../../assets/style/ConfirmMessage.module.scss';
 import { useNavigate } from 'react-router-dom';
-import BriefMessage from './BriefMessabe';
+import BriefMessage from './BriefMessage';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext'; //
 

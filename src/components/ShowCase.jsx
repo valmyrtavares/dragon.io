@@ -1,18 +1,34 @@
 import { useEffect, useState } from 'react';
 import style from '../assets/style/ShowCase.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../GlobalContext'; //
+import { useContext } from 'react';
 
 const ShowCase = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const { login } = useContext(GlobalContext);
 
   useEffect(() => {
-    const storedProducts = localStorage.getItem('products');
-    console.log('DADOS   ', storedProducts);
-    if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
-    }
+    bringProducts();
   }, []);
+  useEffect(() => {
+    bringProducts();
+  }, [login]);
+
+  const bringProducts = () => {
+    let storedProducts = localStorage.getItem('products');
+    let products = JSON.parse(storedProducts);
+    if (products && products.length > 0) {
+      if (!login) {
+        products = products.filter((product) => product.adApproved === true);
+        setProducts(products);
+        return;
+      } else {
+        setProducts(products);
+      }
+    }
+  };
 
   const displaySingleProduct = (index) => {
     console.log('Qual é oproduto   ', index);
