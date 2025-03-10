@@ -2,10 +2,12 @@ import React from 'react';
 import style from '../assets/style/Header.module.scss';
 import { Link } from 'react-router-dom';
 import ConfirmMessage from './Messages/InitialMessageCustomer';
+import Login from './forms/Login';
 
 const Header = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] =
     React.useState(false);
+  const [login, setLogin] = React.useState(false);
   const [message, setMessage] = React.useState('');
   // const navigate = useNavigate();
 
@@ -17,8 +19,13 @@ const Header = () => {
     setMessage('O seu computador foi comprado na Dragon Computadores');
   };
 
+  const Checklogin = () => {
+    setLogin(true);
+  };
+
   return (
     <header className={style.header}>
+      {login && <Login setOpenClose={setLogin} />}
       <div className={style.containerMessage}>
         {openCloseConfirmMessage && (
           <ConfirmMessage
@@ -27,7 +34,7 @@ const Header = () => {
           />
         )}
       </div>
-      <nav>
+      <nav className={style.nav}>
         <ul className={style.navList}>
           <li>
             <Link to="/">Vitrine</Link>
@@ -38,6 +45,7 @@ const Header = () => {
             </a>
           </li>
         </ul>
+        <button onClick={Checklogin}></button>
       </nav>
     </header>
   );
