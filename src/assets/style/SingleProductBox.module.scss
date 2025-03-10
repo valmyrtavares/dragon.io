@@ -81,7 +81,19 @@ justify-content: space-between;
         gap: 10px;
         padding: 10px;
         z-index: 1; // Garante que os detalhes do produto fiquem acima da imagem principal
+        .title {
+            font-size: 20px;
+            font-size: 30px;
+            color: #333;
+            margin: -12px 0;
+        }
 
+        .price {
+            font-size: 30px;
+            font-size: 30px;
+            color: #ff6500;
+            margin: -20px 10px;
+        }
         h2,h3{
             font-size: 1.2rem;
             color: #333;
@@ -141,6 +153,17 @@ justify-content: space-between;
 
             h2, h3 {
                 font-size: 1rem;
+            }
+            .title {
+                font-size: 25px;
+                margin: -4px -9px;
+               
+            }
+
+            .price {
+                font-size: 25px;
+                margin: -20px -12px;
+             
             }
         }
     }

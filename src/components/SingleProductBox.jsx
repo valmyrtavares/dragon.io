@@ -71,13 +71,10 @@ const SingleProductBox = () => {
       {productSelected && (
         <div className={style.productDetails}>
           <h2>
-            Titulo:<span> {productSelected.title}</span>
-          </h2>
-          <h2>
             Processador: <span>{productSelected.cpu}</span>
           </h2>
           <h2>
-            Placa Mãe:<span>{productSelected.cpu}</span>
+            Placa Mãe:<span>{productSelected.motherBoard}</span>
           </h2>
           <h2>
             Memória:
@@ -93,9 +90,7 @@ const SingleProductBox = () => {
           <h2>
             armazenamento:<span>{productSelected.storage}</span>
           </h2>
-          <h2>
-            Preço:<span>{productSelected.price}</span>
-          </h2>
+
           <h2>
             gabinete:<span>{productSelected.tower}</span>
           </h2>
@@ -110,6 +105,8 @@ const SingleProductBox = () => {
           <h2>
             Ano :<span>{productSelected.ages}</span>
           </h2>
+          <h3 className={style.title}>{productSelected.title}</h3>
+          <h3 className={style.price}>R$ {productSelected.price},00</h3>
           <h3>
             Descrição da Placa mãe :
             <span>{productSelected.motherBoardText}</span>
