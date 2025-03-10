@@ -1,15 +1,17 @@
-import React from 'react';
 import style from '../assets/style/Header.module.scss';
 import { Link } from 'react-router-dom';
 import ConfirmMessage from './Messages/InitialMessageCustomer';
 import Login from './forms/Login';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../GlobalContext'; //
 
 const Header = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] =
     React.useState(false);
-  const [login, setLogin] = React.useState(false);
+  const [loginPopup, setLoginPopup] = React.useState(false);
   const [message, setMessage] = React.useState('');
   // const navigate = useNavigate();
+  const { login, setLogin } = useContext(GlobalContext);
 
   const handleNavigation = (event) => {
     event.preventDefault(); // Impede a navegação automática do Link
@@ -20,12 +22,18 @@ const Header = () => {
   };
 
   const Checklogin = () => {
-    setLogin(true);
+    setLoginPopup(true);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('login');
+    window.location.reload();
+    setLogin(false);
   };
 
   return (
     <header className={style.header}>
-      {login && <Login setOpenClose={setLogin} />}
+      {loginPopup && <Login setOpenClose={setLoginPopup} />}
       <div className={style.containerMessage}>
         {openCloseConfirmMessage && (
           <ConfirmMessage
@@ -45,7 +53,13 @@ const Header = () => {
             </a>
           </li>
         </ul>
-        <button onClick={Checklogin}></button>
+        {login ? (
+          <h3 className={style.logout} onClick={logout}>
+            Logado
+          </h3>
+        ) : (
+          <button onClick={Checklogin}></button>
+        )}
       </nav>
     </header>
   );
