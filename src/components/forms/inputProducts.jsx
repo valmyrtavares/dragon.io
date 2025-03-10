@@ -325,6 +325,21 @@ const InputProducts = () => {
             </button>
           </div>
         </div>
+        <div className={style.containerImages}>
+          {formData &&
+            formData.imagens &&
+            formData.imagens.length > 0 &&
+            formData.imagens.map((item, index) => (
+              <div key={index}>
+                <div className={style.imageItem}>
+                  <p>{removeSize(item)}</p>
+                  <button type="button" onClick={() => removeImage(index)}>
+                    X
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
         <div className={style.formTextareaColumn}>
           <div className={style.textareaColumn}>
             <label htmlFor="motherBoardText">ESPECIFICAÇÕES PLACA MÃE:</label>
@@ -343,21 +358,7 @@ const InputProducts = () => {
             />
           </div>
         </div>
-        <div className={style.containerImages}>
-          {formData &&
-            formData.imagens &&
-            formData.imagens.length > 0 &&
-            formData.imagens.map((item, index) => (
-              <div key={index}>
-                <div className={style.imageItem}>
-                  <p>{removeSize(item)}</p>
-                  <button type="button" onClick={() => removeImage(index)}>
-                    X
-                  </button>
-                </div>
-              </div>
-            ))}
-        </div>
+
         <div className={style.btnContainer}>
           <button type="submit">Salvar</button>
           <button
