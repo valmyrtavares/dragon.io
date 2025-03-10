@@ -1,9 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../assets/style/Login.module.scss';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../GlobalContext'; //
 
 const Login = ({ setOpenClose }) => {
   const [password, setPassword] = React.useState('');
+  const { setLogin } = useContext(GlobalContext);
 
   React.useEffect(() => {
     if (localStorage.getItem('login') === 'true') {
@@ -22,6 +24,7 @@ const Login = ({ setOpenClose }) => {
     const correctPassword = '1234'; // Replace with your actual password
     if (password === correctPassword) {
       localStorage.setItem('login', 'true');
+      setLogin(true);
       setOpenClose(false);
     } else {
       alert('Incorrect password');

@@ -1,7 +1,7 @@
 import style from '../../assets/style/ConfirmMessage.module.scss';
 import { useNavigate } from 'react-router-dom';
-import React, { useContext } from 'react';
 import BriefMessage from './BriefMessabe';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext'; //
 
 // eslint-disable-next-line react/prop-types

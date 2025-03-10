@@ -5,10 +5,18 @@ import { GlobalContext } from './GlobalContext';
 export const GlobalProvider = ({ children }) => {
   const [currentCustomer, setCurrentCustomer] = React.useState({});
   const [cpf, setCpf] = React.useState(''); // 🔹 Estado para armazenar o CPF
+  const [login, setLogin] = React.useState(''); // 🔹 Estado para armazenar o CPF
 
   return (
     <GlobalContext.Provider
-      value={{ currentCustomer, setCurrentCustomer, cpf, setCpf }}
+      value={{
+        currentCustomer,
+        setCurrentCustomer,
+        cpf,
+        setCpf,
+        setLogin,
+        login,
+      }}
     >
       {children}
     </GlobalContext.Provider>
