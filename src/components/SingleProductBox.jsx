@@ -57,7 +57,6 @@ const SingleProductBox = () => {
   }, []);
 
   const bringCustomer = () => {
-    debugger;
     const oneCustomer = customerList.filter(
       (customer) => customer.cpf === productSelected.customerCpf
     );

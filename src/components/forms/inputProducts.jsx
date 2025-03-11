@@ -94,7 +94,6 @@ const InputProducts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    debugger;
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       formData.customerCpf = formatCpf(cpf);
