@@ -18,9 +18,15 @@ const UserRules = () => {
       console.error("Erro: 'customer' não é um array", customer);
       return;
     }
-    const currentClient = customer.find(
-      (cust) => cust.cpf.replace(/[.-]/g, '') === cpf
-    );
+    let currentClient;
+    if (/^[0-9]+$/.test(cpf)) {
+      currentClient = customer.find(
+        (cust) => cust.cpf.replace(/[.-]/g, '') === cpf
+      );
+    } else {
+      currentClient = customer.find((cust) => cust.cpf === cpf);
+    }
+
     if (currentClient) {
       const updatedCustomer = customer.map((cust) =>
         cust.cpf.replace(/[.-]/g, '') === cpf

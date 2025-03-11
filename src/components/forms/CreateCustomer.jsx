@@ -95,7 +95,7 @@ const CreateCustomer = () => {
         <BriefMessage
           message="Seu cadastro foi criado com sucesso, agora vc pode cadastrar o seu produto"
           setClose={setBriefMessage}
-          adress="/form"
+          adress="/user-rules"
         />
       )}
       <form className={styles.form} onSubmit={handleSubmit}>
