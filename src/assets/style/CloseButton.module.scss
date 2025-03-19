@@ -1,0 +1,11 @@
+ .containerCloseBtn {
+     display: flex;
+     justify-content: end;    
+
+     .closeButton {
+         background: transparent;
+         color: black;
+         width: 20px;
+     }
+
+ }

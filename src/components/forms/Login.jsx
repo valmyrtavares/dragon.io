@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import styles from '../../assets/style/Login.module.scss';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext'; //
+import CloseButton from '../CloseButton';
 
 const Login = ({ setOpenClose }) => {
   const [password, setPassword] = React.useState('');
@@ -33,6 +34,7 @@ const Login = ({ setOpenClose }) => {
 
   return (
     <div className={styles.container}>
+      <CloseButton setOpenClose={setOpenClose} />
       <h2>Please enter your password</h2>
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
