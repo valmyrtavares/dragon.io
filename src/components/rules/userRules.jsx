@@ -44,7 +44,7 @@ const UserRules = () => {
       <ul>
         1. Objetivo:
         <li>
-          Estabelecer as diretrizes e reslionsabilidades dos anunciantes que
+          Estabelecer as diretrizes e resposabilidades dos anunciantes que
           utilizam a plataforma da Dragon Computadores para divulgar e vender
           computadores usados.
         </li>
