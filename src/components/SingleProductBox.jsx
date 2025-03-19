@@ -16,6 +16,7 @@ const SingleProductBox = () => {
   const [selectedCustomer, setSelectedCustomer] = React.useState({});
   const [showclient, setShowClient] = React.useState(false);
 
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
   const { id } = useParams();
 
   React.useEffect(() => {
@@ -42,19 +43,17 @@ const SingleProductBox = () => {
     }
   }, [productSelected]);
 
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
-
   React.useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 650);
-    };
-
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 650);
+  };
 
   const bringCustomer = () => {
     const oneCustomer = customerList.filter(
