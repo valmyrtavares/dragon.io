@@ -15,6 +15,7 @@ const SingleProductBox = () => {
   const [customerList, setCustomerList] = React.useState([]);
   const [selectedCustomer, setSelectedCustomer] = React.useState({});
   const [showclient, setShowClient] = React.useState(false);
+  const [zoom, setZoom] = React.useState({ backgroundPosition: '0% 0%' });
 
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
   const { id } = useParams();
@@ -36,6 +37,13 @@ const SingleProductBox = () => {
       setProductSelected(products[id]); // Atualize o estado com o produto selecionado
     }
   }, [id]); // Certifique-se de adicionar o id como dependência, se ele mudar
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setZoom({ backgroundPosition: `${x}% ${y}%` });
+  };
 
   React.useEffect(() => {
     if (productSelected) {
@@ -95,14 +103,16 @@ const SingleProductBox = () => {
         )}
       </div>
       <div className={style.mainImage}>
-        <img src={selectedImage} alt="Selected" />
-        {isMobile && login && (
-          <div className={style.adminContainer}>
-            {' '}
-            <Link to={`/form/${id}`}>Edição administrador</Link>{' '}
-            <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
-          </div>
-        )}
+        <div
+          className={style.zoomContainer}
+          onMouseMove={handleMouseMove}
+          style={{
+            backgroundImage: `url(${selectedImage})`,
+            backgroundPosition: zoom.backgroundPosition,
+          }}
+        >
+          <img src={selectedImage} alt="Selected" />
+        </div>
       </div>
       {productSelected && (
         <div className={style.productDetails}>
