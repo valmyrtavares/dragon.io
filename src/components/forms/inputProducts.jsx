@@ -69,6 +69,12 @@ const InputProducts = () => {
 
   const handleChange = (e) => {
     let { id, value } = e.target;
+    if (id === 'price') {
+      value = value.replace(/\D/g, ''); // Remove non-numeric characters
+      value = (parseFloat(value) / 100).toFixed(2); // Format as a decimal with two places
+      value = `R$ ${value.replace('.', ',')}`; // Add "R$" and replace dot with comma
+    }
+
     if (
       id !== 'title' &&
       id !== 'ages' &&
@@ -94,6 +100,7 @@ const InputProducts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    formData.price = formData.price.replace('R$ ', '').replace(',00', '');
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       formData.customerCpf = formatCpf(cpf);
