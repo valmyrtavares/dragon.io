@@ -367,6 +367,7 @@ const InputProducts = () => {
             <label htmlFor="motherBoardText">ESPECIFICAÇÕES PLACA MÃE:</label>
             <ReactQuill
               id="motherBoardText"
+              className={style.textField}
               value={formData.motherBoardText}
               onChange={(value) => handleQuillChange(value, 'motherBoardText')}
             />
@@ -375,6 +376,7 @@ const InputProducts = () => {
             <label htmlFor="cpuText">Texto do CPU:</label>
             <ReactQuill
               id="cpuText"
+              className={style.textField}
               value={formData.cpuText}
               onChange={(value) => handleQuillChange(value, 'cpuText')}
             />
