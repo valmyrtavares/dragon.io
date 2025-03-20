@@ -107,6 +107,7 @@ const SingleProductBox = () => {
           className={style.zoomContainer}
           onMouseMove={handleMouseMove}
           style={{
+            backgroundRepeat: 'no-repeat',
             backgroundImage: `url(${selectedImage})`,
             backgroundPosition: zoom.backgroundPosition,
           }}
@@ -152,17 +153,22 @@ const SingleProductBox = () => {
           <h3 className={style.price}>R$ {productSelected.price},00</h3>
           <h3>
             Descrição da Placa mãe :
-            <span
-              dangerouslySetInnerHTML={{
-                __html: productSelected.motherBoardText,
-              }}
-            />
+            <div className={style.hugeText}>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: productSelected.motherBoardText,
+                }}
+              />
+            </div>
           </h3>
           <h3>
             Descrição do processador :
-            <span
-              dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
-            />
+            <div className={style.hugeText}>
+              <span
+                className={style.hugeText}
+                dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
+              />
+            </div>
           </h3>
         </div>
       )}
