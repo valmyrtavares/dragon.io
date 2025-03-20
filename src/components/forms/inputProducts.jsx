@@ -6,6 +6,8 @@ import { GlobalContext } from '../../GlobalContext'; //
 import { useContext } from 'react';
 import BriefMessage from '../Messages/BriefMessage';
 import React from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const InputProducts = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
@@ -84,6 +86,13 @@ const InputProducts = () => {
     ) {
       value = value.toUpperCase();
     }
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleQuillChange = (value, id) => {
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
@@ -356,18 +365,18 @@ const InputProducts = () => {
         <div className={style.formTextareaColumn}>
           <div className={style.textareaColumn}>
             <label htmlFor="motherBoardText">ESPECIFICAÇÕES PLACA MÃE:</label>
-            <textarea
+            <ReactQuill
               id="motherBoardText"
               value={formData.motherBoardText}
-              onChange={handleChange}
+              onChange={(value) => handleQuillChange(value, 'motherBoardText')}
             />
           </div>
           <div className={style.textareaColumn}>
             <label htmlFor="cpuText">Texto do CPU:</label>
-            <textarea
+            <ReactQuill
               id="cpuText"
               value={formData.cpuText}
-              onChange={handleChange}
+              onChange={(value) => handleQuillChange(value, 'cpuText')}
             />
           </div>
         </div>

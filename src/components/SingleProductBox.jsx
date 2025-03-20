@@ -152,10 +152,17 @@ const SingleProductBox = () => {
           <h3 className={style.price}>R$ {productSelected.price},00</h3>
           <h3>
             Descrição da Placa mãe :
-            <span>{productSelected.motherBoardText}</span>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: productSelected.motherBoardText,
+              }}
+            />
           </h3>
           <h3>
-            Descrição do processador :<span>{productSelected.cpuText}</span>
+            Descrição do processador :
+            <span
+              dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
+            />
           </h3>
         </div>
       )}
