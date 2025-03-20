@@ -9,10 +9,13 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+const MAX_LENGTH = 350; // Defina o limite de caracteres
+
 const InputProducts = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
   const [briefMessage, setBriefMessage] = React.useState(false);
   const { cpf, login } = useContext(GlobalContext);
+  const [text, setText] = React.useState('');
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -71,6 +74,7 @@ const InputProducts = () => {
 
   const handleChange = (e) => {
     let { id, value } = e.target;
+
     if (id === 'price') {
       value = value.replace(/\D/g, ''); // Remove non-numeric characters
       value = (parseFloat(value) / 100).toFixed(2); // Format as a decimal with two places
@@ -93,10 +97,22 @@ const InputProducts = () => {
   };
 
   const handleQuillChange = (value, id) => {
+    const textOnly = value.replace(/<[^>]*>/g, ''); // Contar apenas caracteres visíveis
+
+    if (textOnly.length <= MAX_LENGTH) {
+      setText(value);
+    }
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
+  };
+
+  const handleKeyDown = (event) => {
+    const textOnly = text.replace(/<[^>]*>/g, ''); // Contar apenas texto sem tags
+    if (textOnly.length >= MAX_LENGTH && event.key !== 'Backspace') {
+      event.preventDefault(); // Bloqueia a entrada de novos caracteres
+    }
   };
 
   const handleImageUpload = (e) => {
@@ -370,15 +386,17 @@ const InputProducts = () => {
               className={style.textField}
               value={formData.motherBoardText}
               onChange={(value) => handleQuillChange(value, 'motherBoardText')}
+              onKeyDown={handleKeyDown}
             />
           </div>
           <div className={style.textareaColumn}>
-            <label htmlFor="cpuText">Texto do CPU:</label>
+            <label htmlFor="cpuText">ESPECIFICAÇÕES CPU:</label>
             <ReactQuill
               id="cpuText"
               className={style.textField}
               value={formData.cpuText}
               onChange={(value) => handleQuillChange(value, 'cpuText')}
+              onKeyDown={handleKeyDown} // Impede digitação acima do limite
             />
           </div>
         </div>
