@@ -26,6 +26,10 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
   };
 
   const checkoutCpf = () => {
+    if (!currentCpf || currentCpf.length !== 11) {
+      alert('Por favor, insira um número de CPF válido ou registre-se.');
+      return;
+    }
     if (currentCpf) {
       const customers = JSON.parse(localStorage.getItem('customer')) || []; //grabbing the customer from local storage
       const customerExists = customers.filter(
@@ -96,6 +100,9 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
               maxLength="11"
               placeholder="Digite seu CPF"
             />
+            <button className={style.submitCpfBtn} onClick={checkoutCpf}>
+              Buscar CPF
+            </button>
             <p className={style.register} onClick={registerAndClose}>
               Registre-se
             </p>
