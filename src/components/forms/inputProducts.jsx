@@ -12,10 +12,13 @@ import 'react-quill/dist/quill.snow.css';
 const MAX_LENGTH = 350; // Defina o limite de caracteres
 
 const InputProducts = () => {
-  const [openCloseConfirmMessage, setOpenCloseConfirmMessage] = useState(false);
+  const [OpenCloseConfirmSaveMessage, setOpenCloseConfirmSaveMessage] =
+    useState(false);
   const [briefMessage, setBriefMessage] = React.useState(false);
   const { cpf, login } = useContext(GlobalContext);
   const [text, setText] = React.useState('');
+  const [OpenCloseConfirmDeleteMessage, setOpenCloseConfirmDeleteMessage] =
+    React.useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -123,7 +126,21 @@ const InputProducts = () => {
     }));
   };
 
+  const saveForm = () => {
+    if (OpenCloseConfirmSaveMessage === false) {
+      setOpenCloseConfirmSaveMessage(true);
+      return;
+    }
+    setOpenCloseConfirmSaveMessage(false);
+    handleSubmit();
+  };
+
   const handleSubmit = (e) => {
+    if (!e || typeof e.preventDefault !== 'function') {
+      // Se e não existir ou não for um evento válido, criar um mock
+      e = { preventDefault: () => {} };
+    }
+
     e.preventDefault();
     formData.price = formData.price.replace('R$ ', '').replace(',00', '');
     formData.id = Math.random().toString(36).substring(2, 7).toUpperCase();
@@ -189,11 +206,11 @@ const InputProducts = () => {
       if (openClosePopup) {
         storedProducts.splice(id, 1);
         localStorage.setItem('products', JSON.stringify(storedProducts));
-        setOpenCloseConfirmMessage(false);
+        setOpenCloseConfirmDeleteMessage(false);
         navigate('/');
         return;
       }
-      setOpenCloseConfirmMessage(true);
+      setOpenCloseConfirmDeleteMessage(true);
     }
   };
 
@@ -206,15 +223,22 @@ const InputProducts = () => {
           adress="/"
         />
       )}
-      {openCloseConfirmMessage && (
+      {OpenCloseConfirmDeleteMessage && (
         <ConfirmMessage
           defaultMessage="Você está prestes a excluir esse card. Tem certeza que quer continuar"
-          setCloseMessage={setOpenCloseConfirmMessage}
+          setCloseMessage={setOpenCloseConfirmDeleteMessage}
           goOn={() => DeleteCard(true)}
         />
       )}
+      {OpenCloseConfirmSaveMessage && (
+        <ConfirmMessage
+          defaultMessage="Tem certeza que quer enviar os dados?"
+          setCloseMessage={setOpenCloseConfirmSaveMessage}
+          goOn={() => saveForm()}
+        />
+      )}
       <h2>Formulário para máquinas Dragon</h2>
-      <form className={style.formContainer} onSubmit={handleSubmit}>
+      <form className={style.formContainer}>
         <div className={style.formRow}>
           <div className={style.formGroup}>
             <label htmlFor="title">Título/Aplicação:</label>
@@ -404,7 +428,9 @@ const InputProducts = () => {
         </div>
 
         <div className={style.btnContainer}>
-          <button type="submit">Salvar</button>
+          <button type="button" onClick={saveForm}>
+            Salvar
+          </button>
           <button
             type="button"
             onClick={() => DeleteCard(false)}
