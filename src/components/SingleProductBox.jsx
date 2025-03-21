@@ -96,7 +96,9 @@ const SingleProductBox = () => {
         {!isMobile && login && (
           <div className={style.adminContainer}>
             {' '}
-            <Link to={`/form/${id}`}>Edição administrador</Link>{' '}
+            <button>
+              <Link to={`/form/${id}`}>Edição administrador</Link>
+            </button>{' '}
             <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
           </div>
         )}
