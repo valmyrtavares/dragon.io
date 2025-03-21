@@ -308,7 +308,7 @@ const InputProducts = () => {
 
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="quantidadeDeCabos">Quantidade de Cabos:</label>
+            <label htmlFor="quantidadeDeCabos"> Cabos:</label>
             <input
               type="text"
               id="amoutCables"

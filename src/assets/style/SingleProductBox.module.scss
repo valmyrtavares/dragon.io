@@ -1,16 +1,21 @@
 .SingleProductBox {
-    width: 1500px;
+    width: 1700px;
  
     display: grid;
     grid-template-columns: 10% 50% 40%;
     gap: 15px;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    overflow: hidden; // Impede que imagens vazem para fora
+    overflow: hidden; // Impede que imagens vazem para fora]]
+    div{
+       
+    }
+
+    
 
     &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -102,29 +107,49 @@ justify-content: space-between;
    }
 
     .productDetails {
+        .priceContainer{
+            max-height: 131px;
+            margin-bottom:40px;
+            display:grid;
+            grid-template-columns: 1fr 2fr;
+            justify-content: start;
+            column-gap: 50px;
+            .mainItems {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            }
+            .highlightPrice{
+                text-align: start;
+                .title {
+                    font-size: 43px;
+
+                    color: #333;
+                    margin: -12px 0;
+                }
+
+                .price {
+                    font-size: 43px;
+                    color: #ff6500;
+                    margin: 20px 10px;
+                }
+            }
+         
+
+        }
         display: flex;
         flex-direction: column;
         text-align: start;
         gap: 10px;
         padding: 10px;
         z-index: 1; // Garante que os detalhes do produto fiquem acima da imagem principal
-        .title {
-            font-size: 20px;
-            font-size: 30px;
-            color: #333;
-            margin: -12px 0;
-        }
+      
         .hugeText{
             max-height: 15vh;
             overflow-y: auto;
         }
 
-        .price {
-            font-size: 30px;
-            font-size: 30px;
-            color: #ff6500;
-            margin: -20px 10px;
-        }
+     
         h2,h3{
             font-size: 1.2rem;
             color: #333;
@@ -185,17 +210,18 @@ justify-content: space-between;
             h2, h3 {
                 font-size: 1rem;
             }
-            .title {
-                font-size: 25px;
-                margin: -4px -9px;
-               
-            }
+           
+        }
+        .title {
+            font-size: 25px;
+            margin: -4px -9px;
 
-            .price {
-                font-size: 25px;
-                margin: -20px -12px;
-             
-            }
+        }
+
+        .price {
+            font-size: 25px;
+            margin: -20px -12px;
+
         }
     }
 }
