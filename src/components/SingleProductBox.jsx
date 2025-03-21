@@ -137,6 +137,10 @@ const SingleProductBox = () => {
             </div>
           </div>
           <h2>
+            Código do produto:
+            <span>{productSelected.id}</span>
+          </h2>
+          <h2>
             Placa de Video:
             <span>{productSelected.graphicsCard}</span>
           </h2>

@@ -126,6 +126,7 @@ const InputProducts = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     formData.price = formData.price.replace('R$ ', '').replace(',00', '');
+    formData.id = Math.random().toString(36).substring(2, 7).toUpperCase();
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       formData.customerCpf = formatCpf(cpf);
@@ -138,6 +139,7 @@ const InputProducts = () => {
     storedProducts.push(formData);
     localStorage.setItem('products', JSON.stringify(storedProducts));
     setFormData({
+      id: '',
       title: '',
       price: '',
       cpu: '',
