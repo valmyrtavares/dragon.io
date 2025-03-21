@@ -6,9 +6,7 @@ import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
 
 const SingleProductBox = () => {
-  const [selectedImage, setSelectedImage] = React.useState(
-    'https://via.placeholder.com/300'
-  );
+  const [selectedImage, setSelectedImage] = React.useState('');
   const { login } = useContext(GlobalContext);
   const [productSelected, setProductSelected] = React.useState({});
   const [images, setImages] = React.useState([]);
@@ -31,6 +29,7 @@ const SingleProductBox = () => {
       const products = JSON.parse(storedProduct); // Converta a string em um array
 
       const { imagens } = products[id];
+      setSelectedImage(imagens[0]);
       setImages(imagens);
       console.log('Products ', products[id]);
 
