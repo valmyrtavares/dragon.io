@@ -3,6 +3,7 @@ import styles from '../../assets/style/CreateCustomer.module.scss';
 import BriefMessage from '../Messages/BriefMessage';
 import { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext'; //
+import { addDataToCollection } from '../../api/Api';
 
 const CreateCustomer = () => {
   const [form, setForm] = React.useState({
@@ -66,27 +67,30 @@ const CreateCustomer = () => {
     return value;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.cpf === '' && form.cnpj === '') {
       alert('Por favor, preencha o campo CPF ou CNPJ.');
       return;
     }
-
-    const customers = JSON.parse(localStorage.getItem('customer')) || [];
-    customers.push(form);
     setCpf(form.cpf);
     setCurrentCustomer(form);
-    localStorage.setItem('customer', JSON.stringify(customers));
-    setForm({
-      name: '',
-      email: '',
-      phone: '',
-      cpf: '',
-      cnpj: '',
-      purchaseDate: '',
-    });
-    setBriefMessage(true);
+    try {
+      const docRef = await addDataToCollection('customer', form);
+      console.log('Document created with ID: ', docRef.id);
+      setBriefMessage(true);
+      setForm({
+        name: '',
+        email: '',
+        phone: '',
+        cpf: '',
+        cnpj: '',
+        purchaseDate: '',
+      });
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      alert('Ocorreu um erro ao criar o cadastro. Por favor, tente novamente.');
+    }
   };
 
   return (

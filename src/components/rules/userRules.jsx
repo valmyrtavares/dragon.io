@@ -1,44 +1,47 @@
 import style from '../../assets/style/UserRules.module.scss';
-import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../GlobalContext'; //
 import React, { useContext } from 'react';
+import { getDataByField, updateObjectBySpecificKey } from '../../api/Api';
+import { formatCpf } from '../../helper/Helper';
+import BriefMessage from '../Messages/BriefMessage';
 
 const UserRules = () => {
   const [isAccepted, setIsAccepted] = React.useState(false);
+  const [successMessage, setSuccessMessage] = React.useState(false);
   const { cpf } = useContext(GlobalContext);
-  const navigate = useNavigate();
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const checked = event.target.checked;
     setIsAccepted(checked);
+    console.log('CPF GLOBAL', cpf);
+    let currentClientNumberCpf;
+    currentClientNumberCpf = formatCpf(cpf);
 
-    let customer = JSON.parse(localStorage.getItem('customer')) || {};
+    let customer = await getDataByField(
+      'customer',
+      'cpf',
+      currentClientNumberCpf
+    );
+    customer.acceptTerms = checked;
+    console.log('Cliente com checked', customer);
 
-    if (!Array.isArray(customer)) {
-      console.error("Erro: 'customer' não é um array", customer);
-      return;
-    }
-    let currentClient;
-    if (/^[0-9]+$/.test(cpf)) {
-      currentClient = customer.find(
-        (cust) => cust.cpf.replace(/[.-]/g, '') === cpf
-      );
-    } else {
-      currentClient = customer.find((cust) => cust.cpf === cpf);
-    }
-
-    if (currentClient) {
-      const updatedCustomer = customer.map((cust) =>
-        cust.cpf.replace(/[.-]/g, '') === cpf
-          ? { ...cust, acceptTerms: checked }
-          : cust
-      );
-      localStorage.setItem('customer', JSON.stringify(updatedCustomer));
-      navigate('/form');
-    }
+    const successUpdate = await updateObjectBySpecificKey(
+      'customer',
+      'cpf',
+      currentClientNumberCpf,
+      customer
+    );
+    if (successUpdate) setSuccessMessage(true);
   };
   return (
     <div className={style.containerRules}>
+      {successMessage && (
+        <BriefMessage
+          setClose={setSuccessMessage}
+          message={`O portador do número de CPF ${cpf} aceitou os termos de uso da Dragon Computadores`}
+          adress="/form"
+        />
+      )}
       <h2>Regras de Uso para Anunciantes na Plataforma Dragon Computadores</h2>
 
       <ul>

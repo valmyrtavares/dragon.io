@@ -3,6 +3,7 @@ import style from '../assets/style/ShowCase.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
+import { getListData } from '../api/Api';
 
 const ShowCase = () => {
   const [products, setProducts] = useState([]);
@@ -16,16 +17,20 @@ const ShowCase = () => {
     bringProducts();
   }, [login]);
 
-  const bringProducts = () => {
-    let storedProducts = localStorage.getItem('products');
-    let products = JSON.parse(storedProducts);
-    if (products && products.length > 0) {
+  const bringProducts = async () => {
+    const productList = await getListData('products');
+    console.log('produtos com id  ', productList);
+    // let storedProducts = localStorage.getItem('products');
+    // let products = JSON.parse(storedProducts);
+    if (productList && productList.length > 0) {
       if (!login) {
-        products = products.filter((product) => product.adApproved === true);
-        setProducts(products);
+        const productFiltered = productList.filter(
+          (product) => product.adApproved === true
+        );
+        setProducts(productFiltered);
         return;
       } else {
-        setProducts(products);
+        setProducts(productList);
       }
     }
   };
@@ -45,11 +50,11 @@ const ShowCase = () => {
               <div
                 className={style.productCard}
                 key={index}
-                onClick={() => displaySingleProduct(index)}
+                onClick={() => displaySingleProduct(product.id)}
               >
                 <div className={style.imageContainer}>
                   <img
-                    src={product.imagens[0]}
+                    src={product.images[0]}
                     alt={`Produto ${index + 1}`}
                     className={style.productImage}
                   />

@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import PopupCustomerDetails from './customer/popupCustomerDetails';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
+import { getDataById } from '../api/Api';
 
 const SingleProductBox = () => {
   const [selectedImage, setSelectedImage] = React.useState('');
@@ -19,22 +20,27 @@ const SingleProductBox = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
-    const storedProduct = localStorage.getItem('products');
+    const fetchProducts = async () => {
+      const selectedProduct = await getDataById('products', id);
+      if (
+        selectedProduct &&
+        typeof selectedProduct === 'object' &&
+        Object.keys(selectedProduct).length > 0
+      ) {
+        const { images } = selectedProduct;
+        setSelectedImage(images[0]);
+        setImages(images);
+
+        setProductSelected(selectedProduct); // Atualize o estado com o produto selecionado
+      }
+    };
+
     const customerList = localStorage.getItem('customer');
     const fetcherCustomerList = JSON.parse(customerList);
     setCustomerList(fetcherCustomerList);
 
     // Verifique se há dados armazenados e se a string não está vazia
-    if (storedProduct && storedProduct.length > 0) {
-      const products = JSON.parse(storedProduct); // Converta a string em um array
-
-      const { imagens } = products[id];
-      setSelectedImage(imagens[0]);
-      setImages(imagens);
-      console.log('Products ', products[id]);
-
-      setProductSelected(products[id]); // Atualize o estado com o produto selecionado
-    }
+    fetchProducts();
   }, [id]); // Certifique-se de adicionar o id como dependência, se ele mudar
 
   const handleMouseMove = (e) => {
@@ -97,7 +103,9 @@ const SingleProductBox = () => {
           <div className={style.adminContainer}>
             {' '}
             <button>
-              <Link to={`/form/${id}`}>Edição administrador</Link>
+              <Link to={`/form/${productSelected.id}`}>
+                Edição administrador
+              </Link>
             </button>{' '}
             <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
           </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BriefMessage from './BriefMessage';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext'; //
+import { getListData } from '../../api/Api';
 
 // eslint-disable-next-line react/prop-types
 const InitialMessageCustomer = ({ setCloseMessage, message }) => {
@@ -25,13 +26,14 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
     setCloseMessage(false);
   };
 
-  const checkoutCpf = () => {
+  const checkoutCpf = async () => {
     if (!currentCpf || currentCpf.length !== 11) {
       alert('Por favor, insira um número de CPF válido ou registre-se.');
       return;
     }
+
     if (currentCpf) {
-      const customers = JSON.parse(localStorage.getItem('customer')) || []; //grabbing the customer from local storage
+      const customers = await getListData('customer'); //grabbing the customer from local storage
       const customerExists = customers.filter(
         //compare the currentCpf with the cpf in the local storage
         (customer) => customer.cpf.replace(/[.-]/g, '') === currentCpf

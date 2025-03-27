@@ -8,6 +8,11 @@ import BriefMessage from '../Messages/BriefMessage';
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import {
+  addDataToCollection,
+  updateDataInCollection,
+  getDataById,
+} from '../../api/Api';
 
 const MAX_LENGTH = 350; // Defina o limite de caracteres
 
@@ -39,40 +44,44 @@ const InputProducts = () => {
     link: '',
     motherBoardText: '',
     customerCpf: '',
-    imagens: [],
+    images: [],
   });
 
   useEffect(() => {
-    console.log(' Formulario de dados   ', formData);
-    console.log(' ID  ', id);
-    if (id) {
-      const storedProduct = localStorage.getItem('products');
+    const fetchObjectProduct = async () => {
+      if (id) {
+        const storedProduct = await getDataById('products', id);
+        console.log('Objeto selecionado   ', storedProduct);
 
-      if (storedProduct && storedProduct.length > 0) {
-        const products = JSON.parse(storedProduct); // Converta a string em um array
-        console.log('Produto Selecionado   ', products[id]);
-        setFormData({
-          title: products[id].title,
-          price: products[id].price,
-          cpu: products[id].cpu,
-          motherBoard: products[id].motherBoard,
-          adApproved: products[id].adApproved,
-          cpuText: products[id].cpuText,
-          storage: products[id].storage,
-          tower: products[id].tower,
-          font: products[id].font,
-          memory: products[id].memory,
-          graphicsCard: products[id].graphicsCard,
-          cooling: products[id].cooling,
-          amoutCables: products[id].amoutCables,
-          ages: products[id].ages,
-          link: products[id].link,
-          customerCpf: cpf,
-          motherBoardText: products[id].motherBoardText,
-          imagens: products[id].imagens,
-        });
+        if (
+          storedProduct &&
+          typeof storedProduct === 'object' &&
+          Object.keys(storedProduct).length > 0
+        ) {
+          setFormData({
+            title: storedProduct.title,
+            price: storedProduct.price,
+            cpu: storedProduct.cpu,
+            motherBoard: storedProduct.motherBoard,
+            adApproved: storedProduct.adApproved,
+            cpuText: storedProduct.cpuText,
+            storage: storedProduct.storage,
+            tower: storedProduct.tower,
+            font: storedProduct.font,
+            memory: storedProduct.memory,
+            graphicsCard: storedProduct.graphicsCard,
+            cooling: storedProduct.cooling,
+            amoutCables: storedProduct.amoutCables,
+            ages: storedProduct.ages,
+            link: storedProduct.link,
+            customerCpf: cpf,
+            motherBoardText: storedProduct.motherBoardText,
+            images: storedProduct.images,
+          });
+        }
       }
-    }
+    };
+    fetchObjectProduct();
   }, []);
 
   const handleChange = (e) => {
@@ -122,7 +131,7 @@ const InputProducts = () => {
     const files = Array.from(e.target.files);
     setFormData((prevData) => ({
       ...prevData,
-      imagens: files,
+      images: files,
     }));
   };
 
@@ -143,18 +152,19 @@ const InputProducts = () => {
 
     e.preventDefault();
     formData.price = formData.price.replace('R$ ', '').replace(',00', '');
-    formData.id = Math.random().toString(36).substring(2, 7).toUpperCase();
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       formData.customerCpf = formatCpf(cpf);
       storedProducts[id] = formData;
-      localStorage.setItem('products', JSON.stringify(storedProducts));
+      updateDataInCollection('products', id, formData);
+      //localStorage.setItem('products', JSON.stringify(storedProducts));
       navigate('/');
       return;
     }
     formData.customerCpf = formatCpf(cpf);
     storedProducts.push(formData);
-    localStorage.setItem('products', JSON.stringify(storedProducts));
+    //localStorage.setItem('products', JSON.stringify(storedProducts));
+    addDataToCollection('products', formData);
     setFormData({
       id: '',
       title: '',
@@ -173,7 +183,7 @@ const InputProducts = () => {
       amoutCables: '',
       ages: '',
       link: '',
-      imagens: [],
+      images: [],
     });
     setBriefMessage(true);
   };
@@ -186,7 +196,7 @@ const InputProducts = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      imagens: [...prevData.imagens, formData.link], // Adiciona o link no array imagens
+      images: [...prevData.images, formData.link], // Adiciona o link no array images
       link: '', // Limpa o campo de link após adicionar
     }));
   };
@@ -195,7 +205,7 @@ const InputProducts = () => {
   const removeImage = (index) => {
     setFormData((prevData) => ({
       ...prevData,
-      imagens: prevData.imagens.filter((_, i) => i !== index), // Filtra a imagem pelo índice
+      images: prevData.images.filter((_, i) => i !== index), // Filtra a imagem pelo índice
     }));
   };
   const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
@@ -363,10 +373,10 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="imagens">Imagens:</label>
+            <label htmlFor="images">Imagens:</label>
             <input
               type="file"
-              id="imagens"
+              id="images"
               multiple
               onChange={handleImageUpload}
             />
@@ -391,9 +401,9 @@ const InputProducts = () => {
         </div>
         <div className={style.containerImages}>
           {formData &&
-            formData.imagens &&
-            formData.imagens.length > 0 &&
-            formData.imagens.map((item, index) => (
+            formData.images &&
+            formData.images.length > 0 &&
+            formData.images.map((item, index) => (
               <div key={index}>
                 <div className={style.imageItem}>
                   <p>{removeSize(item)}</p>
