@@ -5,6 +5,7 @@ import PopupCustomerDetails from './customer/popupCustomerDetails';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
 import { getDataById } from '../api/Api';
+import { formatDate } from '../helper/Helper'; // Importa a função formatDate
 
 const SingleProductBox = () => {
   const [selectedImage, setSelectedImage] = React.useState('');
@@ -158,7 +159,7 @@ const SingleProductBox = () => {
               Cabos :<span>{productSelected.amoutCables}</span>
             </h2>
             <h2>
-              Ano :<span>{productSelected.ages}</span>
+              Data de compra :<span>{formatDate(productSelected.ages)}</span>
             </h2>
 
             <h3>
