@@ -205,16 +205,6 @@ const InputProducts = () => {
     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   };
 
-  const addImage = () => {
-    if (formData.link.trim() === '') return; // Não adiciona se o campo estiver vazio
-
-    setFormData((prevData) => ({
-      ...prevData,
-      images: [...prevData.images, formData.link], // Adiciona o link no array images
-      link: '', // Limpa o campo de link após adicionar
-    }));
-  };
-
   // Função para remover a imagem
   const removeImage = (index) => {
     setFormData((prevData) => ({
@@ -399,14 +389,6 @@ const InputProducts = () => {
             )}
           </div>
         </div>
-
-        <div className={style.linkAddImgContainer}>
-          <div className={style.btn}>
-            <button type="button" onClick={addImage}>
-              Adicione imagem
-            </button>
-          </div>
-        </div>
         <div className={style.containerImages}>
           {formData &&
             formData.images &&
@@ -444,7 +426,6 @@ const InputProducts = () => {
             />
           </div>
         </div>
-
         <div className={style.btnContainer}>
           <button type="button" onClick={saveForm}>
             Salvar
