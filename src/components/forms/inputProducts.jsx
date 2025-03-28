@@ -8,7 +8,12 @@ import BriefMessage from '../Messages/BriefMessage';
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { addDataToCollection, uploadImage, getDataById } from '../../api/Api';
+import {
+  addDataToCollection,
+  uploadImage,
+  getDataById,
+  updateDataInCollection,
+} from '../../api/Api';
 
 const MAX_LENGTH = 350; // Defina o limite de caracteres
 
@@ -165,7 +170,7 @@ const InputProducts = () => {
     if (id) {
       formData.customerCpf = formatCpf(cpf);
       storedProducts[id] = formData;
-      // updateDataInCollection('products', id, formData);
+      updateDataInCollection('products', id, formData);
       //localStorage.setItem('products', JSON.stringify(storedProducts));
       navigate('/');
       return;
@@ -396,15 +401,6 @@ const InputProducts = () => {
         </div>
 
         <div className={style.linkAddImgContainer}>
-          <div className={style.linkField}>
-            <label htmlFor="idade">Link da imagem:</label>
-            <input
-              type="text"
-              id="link"
-              value={formData.link}
-              onChange={handleChange}
-            />
-          </div>
           <div className={style.btn}>
             <button type="button" onClick={addImage}>
               Adicione imagem
