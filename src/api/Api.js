@@ -1,4 +1,4 @@
-import { app } from '../config/firebase.js';
+import { app, storage } from '../config/firebase.js';
 import {
   getFirestore,
   collection,
@@ -8,6 +8,7 @@ import {
   getDoc,
   updateDoc,
 } from 'firebase/firestore';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 //FIRESTORE
 const db = getFirestore(app);
@@ -94,3 +95,39 @@ export async function updateObjectBySpecificKey(
     );
   }
 }
+
+export const uploadImage = (file, setProgress, setUrl, setForm) => {
+  return new Promise((resolve, reject) => {
+    if (!file) return reject('Nenhum arquivo selecionado.');
+
+    const path = `dishes/${file.name}`;
+    const storageRef = ref(storage, path);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+      },
+      (error) => {
+        console.error(error);
+        reject(error);
+      },
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          setUrl(downloadURL);
+          setForm((prev) => ({
+            ...prev,
+            images: [...(prev.images || []), downloadURL], // Adiciona a URL ao array images
+          }));
+          resolve(downloadURL);
+        } catch (err) {
+          reject(err);
+        }
+      }
+    );
+  });
+};

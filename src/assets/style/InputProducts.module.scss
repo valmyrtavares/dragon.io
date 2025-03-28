@@ -57,6 +57,9 @@
             justify-content: space-between;
             margin-bottom: 15px;        
             .formGroup {
+                .imagePreview {                      
+                            max-width: 44px;                        
+                    }
                 flex: 1;
                 margin-right: 10px;
                 label {
@@ -75,6 +78,7 @@
             }
             .formGroup:last-child {
                margin-right: 0;
+
             }
         }
         .formTextareaColumn{

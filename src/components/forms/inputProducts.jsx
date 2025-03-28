@@ -8,11 +8,7 @@ import BriefMessage from '../Messages/BriefMessage';
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {
-  addDataToCollection,
-  updateDataInCollection,
-  getDataById,
-} from '../../api/Api';
+import { addDataToCollection, uploadImage, getDataById } from '../../api/Api';
 
 const MAX_LENGTH = 350; // Defina o limite de caracteres
 
@@ -24,6 +20,8 @@ const InputProducts = () => {
   const [text, setText] = React.useState('');
   const [OpenCloseConfirmDeleteMessage, setOpenCloseConfirmDeleteMessage] =
     React.useState(false);
+  const [progress, setProgress] = React.useState(0);
+  const [url, setUrl] = React.useState('');
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -108,6 +106,17 @@ const InputProducts = () => {
     }));
   };
 
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        await uploadImage(file, setProgress, setUrl, setFormData);
+      } catch (error) {
+        console.error('Erro no upload:', error);
+      }
+    }
+  };
+
   const handleQuillChange = (value, id) => {
     const textOnly = value.replace(/<[^>]*>/g, ''); // Contar apenas caracteres visíveis
 
@@ -127,13 +136,13 @@ const InputProducts = () => {
     }
   };
 
-  const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    setFormData((prevData) => ({
-      ...prevData,
-      images: files,
-    }));
-  };
+  // const handleImageUpload = (e) => {
+  //   const files = Array.from(e.target.files);
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     images: files,
+  //   }));
+  // };
 
   const saveForm = () => {
     if (OpenCloseConfirmSaveMessage === false) {
@@ -156,7 +165,7 @@ const InputProducts = () => {
     if (id) {
       formData.customerCpf = formatCpf(cpf);
       storedProducts[id] = formData;
-      updateDataInCollection('products', id, formData);
+      // updateDataInCollection('products', id, formData);
       //localStorage.setItem('products', JSON.stringify(storedProducts));
       navigate('/');
       return;
@@ -374,12 +383,15 @@ const InputProducts = () => {
           </div>
           <div className={style.formGroup}>
             <label htmlFor="images">Imagens:</label>
-            <input
-              type="file"
-              id="images"
-              multiple
-              onChange={handleImageUpload}
-            />
+            <input type="file" onChange={handleFileChange} />
+            <progress value={progress} max="100" />
+            {url && (
+              <img
+                className={style.imagePreview}
+                src={url}
+                alt="Uploaded file"
+              />
+            )}
           </div>
         </div>
 
