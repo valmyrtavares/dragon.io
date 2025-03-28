@@ -3,6 +3,7 @@ import {
   getFirestore,
   collection,
   getDocs,
+  deleteDoc,
   addDoc,
   doc,
   getDoc,
@@ -67,6 +68,12 @@ export async function getDataByField(collectionName, fieldName, value) {
       `No document found in collection ${collectionName} with ${fieldName} equal to ${value}`
     );
   }
+}
+
+export async function deleteDataFromCollection(collectionName, id) {
+  const docRef = doc(db, collectionName, id);
+  await deleteDoc(docRef);
+  return `Document with ID ${id} deleted successfully from collection ${collectionName}.`;
 }
 
 export async function updateObjectBySpecificKey(

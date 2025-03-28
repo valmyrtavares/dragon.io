@@ -13,6 +13,7 @@ import {
   uploadImage,
   getDataById,
   updateDataInCollection,
+  deleteDataFromCollection,
 } from '../../api/Api';
 
 const MAX_LENGTH = 350; // Defina o limite de caracteres
@@ -215,11 +216,12 @@ const InputProducts = () => {
   const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
 
   const DeleteCard = (openClosePopup) => {
-    const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    // const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       if (openClosePopup) {
-        storedProducts.splice(id, 1);
-        localStorage.setItem('products', JSON.stringify(storedProducts));
+        // storedProducts.splice(id, 1);
+        // localStorage.setItem('products', JSON.stringify(storedProducts));
+        deleteDataFromCollection('products', id);
         setOpenCloseConfirmDeleteMessage(false);
         navigate('/');
         return;
