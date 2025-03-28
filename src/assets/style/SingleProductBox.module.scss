@@ -3,7 +3,7 @@
     .SingleProductBox {
         max-width: 1700px; 
         display: grid;
-        grid-template-columns: 10% 50% 40%;
+        grid-template-columns: 10% 30% 60%;
         gap: 15px;
         padding: 10px;
         border: 1px solid #ddd;
@@ -26,7 +26,6 @@
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
-
         .imageThumbnails {
             max-height: 60vh;
             overflow-y: auto;
@@ -34,16 +33,13 @@
             flex-direction: column;
             gap: 10px;
             padding-right: 5px;
-    
             &::-webkit-scrollbar {
                 width: 8px;
             }
-    
             &::-webkit-scrollbar-thumb {
                 background-color: rgba(0, 0, 0, 0.3);
                 border-radius: 4px;
             }
-    
             .thumbnail {
                 cursor: pointer;
                 transition: transform 0.2s ease-in-out;
@@ -61,7 +57,6 @@
             }
         }
     }
-    
        .mainImage {
            display: flex;
            align-items: start;
@@ -100,7 +95,6 @@
                opacity: 0; // Esconde a imagem original ao ativar o zoom
            }
        }
-    
         .productDetails {
             .priceContainer{
                 max-height: 131px;
@@ -129,8 +123,6 @@
                         margin: 20px 10px;
                     }
                 }
-             
-    
             }
             display: flex;
             flex-direction: column;
