@@ -78,118 +78,118 @@ const SingleProductBox = () => {
   };
 
   return (
-    <div className={style.SingleProductBox}>
-      {showclient && (
-        <PopupCustomerDetails
-          customer={selectedCustomer}
-          setClose={setShowClient}
-        />
-      )}
-      <div className={style.containerSideMenu}>
-        <div className={style.imageThumbnails}>
-          {images &&
-            images.length > 0 &&
-            images.map((image, index) => (
-              <div
-                key={index}
-                className={style.thumbnail}
-                onClick={() => setSelectedImage(image)}
-              >
-                <img src={image} alt={`Thumbnail ${index + 1}`} />
-              </div>
-            ))}
+    <div className={style.container}>
+      <div className={style.SingleProductBox}>
+        {showclient && (
+          <PopupCustomerDetails
+            customer={selectedCustomer}
+            setClose={setShowClient}
+          />
+        )}
+        <div className={style.containerSideMenu}>
+          <div className={style.imageThumbnails}>
+            {images &&
+              images.length > 0 &&
+              images.map((image, index) => (
+                <div
+                  key={index}
+                  className={style.thumbnail}
+                  onClick={() => setSelectedImage(image)}
+                >
+                  <img src={image} alt={`Thumbnail ${index + 1}`} />
+                </div>
+              ))}
+          </div>
         </div>
-        {!isMobile && login && (
-          <div className={style.adminContainer}>
-            {' '}
-            <button>
-              <Link to={`/form/${productSelected.id}`}>
-                Edição administrador
-              </Link>
-            </button>{' '}
-            <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
+        <div className={style.mainImage}>
+          <div
+            className={style.zoomContainer}
+            onMouseMove={handleMouseMove}
+            style={{
+              backgroundRepeat: 'no-repeat',
+              backgroundImage: `url(${selectedImage})`,
+              backgroundPosition: zoom.backgroundPosition,
+            }}
+          >
+            <img src={selectedImage} alt="Selected" />
+          </div>
+        </div>
+        {productSelected && (
+          <div className={style.productDetails}>
+            <div className={style.priceContainer}>
+              <div className={style.mainItems}>
+                <h2>
+                  Processador: <span>{productSelected.cpu}</span>
+                </h2>
+                <h2>
+                  Placa Mãe:<span>{productSelected.motherBoard}</span>
+                </h2>
+                <h2>
+                  Memória:
+                  <span>{productSelected.memory}</span>
+                </h2>
+              </div>
+              <div className={style.highlightPrice}>
+                <h3 className={style.title}>{productSelected.title}</h3>
+                <h3 className={style.price}>R$ {productSelected.price},00</h3>
+              </div>
+            </div>
+            <h2>
+              Código do produto:
+              <span>{productSelected.id}</span>
+            </h2>
+            <h2>
+              Placa de Video:
+              <span>{productSelected.graphicsCard}</span>
+            </h2>
+            <h2>
+              fonte: <span>{productSelected.font}</span>
+            </h2>
+
+            <h2>
+              gabinete:<span>{productSelected.tower}</span>
+            </h2>
+
+            <h2>
+              Refrigeração:<span>{productSelected.cooling}</span>
+            </h2>
+
+            <h2>
+              Cabos :<span>{productSelected.amoutCables}</span>
+            </h2>
+            <h2>
+              Ano :<span>{productSelected.ages}</span>
+            </h2>
+
+            <h3>
+              Descrição da Placa mãe :
+              <div className={style.hugeText}>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: productSelected.motherBoardText,
+                  }}
+                />
+              </div>
+            </h3>
+            <h3>
+              Descrição do processador :
+              <div className={style.hugeText}>
+                <span
+                  className={style.hugeText}
+                  dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
+                />
+              </div>
+            </h3>
           </div>
         )}
       </div>
-      <div className={style.mainImage}>
-        <div
-          className={style.zoomContainer}
-          onMouseMove={handleMouseMove}
-          style={{
-            backgroundRepeat: 'no-repeat',
-            backgroundImage: `url(${selectedImage})`,
-            backgroundPosition: zoom.backgroundPosition,
-          }}
-        >
-          <img src={selectedImage} alt="Selected" />
-        </div>
-      </div>
-      {productSelected && (
-        <div className={style.productDetails}>
-          <div className={style.priceContainer}>
-            <div className={style.mainItems}>
-              <h2>
-                Processador: <span>{productSelected.cpu}</span>
-              </h2>
-              <h2>
-                Placa Mãe:<span>{productSelected.motherBoard}</span>
-              </h2>
-              <h2>
-                Memória:
-                <span>{productSelected.memory}</span>
-              </h2>
-            </div>
-            <div className={style.highlightPrice}>
-              <h3 className={style.title}>{productSelected.title}</h3>
-              <h3 className={style.price}>R$ {productSelected.price},00</h3>
-            </div>
-          </div>
-          <h2>
-            Código do produto:
-            <span>{productSelected.id}</span>
-          </h2>
-          <h2>
-            Placa de Video:
-            <span>{productSelected.graphicsCard}</span>
-          </h2>
-          <h2>
-            fonte: <span>{productSelected.font}</span>
-          </h2>
-
-          <h2>
-            gabinete:<span>{productSelected.tower}</span>
-          </h2>
-
-          <h2>
-            Refrigeração:<span>{productSelected.cooling}</span>
-          </h2>
-
-          <h2>
-            Cabos :<span>{productSelected.amoutCables}</span>
-          </h2>
-          <h2>
-            Ano :<span>{productSelected.ages}</span>
-          </h2>
-
-          <h3>
-            Descrição da Placa mãe :
-            <div className={style.hugeText}>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: productSelected.motherBoardText,
-                }}
-              />
-            </div>
-          </h3>
-          <h3>
-            Descrição do processador :
-            <div className={style.hugeText}>
-              <span
-                className={style.hugeText}
-                dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
-              />
-            </div>
-          </h3>
+      {!isMobile && login && (
+        <div className={style.adminContainer}>
+          {' '}
+          <button>
+            <Link to={`/form/${productSelected.id}`}>Edição administrador</Link>
+          </button>{' '}
+          <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
         </div>
       )}
     </div>
