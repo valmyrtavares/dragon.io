@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import PopupCustomerDetails from './customer/popupCustomerDetails';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
-import { getDataById } from '../api/Api';
+import { getDataById, getDataByField } from '../api/Api';
 import { formatDate } from '../helper/Helper'; // Importa a função formatDate
 
 const SingleProductBox = () => {
@@ -12,7 +12,6 @@ const SingleProductBox = () => {
   const { login } = useContext(GlobalContext);
   const [productSelected, setProductSelected] = React.useState({});
   const [images, setImages] = React.useState([]);
-  const [customerList, setCustomerList] = React.useState([]);
   const [selectedCustomer, setSelectedCustomer] = React.useState({});
   const [showclient, setShowClient] = React.useState(false);
   const [zoom, setZoom] = React.useState({ backgroundPosition: '0% 0%' });
@@ -36,24 +35,20 @@ const SingleProductBox = () => {
       }
     };
 
-    const customerList = localStorage.getItem('customer');
-    const fetcherCustomerList = JSON.parse(customerList);
-    setCustomerList(fetcherCustomerList);
-
     // Verifique se há dados armazenados e se a string não está vazia
     fetchProducts();
   }, [id]); // Certifique-se de adicionar o id como dependência, se ele mudar
 
-  const handleMouseMove = (e) => {
-    const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = ((e.pageX - left) / width) * 100;
-    const y = ((e.pageY - top) / height) * 100;
-    setZoom({ backgroundPosition: `${x}% ${y}%` });
-  };
-
   React.useEffect(() => {
     if (productSelected) {
       console.log('Objeto   null', productSelected);
+      getDataByField('customer', 'cpf', productSelected.customerCpf)
+        .then((customer) => {
+          setSelectedCustomer(customer);
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar cliente:', error);
+        });
     }
   }, [productSelected]);
 
@@ -65,16 +60,20 @@ const SingleProductBox = () => {
     };
   }, []);
 
+  // Functions javascript
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setZoom({ backgroundPosition: `${x}% ${y}%` });
+  };
+
   const handleResize = () => {
     setIsMobile(window.innerWidth < 650);
   };
 
   const bringCustomer = () => {
-    const oneCustomer = customerList.filter(
-      (customer) => customer.cpf === productSelected.customerCpf
-    );
-
-    setSelectedCustomer(oneCustomer[0]);
     setShowClient(true);
   };
 
