@@ -38,7 +38,9 @@ const UserRules = () => {
       {successMessage && (
         <BriefMessage
           setClose={setSuccessMessage}
-          message={`O portador do número de CPF ${cpf} aceitou os termos de uso da Dragon Computadores`}
+          message={`O portador do número de CPF ${formatCpf(
+            cpf
+          )} aceitou os termos de uso da Dragon Computadores`}
           adress="/form"
         />
       )}

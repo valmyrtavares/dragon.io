@@ -22,6 +22,9 @@ const InputProducts = () => {
   const [OpenCloseConfirmSaveMessage, setOpenCloseConfirmSaveMessage] =
     useState(false);
   const [briefMessage, setBriefMessage] = React.useState(false);
+  const [characterCpuCounter, setCharacterCpuCounter] = React.useState(0);
+  const [characterMotherBoardCounter, setCharacterMotherBoardCounter] =
+    React.useState(0);
   const { cpf, login } = useContext(GlobalContext);
   const [text, setText] = React.useState('');
   const [OpenCloseConfirmDeleteMessage, setOpenCloseConfirmDeleteMessage] =
@@ -135,8 +138,14 @@ const InputProducts = () => {
     }));
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (id) => {
     const textOnly = text.replace(/<[^>]*>/g, ''); // Contar apenas texto sem tags
+    if (id === 'cpuText') {
+      setCharacterCpuCounter(textOnly.length); // Atualiza o contador de caracteres para CPU
+    } else if (id === 'motherBoardText') {
+      setCharacterMotherBoardCounter(textOnly.length); // Atualiza o contador de caracteres para Placa Mãe
+    }
+    textOnly.length; // Atualiza o contador de caracteres
     if (textOnly.length >= MAX_LENGTH && event.key !== 'Backspace') {
       event.preventDefault(); // Bloqueia a entrada de novos caracteres
     }
@@ -414,8 +423,11 @@ const InputProducts = () => {
               className={style.textField}
               value={formData.motherBoardText}
               onChange={(value) => handleQuillChange(value, 'motherBoardText')}
-              onKeyDown={handleKeyDown}
+              onKeyDown={() => handleKeyDown('motherBoardText')}
             />
+            <div className={style.characterCounter}>
+              {characterMotherBoardCounter}/{MAX_LENGTH} caracteres
+            </div>
           </div>
           <div className={style.textareaColumn}>
             <label htmlFor="cpuText">ESPECIFICAÇÕES CPU:</label>
@@ -424,8 +436,11 @@ const InputProducts = () => {
               className={style.textField}
               value={formData.cpuText}
               onChange={(value) => handleQuillChange(value, 'cpuText')}
-              onKeyDown={handleKeyDown} // Impede digitação acima do limite
+              onKeyDown={() => handleKeyDown('cpuText')} // Impede digitação acima do limite
             />
+            <div className={style.characterCounter}>
+              {characterCpuCounter}/{MAX_LENGTH} caracteres
+            </div>
           </div>
         </div>
         <div className={style.btnContainer}>
