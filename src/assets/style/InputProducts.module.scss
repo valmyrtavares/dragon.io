@@ -85,33 +85,34 @@
             display: grid;
             grid-template-rows: 1fr 1fr;
             .textareaColumn {
-                display: grid;
-                grid-template-rows: 1fr 1fr;
-                align-items: end;
-                max-height: 200px;
-            label {
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #333;
-                height: 30px;
-            }
-            .textField{
-                max-height: 10vh;
-                    overflow-y: auto;
-                
-            }
-            
-                    textarea{
-                        padding: 10px;
-                        font-size: 17px;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                        width: 100%;
-                        box-sizing: border-box;
-                        min-height: 150px;
+                    margin: 29px 0;
+                        display: grid;
+                        grid-template-rows: 1fr 1fr;
+                        align-items: end;
+                        max-height: 200px;
+                    label {
+                        font-weight: bold;
+                        color: #333;
+                        height: 30px;
+                    }
+                    .textField{
+                        height: 20vh;
+                            overflow-y: auto;
+
+                        
+                    }
+                    
+                        textarea{
+                            padding: 10px;
+                            font-size: 17px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            width: 100%;
+                            box-sizing: border-box;
+                            min-height: 150px;
+                        }
                     }
                 }
-        }
         .linkAddImgContainer{
             display:grid;
             align-self: center;
