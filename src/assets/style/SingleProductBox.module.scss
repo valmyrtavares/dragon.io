@@ -132,8 +132,11 @@
             z-index: 1; // Garante que os detalhes do produto fiquem acima da imagem principal
           
             .hugeText{
-                max-height: 15vh;
+                max-height: 30vh;
                 overflow-y: auto;
+                border: 1px solid black;
+                background-color: #f9f9f9;
+                border-radius: 20px;
             }
     
          
