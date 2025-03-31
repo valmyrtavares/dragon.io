@@ -447,11 +447,7 @@ const InputProducts = () => {
           <button type="button" onClick={saveForm}>
             Salvar
           </button>
-          <button
-            type="button"
-            onClick={() => DeleteCard(false)}
-            disabled={id === undefined}
-          >
+          <button type="button" onClick={() => DeleteCard(false)}>
             Excluir
           </button>
         </div>

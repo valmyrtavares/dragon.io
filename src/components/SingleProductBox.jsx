@@ -5,7 +5,7 @@ import PopupCustomerDetails from './customer/popupCustomerDetails';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
 import { getDataById, getDataByField } from '../api/Api';
-import { formatDate } from '../helper/Helper'; // Importa a função formatDate
+import { formatDate, formatCpf } from '../helper/Helper'; // Importa a função formatDate
 
 const SingleProductBox = () => {
   const [selectedImage, setSelectedImage] = React.useState('');
@@ -41,7 +41,12 @@ const SingleProductBox = () => {
 
   React.useEffect(() => {
     if (productSelected) {
-      console.log('Objeto   null', productSelected);
+      if (
+        productSelected.customerCpf &&
+        /^[0-9]{11}$/.test(productSelected.customerCpf)
+      ) {
+        productSelected.customerCpf = formatCpf(productSelected.customerCpf);
+      }
       getDataByField('customer', 'cpf', productSelected.customerCpf)
         .then((customer) => {
           setSelectedCustomer(customer);
@@ -74,6 +79,8 @@ const SingleProductBox = () => {
   };
 
   const bringCustomer = () => {
+    console.log('cliente selecionado:', selectedCustomer);
+    console.log('produto selecionado:', productSelected);
     setShowClient(true);
   };
 
