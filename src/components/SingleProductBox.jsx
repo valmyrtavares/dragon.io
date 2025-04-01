@@ -5,7 +5,8 @@ import PopupCustomerDetails from './customer/popupCustomerDetails';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
 import { getDataById, getDataByField } from '../api/Api';
-import { formatDate, formatCpf } from '../helper/Helper'; // Importa a função formatDate
+import { formatCpf } from '../helper/Helper'; // Importa a função formatDate
+import SingleDetailsProduct from './SingleDetailsProduct';
 
 const SingleProductBox = () => {
   const [selectedImage, setSelectedImage] = React.useState('');
@@ -15,6 +16,7 @@ const SingleProductBox = () => {
   const [selectedCustomer, setSelectedCustomer] = React.useState({});
   const [showclient, setShowClient] = React.useState(false);
   const [zoom, setZoom] = React.useState({ backgroundPosition: '0% 0%' });
+  const [singleDetailsProduct, setSingleDetailsProduct] = React.useState(false);
 
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
   const { id } = useParams();
@@ -93,6 +95,12 @@ const SingleProductBox = () => {
             setClose={setShowClient}
           />
         )}
+        {singleDetailsProduct && (
+          <SingleDetailsProduct
+            productSelected={productSelected}
+            setSingleDetailsProduct={setSingleDetailsProduct}
+          />
+        )}
         <div className={style.containerSideMenu}>
           <div className={style.imageThumbnails}>
             {images &&
@@ -123,70 +131,41 @@ const SingleProductBox = () => {
         </div>
         {productSelected && (
           <div className={style.productDetails}>
-            <div className={style.priceContainer}>
-              <div className={style.mainItems}>
+            <div className={style.mainItems}>
+              <div className={style.titleContainer}>
+                <h3 className={style.title}>PC {productSelected.title}</h3>
+              </div>
+              <div className={style.specialSpecifications}>
                 <h2>
-                  Processador: <span>{productSelected.cpu}</span>
-                </h2>
-                <h2>
-                  Placa Mãe:<span>{productSelected.motherBoard}</span>
-                </h2>
-                <h2>
-                  Memória:
-                  <span>{productSelected.memory}</span>
+                  <span>{productSelected.cpu}, </span>
+                  <span>{productSelected.motherBoard}, </span>
+                  <span>{productSelected.memory}, </span>
+                  <span>{productSelected.motherBoard}, </span>
+                  <span>{productSelected.memory} </span>
                 </h2>
               </div>
               <div className={style.highlightPrice}>
-                <h3 className={style.title}>{productSelected.title}</h3>
                 <h3 className={style.price}>R$ {productSelected.price},00</h3>
               </div>
-            </div>
-            <h2>
-              Código do produto:
-              <span>{productSelected.id}</span>
-            </h2>
-            <h2>
-              Placa de Video:
-              <span>{productSelected.graphicsCard}</span>
-            </h2>
-            <h2>
-              fonte: <span>{productSelected.font}</span>
-            </h2>
-
-            <h2>
-              gabinete:<span>{productSelected.tower}</span>
-            </h2>
-
-            <h2>
-              Refrigeração:<span>{productSelected.cooling}</span>
-            </h2>
-
-            <h2>
-              Cabos :<span>{productSelected.amoutCables}</span>
-            </h2>
-            <h2>
-              Data de compra :<span>{formatDate(productSelected.ages)}</span>
-            </h2>
-
-            <h3>
-              Descrição da Placa mãe :
-              <div className={style.hugeText}>
+              <button
+                className={style.btnMoreDetailsPopup}
+                onClick={() => setSingleDetailsProduct(true)}
+              >
+                MAIS DETALHES
+              </button>
+              <button className={style.btnContact}>FALE CONOSCO</button>
+              <h2 className={style.productCode} title="Clique para copiar">
+                Código do produto:{' '}
                 <span
-                  dangerouslySetInnerHTML={{
-                    __html: productSelected.motherBoardText,
+                  onClick={() => {
+                    navigator.clipboard.writeText(productSelected.id);
+                    alert('Código copiado para a área de transferência!');
                   }}
-                />
-              </div>
-            </h3>
-            <h3>
-              Descrição do processador :
-              <div className={style.hugeText}>
-                <span
-                  className={style.hugeText}
-                  dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
-                />
-              </div>
-            </h3>
+                >
+                  {productSelected.id}
+                </span>
+              </h2>
+            </div>
           </div>
         )}
       </div>

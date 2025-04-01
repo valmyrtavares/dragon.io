@@ -1,0 +1,46 @@
+.singleDetailsProductContainer{
+    .containerCloseBtn{
+        button{
+            font-size:2rem;
+            color:red;
+        }
+    }
+    width:50%;
+    margin:0 20%;
+    height: 70vh;
+    overflow-y: auto;
+    position:fixed;
+    top: 10%;
+    left: 10%;
+    background-color: #FEFEDF;
+    z-index: 30;
+    .productDetails{
+        .titleContainer h3 {
+            font-size: 5rem;
+            color: #e56b02;
+            font-family: impact, sans-serif;
+            margin: 0;
+            font-weight: bold;
+        }
+        h2{
+            color:#e56b02;
+            span{
+                font-weight: bold;
+                color:black;
+            }
+        }
+        .specificationsTitle{
+            font-size: 2rem;
+            color: #e56b02;
+            font-weight: bold;
+            .hugeText{
+                font-size: 1.2rem;
+                color:black;
+                font-family: arial;
+                font-weight: normal;
+
+            }
+        }
+
+    }
+}

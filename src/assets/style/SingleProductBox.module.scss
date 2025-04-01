@@ -3,7 +3,7 @@
     .SingleProductBox {
         max-width: 1700px; 
         display: grid;
-        grid-template-columns: 10% 30% 60%;
+        grid-template-columns: 10% 40% 50%;
         gap: 15px;
         padding: 10px;
         border: 1px solid #ddd;
@@ -31,7 +31,7 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 30px;
             padding-right: 5px;
             &::-webkit-scrollbar {
                 width: 8px;
@@ -41,9 +41,11 @@
                 border-radius: 4px;
             }
             .thumbnail {
+                border:solid 1px black;
+                border-radius: 10px;
                 cursor: pointer;
                 transition: transform 0.2s ease-in-out;
-    
+                background-color: #f9f9f9;
                 &:hover {
                     transform: scale(1.05);
                 }
@@ -59,7 +61,7 @@
     }
        .mainImage {
            display: flex;
-           align-items: start;
+           align-items: center;
            justify-content: center;
            height: 100%;
            overflow: hidden;
@@ -96,34 +98,91 @@
            }
        }
         .productDetails {
-            .priceContainer{
-                max-height: 131px;
-                margin-bottom:40px;
-                display:grid;
-                grid-template-columns: 1fr 2fr;
-                justify-content: start;
-                column-gap: 50px;
-                .mainItems {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-around;
+        .mainItems {
+                position: relative; // Permite que o pseudo-elemento fique sobreposto corretamente
+                overflow: hidden; // Evita que o background vaze
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+        
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('../image/dragon-background.png');
+                    background-size: cover;
+                    background-position: center;
+                    opacity: 0.2; // Opacidade apenas no background
+                    z-index: 0; // Mantém a imagem atrás do conteúdo
                 }
+        
+                .titleContainer,
+                .specialSpecifications,
+                .highlightPrice {
+                    position: relative; // Para que fiquem acima do fundo opaco
+                    z-index: 1;
+                    width: 100%;
+                    justify-content: center;
+                        display: flex;
+                        align-items: center;
+                }
+                
+                .titleContainer h3 {
+                    font-size: 5rem;
+                    color: #e56b02;
+                    font-family: impact, sans-serif;
+                    margin: 0;
+                    font-weight: bold;
+                }
+                .specialSpecifications h2{
+                    padding: 3%;
+
+                }
+        
+                .specialSpecifications h2 span {
+                    color: #e56b02;
+                    font-weight: bold;
+                    font-size: 2rem;
+                }
+                .btnMoreDetailsPopup{
+                    background-color:#e56b02;
+                    z-index: 15;
+                    color: white;
+                    font-size: 1rem;
+                    padding: 10px 20px;
+                    width:30%;
+                    margin:30px 35%;
+                    border-radius: 15px;
+                }
+                .btnContact{
+                    background-color:#e56b02;
+                    z-index: 15;
+                    color: white;
+                    font-size: 1rem;
+                    padding: 15px 20px;
+                    width:90%;
+                    opacity: 1;
+                    margin:30px 5%;
+                    border-radius: 15px;
+                }
+            }
+             
                 .highlightPrice{
                     text-align: start;
-                    .title {
-                        font-size: 43px;
-    
-                        color: #333;
-                        margin: -12px 0;
-                    }
-    
+             
+                    
                     .price {
-                        font-size: 43px;
+                        font-size: 3.5rem;
+                       
                         color: #ff6500;
                         margin: 20px 10px;
                     }
                 }
-            }
+            
             display: flex;
             flex-direction: column;
             text-align: start;
@@ -152,6 +211,30 @@
             }
             h3{
                 padding:2%;
+            }
+            .productCode{
+                position: relative;
+                font-size: 1.2rem;
+                z-index: 15;
+                color: #333;
+                margin:0;
+                font-weight: bold;
+                color:#e56b02;
+            .tooltip {
+                    position: fixed; // Mantém o tooltip na tela, sem empurrar nada
+                    background: black;
+                    color: white;
+                    padding: 5px 8px;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    white-space: nowrap;
+                    pointer-events: none; // Impede que o tooltip interfira na interação do mouse
+                    z-index: 1000;
+                }
+                span{
+                    font-weight: bold;
+
+                }
             }
         }
     }
