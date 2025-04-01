@@ -58,7 +58,6 @@ const InputProducts = () => {
     const fetchObjectProduct = async () => {
       if (id) {
         const storedProduct = await getDataById('products', id);
-        console.log('Objeto selecionado   ', storedProduct);
 
         if (
           storedProduct &&
@@ -405,13 +404,40 @@ const InputProducts = () => {
             formData.images &&
             formData.images.length > 0 &&
             formData.images.map((item, index) => (
-              <div key={index}>
-                <div className={style.imageItem}>
-                  <p>{removeSize(item)}</p>
-                  <button type="button" onClick={() => removeImage(index)}>
+              <div key={index} className={style.imageItem}>
+                <button
+                  style={{
+                    backgroundImage: `url(${item})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    width: '50px', // Aumente para um tamanho adequado
+                    height: '40px', // Aumente para um tamanho adequado
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                  }}
+                  type="button"
+                  onClick={() => removeImage(index)}
+                >
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '5px',
+                      right: '5px',
+                      backgroundColor: 'rgba(0,0,0,0.5)',
+                      color: 'white',
+                      borderRadius: '50%',
+                      padding: '2px 5px',
+                      fontSize: '12px',
+                    }}
+                  >
                     X
-                  </button>
-                </div>
+                  </span>
+                </button>
               </div>
             ))}
         </div>

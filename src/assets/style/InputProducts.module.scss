@@ -161,7 +161,20 @@
             flex-wrap:wrap;
             .imageItem{
                 display: flex;
-                background-color: red;
+             button{
+                background-size: 'cover';
+                        background-position: 'center';
+                        background-repeat: 'no-repeat';
+                        width: '50px'; // Aumente para um tamanho adequado
+                        height: '40px';// Aumente para um tamanho adequado
+                        border: 'none';
+                        cursor: 'pointer';
+                        display: 'flex';
+                        align-Items: 'center';
+                        justify-Content: 'center';
+                        position: 'relative';
+             }
+              
             }
     
         }
