@@ -4,6 +4,7 @@ import ConfirmMessage from './Messages/InitialMessageCustomer';
 import Login from './forms/Login';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../GlobalContext'; //
+import LogoImage from '../assets/image/Logo.png';
 
 const Header = () => {
   const [openCloseConfirmMessage, setOpenCloseConfirmMessage] =
@@ -44,6 +45,20 @@ const Header = () => {
       </div>
       <nav className={style.nav}>
         <ul className={style.navList}>
+          <li>
+            <Link
+              to="https://dragoncomputadores.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={LogoImage} alt="Logo dragon" />
+            </Link>
+          </li>
+          {/* <li>
+            <Link to="https://dragoncomputadores.com.br/">
+              <img src={LogoImage} alt="Logo dragon" />{' '}
+            </Link>
+          </li> */}
           <li>
             <Link to="/">Vitrine</Link>
           </li>
