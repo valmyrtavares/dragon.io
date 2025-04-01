@@ -12,11 +12,6 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.3s ease;
         overflow: hidden; // Impede que imagens vazem para fora]]
-        div{
-           
-        }
-    
-        
     
         &:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -129,15 +124,21 @@
                     justify-content: center;
                         display: flex;
                         align-items: center;
-                }
-                
+                }                
+           
                 .titleContainer h3 {
                     font-size: 5rem;
                     color: #e56b02;
                     font-family: impact, sans-serif;
                     margin: 0;
                     font-weight: bold;
+                    transition: transform 0.5s ease-in-out; // Suaviza tanto a ida quanto a volta
                 }
+
+                .titleContainer h3:hover {
+                    transform: scale(1.15); // Cresce um pouco mais
+                }
+            
                 .specialSpecifications h2{
                     padding: 3%;
 
@@ -147,7 +148,15 @@
                     color: #e56b02;
                     font-weight: bold;
                     font-size: 2rem;
+                } 
+                .specialSpecifications h2{
+                    transition: transform 0.5s ease-in-out;
                 }
+
+                .specialSpecifications h2:hover {
+                    transform: scale(1.15); // Cresce um pouco mais
+                }
+
                 .btnMoreDetailsPopup{
                     background-color:#e56b02;
                     z-index: 15;
@@ -157,7 +166,12 @@
                     width:30%;
                     margin:30px 35%;
                     border-radius: 15px;
+                    transition: transform 0.5s ease-in-out;
                 }
+                .btnMoreDetailsPopup:hover {
+                    transform: scale(1.15); // Cresce um pouco mais
+                }   
+                
                 .btnContact{
                     background-color:#e56b02;
                     z-index: 15;
@@ -168,18 +182,25 @@
                     opacity: 1;
                     margin:30px 5%;
                     border-radius: 15px;
+                    transition: transform 0.5s ease-in-out;
+                }
+
+                .btnContact:hover {
+                    transform: scale(1.15); // Cresce um pouco mais
                 }
             }
              
                 .highlightPrice{
-                    text-align: start;
-             
+                    text-align: start;             
                     
                     .price {
-                        font-size: 3.5rem;
-                       
+                        font-size: 3.5rem;                       
                         color: #ff6500;
                         margin: 20px 10px;
+                        transition: transform 0.5s ease-in-out;
+                    }
+                    .price:hover {
+                        transform: scale(1.15); // Cresce um pouco mais
                     }
                 }
             
@@ -220,6 +241,7 @@
                 margin:0;
                 font-weight: bold;
                 color:#e56b02;
+                cursor:pointer;
             .tooltip {
                     position: fixed; // Mantém o tooltip na tela, sem empurrar nada
                     background: black;
