@@ -72,6 +72,7 @@ const InputProducts = () => {
             cpu: storedProduct.cpu,
             motherBoard: storedProduct.motherBoard,
             adApproved: storedProduct.adApproved,
+            customerCpf: storedProduct.customerCpf,
             processorBrand: storedProduct.processorBrand,
             graphicsCardBrand: storedProduct.graphicsCardBrand,
             cpuText: storedProduct.cpuText,
@@ -84,7 +85,6 @@ const InputProducts = () => {
             amoutCables: storedProduct.amoutCables,
             ages: storedProduct.ages,
             link: storedProduct.link,
-            customerCpf: cpf,
             motherBoardText: storedProduct.motherBoardText,
             images: storedProduct.images,
           });
@@ -112,7 +112,9 @@ const InputProducts = () => {
       id !== 'ages' &&
       id !== 'motherBoardText' &&
       id !== 'cpuText' &&
-      id !== 'link'
+      id !== 'link' &&
+      id !== 'processorBrand' &&
+      id !== 'graphicsCardBrand'
     ) {
       value = value.toUpperCase();
     }
@@ -185,7 +187,7 @@ const InputProducts = () => {
     formData.price = formData.price.replace('R$ ', '').replace(',00', '');
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
-      formData.customerCpf = formatCpf(cpf);
+      formData.customerCpf = formatCpf(formData.customerCpf);
       storedProducts[id] = formData;
       updateDataInCollection('products', id, formData);
       //localStorage.setItem('products', JSON.stringify(storedProducts));
@@ -314,7 +316,12 @@ const InputProducts = () => {
           </div>
           <div className={style.formGroup}>
             <label htmlFor="processorBrand">Marca do Processador:</label>
-            <select id="processorBrand" required onChange={handleChange}>
+            <select
+              id="processorBrand"
+              required
+              value={formData.processorBrand}
+              onChange={handleChange}
+            >
               <option value="">Selecione sua opção</option>
               <option value="AMD">AMD</option>
               <option value="Intel">Intel</option>
@@ -332,8 +339,13 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="processorBrand">Marca do Placa de vídeo:</label>
-            <select id="graphicsCardBrand" required onChange={handleChange}>
+            <label htmlFor="graphicsCardBrand">Marca da Placa de vídeo:</label>
+            <select
+              id="graphicsCardBrand"
+              value={formData.graphicsCardBrand}
+              required
+              onChange={handleChange}
+            >
               <option value="">Selecione sua opção</option>
               <option value="AMD">AMD</option>
               <option value="Arc">Arc</option>
