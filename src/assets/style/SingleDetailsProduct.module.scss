@@ -1,10 +1,4 @@
 .singleDetailsProductContainer{
-    .containerCloseBtn{
-        button{
-            font-size:2rem;
-            color:red;
-        }
-    }
     width:50%;
     margin:0 20%;
     height: 70vh;
@@ -15,12 +9,15 @@
     background-color: #FEFEDF;
     z-index: 30;
     .productDetails{
+        text-align: start;
+        padding:15px;
         .titleContainer h3 {
             font-size: 5rem;
             color: #e56b02;
             font-family: impact, sans-serif;
             margin: 0;
             font-weight: bold;
+            text-align: center;
         }
         h2{
             color:#e56b02;

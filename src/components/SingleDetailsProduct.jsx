@@ -11,7 +11,9 @@ const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
 
   return (
     <div className={style.singleDetailsProductContainer}>
-      <CloseButton setOpenClose={setSingleDetailsProduct} />
+      <dv className={style.containerCloseBtn}>
+        <CloseButton setOpenClose={setSingleDetailsProduct} />
+      </dv>
       {productSelected && (
         <div className={style.productDetails}>
           <div className={style.titleContainer}>
@@ -19,6 +21,10 @@ const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
           </div>
           <h2>
             Processador:{''} <span>{productSelected.cpu}</span>
+          </h2>
+          <h2>
+            Marca do processdor:{''}{' '}
+            <span>{productSelected.processorBrand}</span>
           </h2>
           <h2>
             Placa Mãe: {''}
@@ -36,6 +42,10 @@ const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
           <h2>
             Placa de Video:
             <span>{productSelected.graphicsCard}</span>
+          </h2>
+          <h2>
+            Marca Placa de Video:
+            <span>{productSelected.graphicsCardBrand}</span>
           </h2>
           <h2>
             fonte: <span>{productSelected.font}</span>
@@ -96,6 +106,8 @@ SingleDetailsProduct.propTypes = {
     amoutCables: PropTypes.string,
     ages: PropTypes.string,
     motherBoardText: PropTypes.string,
+    graphicsCardBrand: PropTypes.string,
+    processorBrand: PropTypes.string,
     cpuText: PropTypes.string,
   }),
   setSingleDetailsProduct: PropTypes.func.isRequired,
