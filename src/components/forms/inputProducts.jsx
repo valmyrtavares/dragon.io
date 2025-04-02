@@ -37,6 +37,8 @@ const InputProducts = () => {
     title: '',
     price: '',
     cpu: '',
+    processorBrand: '',
+    graphicsCardBrand: '',
     motherBoard: '',
     cpuText: '',
     storage: '',
@@ -70,6 +72,8 @@ const InputProducts = () => {
             cpu: storedProduct.cpu,
             motherBoard: storedProduct.motherBoard,
             adApproved: storedProduct.adApproved,
+            processorBrand: storedProduct.processorBrand,
+            graphicsCardBrand: storedProduct.graphicsCardBrand,
             cpuText: storedProduct.cpuText,
             storage: storedProduct.storage,
             tower: storedProduct.tower,
@@ -89,6 +93,10 @@ const InputProducts = () => {
     };
     fetchObjectProduct();
   }, []);
+
+  React.useEffect(() => {
+    console.log('FormData atualizado   ', formData);
+  }, [formData]); // Adicione um efeito colateral para verificar o formData atualizado
 
   const handleChange = (e) => {
     let { id, value } = e.target;
@@ -197,6 +205,8 @@ const InputProducts = () => {
       storage: '',
       tower: '',
       cpuText: '',
+      processorBrand: '',
+      graphicsCardBrand: '',
       motherBoardText: '',
       font: '',
       graphicsCard: '',
@@ -221,7 +231,7 @@ const InputProducts = () => {
       images: prevData.images.filter((_, i) => i !== index), // Filtra a imagem pelo índice
     }));
   };
-  const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
+  // const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
 
   const DeleteCard = (openClosePopup) => {
     // const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
@@ -293,7 +303,7 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="processador">CPU:</label>
+            <label htmlFor="processador">Processador:</label>
             <input
               type="text"
               required
@@ -303,14 +313,32 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="motherBoard">Placa Mãe:</label>
+            <label htmlFor="processorBrand">Marca do Processador:</label>
+            <select id="processorBrand" required onChange={handleChange}>
+              <option value="">Selecione sua opção</option>
+              <option value="AMD">AMD</option>
+              <option value="Intel">Intel</option>
+            </select>
+          </div>
+        </div>
+        <div className={style.formRow}>
+          <div className={style.formGroup}>
+            <label htmlFor="graphicsCard">Placa de Video:</label>
             <input
               type="text"
-              required
-              id="motherBoard"
-              value={formData.motherBoard}
+              id="graphicsCard"
+              value={formData.graphicsCard}
               onChange={handleChange}
             />
+          </div>
+          <div className={style.formGroup}>
+            <label htmlFor="processorBrand">Marca do Placa de vídeo:</label>
+            <select id="graphicsCardBrand" required onChange={handleChange}>
+              <option value="">Selecione sua opção</option>
+              <option value="AMD">AMD</option>
+              <option value="Arc">Arc</option>
+              <option value="NVIDEA">Nvidea</option>
+            </select>
           </div>
         </div>
         <div className={style.formRow}>
@@ -337,11 +365,12 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="graphicsCard">Placa de Video:</label>
+            <label htmlFor="motherBoard">Placa de mãe:</label>
             <input
               type="text"
-              id="graphicsCard"
-              value={formData.graphicsCard}
+              required
+              id="motherBoard"
+              value={formData.motherBoard}
               onChange={handleChange}
             />
           </div>
