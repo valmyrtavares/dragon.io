@@ -522,9 +522,12 @@ const InputProducts = () => {
             </div>
           </div>
           <div className={style.textareaColumn}>
-            <label htmlFor="cpuText">ESPECIFICAÇÕES CPU:</label>
+            <label htmlFor="cpuText" title="modelo, htz, cache e marca">
+              ESPECIFICAÇÕES DO PROCESSADOR:
+            </label>
             <ReactQuill
               id="cpuText"
+              title="modelo, htz, cache e marca"
               className={style.textField}
               value={formData.cpuText}
               onChange={(value) => handleQuillChange(value, 'cpuText')}

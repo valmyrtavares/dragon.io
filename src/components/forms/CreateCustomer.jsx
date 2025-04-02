@@ -38,9 +38,10 @@ const CreateCustomer = () => {
         [name]: formattedDate,
       });
     }
+    const upperCaseValue = value.toUpperCase();
     setForm({
       ...form,
-      [name]: value,
+      [name]: upperCaseValue,
     });
   };
 
