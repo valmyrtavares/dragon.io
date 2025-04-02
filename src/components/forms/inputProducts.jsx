@@ -286,7 +286,7 @@ const InputProducts = () => {
             >
               <option value="">Selecione sua opção</option>
               <option value="Gamer">Gamer</option>
-              <option value="Office">Office</option>
+              <option value="Office">Escritório</option>
               <option value="Render">Render</option>
               <option value="Doméstico">Doméstico</option>
               <option value="Edição de Video">Edição de Video</option>
