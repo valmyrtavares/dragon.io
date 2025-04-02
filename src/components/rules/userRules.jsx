@@ -45,7 +45,6 @@ const UserRules = () => {
         />
       )}
       <h2>Regras de Uso para Anunciantes na Plataforma Dragon Computadores</h2>
-
       <ul>
         1. Objetivo:
         <li>
@@ -137,6 +136,32 @@ const UserRules = () => {
         alteradas a qualquer momento pela Dragon Computadores, com aviso prévio
         aos usuários.
       </p>
+      <h2>Revenda Oficial – Venda seu Computador Usado!</h2>
+      <p>
+        Se você comprou um computador na Dragon Computadores e deseja
+        revendê-lo, agora ficou mais fácil! Criamos um espaço exclusivo para
+        nossos clientes anunciarem seus equipamentos usados diretamente em nosso
+        site.
+      </p>
+      <h2>Como funciona?</h2>
+      <p>1 Você cadastra seu computador para revenda.</p>
+      <p>2 Nós anunciamos para milhares de compradores em potencial.</p>
+      <p>
+        3 Quando a venda for concluída,{' '}
+        <span style={{ fontWeight: 'bold' }}>
+          cobramos uma taxa de 20% sobre o valor final do anúncio.
+        </span>
+      </p>
+      <h2>Termo de Reconhecimento</h2>
+      <p>
+        Ao cadastrar seu computador para revenda, você reconhece e concorda que
+        <span style={{ fontWeight: 'bold' }}>
+          20% do valor total da venda serão descontados automaticamente
+        </span>{' '}
+        como taxa de serviço. Esse valor cobre os custos de divulgação,
+        intermediação e suporte durante a negociação.
+      </p>
+      <h2>Quer revender seu computador Dragon? Anuncie agora!</h2>
       <div className={style.acceptTerms}>
         <input
           type="checkbox"
@@ -146,7 +171,7 @@ const UserRules = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor="acceptTerms">
+        <label htmlFor="acceptTerms" style={{ fontWeight: 'bold' }}>
           Eu aceito os termos de uso para publicar o meu computador na vitrine
           da Dragon Computadores
         </label>
