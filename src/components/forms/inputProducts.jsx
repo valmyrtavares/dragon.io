@@ -305,8 +305,11 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="processador">Processador:</label>
+            <label htmlFor="processador" title="modelo">
+              Processador:
+            </label>
             <input
+              title="modelo"
               type="text"
               required
               id="cpu"
@@ -330,8 +333,11 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="graphicsCard">Placa de Video:</label>
+            <label htmlFor="graphicsCard" title="modelo e memoria">
+              Placa de Video:
+            </label>
             <input
+              title="modelo e memoria"
               type="text"
               id="graphicsCard"
               value={formData.graphicsCard}
@@ -355,8 +361,11 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="processador">Memória:</label>
+            <label htmlFor="processador" title="quantidade, frequencia e marca">
+              Memória:
+            </label>
             <input
+              title="quantidade, frequencia e marca"
               type="text"
               required
               id="memory"
@@ -365,8 +374,11 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="motherBoard">Refrigeração:</label>
+            <label htmlFor="motherBoard" title="modelo e marca">
+              Refrigeração:
+            </label>
             <input
+              title="modelo e marca"
               type="text"
               required
               id="cooling"
@@ -377,8 +389,11 @@ const InputProducts = () => {
         </div>
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="motherBoard">Placa de mãe:</label>
+            <label htmlFor="motherBoard" title="Marca e modelo">
+              Placa de mãe:
+            </label>
             <input
+              title="Marca e modelo"
               type="text"
               required
               id="motherBoard"
@@ -387,8 +402,11 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="font">Fonte:</label>
+            <label htmlFor="font" title="Watt´s, marca e certificação">
+              Fonte:
+            </label>
             <input
+              title="Watt´s, marca e certificação"
               type="text"
               id="font"
               value={formData.font}
@@ -399,8 +417,12 @@ const InputProducts = () => {
 
         <div className={style.formRow}>
           <div className={style.formGroup}>
-            <label htmlFor="quantidadeDeCabos"> Cabos:</label>
+            <label htmlFor="quantidadeDeCabos" title="modelos">
+              {' '}
+              Cabos:
+            </label>
             <input
+              title="modelos"
               type="text"
               id="amoutCables"
               value={formData.amoutCables}
@@ -408,8 +430,11 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="font">Gabinete:</label>
+            <label htmlFor="font" title="modelo e marca.">
+              Gabinete:
+            </label>
             <input
+              title="modelo e marca."
               type="text"
               id="tower"
               value={formData.tower}
