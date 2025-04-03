@@ -11,7 +11,7 @@ import { GlobalProvider } from './GlobalProvider';
 const App = () => {
   return (
     <GlobalProvider>
-      <Router basename="/dragon.io">
+      <Router basename="/">
         <Header />
         <Routes>
           <Route path="/" element={<ShowCase />} />
@@ -20,6 +20,7 @@ const App = () => {
           <Route path="/singleProduct/:id" element={<SingleProductBox />} />
           <Route path="/register" element={<CreateCustomer />} />
           <Route path="/user-rules" element={<UserRules />} />
+          <Route path="*" element={<ShowCase />} />
         </Routes>
       </Router>
     </GlobalProvider>

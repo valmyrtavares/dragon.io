@@ -1,5 +1,5 @@
 import style from '../assets/style/Header.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ConfirmMessage from './Messages/InitialMessageCustomer';
 import Login from './forms/Login';
 import React, { useContext } from 'react';
@@ -13,6 +13,7 @@ const Header = () => {
   const [message, setMessage] = React.useState('');
   // const navigate = useNavigate();
   const { login, setLogin } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   const handleNavigation = (event) => {
     event.preventDefault(); // Impede a navegação automática do Link
@@ -30,6 +31,7 @@ const Header = () => {
     localStorage.removeItem('login');
     window.location.reload();
     setLogin(false);
+    navigate(`/dragon.io`);
   };
 
   return (
