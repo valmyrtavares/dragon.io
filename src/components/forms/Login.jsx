@@ -31,6 +31,12 @@ const Login = ({ setOpenClose }) => {
       alert('Incorrect password');
     }
   };
+  React.useEffect(() => {
+    const inputElement = document.querySelector(`.${styles.input}`);
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
