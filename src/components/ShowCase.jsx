@@ -21,7 +21,6 @@ const ShowCase = () => {
 
   const bringProducts = async () => {
     const productList = await getListData('products');
-    console.log('produtos com id  ', productList);
     // let storedProducts = localStorage.getItem('products');
     // let products = JSON.parse(storedProducts);
     if (productList && productList.length > 0) {
