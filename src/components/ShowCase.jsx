@@ -59,11 +59,12 @@ const ShowCase = () => {
   const sortByPrice = (order) => {
     const sortedProducts = [...Filteredproducts].sort((a, b) => {
       if (order === 'asc') {
-        return a.price - b.price;
-      } else {
         return b.price - a.price;
+      } else {
+        return a.price - b.price;
       }
     });
+    console.log('Produtos ordenados', sortedProducts);
     setFilteredProducts(sortedProducts);
   };
 
