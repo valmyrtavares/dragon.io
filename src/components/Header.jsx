@@ -29,9 +29,9 @@ const Header = () => {
 
   const logout = () => {
     localStorage.removeItem('login');
-    window.location.reload();
+    // window.location.reload();
     setLogin(false);
-    navigate(`/dragon.io`);
+    navigate(`/`);
   };
 
   return (
