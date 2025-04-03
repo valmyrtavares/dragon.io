@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../GlobalContext'; //
 import { useContext } from 'react';
 import { getListData } from '../api/Api';
+import FilterSearch from './filterSearch';
 
 const ShowCase = () => {
   const [products, setProducts] = useState([]);
+  const [Filteredproducts, setFilteredProducts] = useState([]);
   const navigate = useNavigate();
   const { login } = useContext(GlobalContext);
 
@@ -28,11 +30,25 @@ const ShowCase = () => {
           (product) => product.adApproved === true
         );
         setProducts(productFiltered);
+        setFilteredProducts(productFiltered);
         return;
       } else {
+        setFilteredProducts(productList);
         setProducts(productList);
       }
     }
+  };
+
+  const filteredProducts = async (category, value) => {
+    if (value === '') {
+      setFilteredProducts(products);
+      return;
+    }
+    const filteredList = products.filter(
+      (product) => product[category] === value
+    );
+
+    setFilteredProducts(filteredList);
   };
 
   const displaySingleProduct = (index) => {
@@ -40,13 +56,28 @@ const ShowCase = () => {
     navigate(`/singleProduct/${index}`);
   };
 
+  const sortByPrice = (order) => {
+    const sortedProducts = [...Filteredproducts].sort((a, b) => {
+      if (order === 'asc') {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+    setFilteredProducts(sortedProducts);
+  };
+
   return (
     <div className={style.showcaseContainer}>
       <h1>Vitrine de Produtos</h1>
+      <FilterSearch
+        filteredProducts={filteredProducts}
+        sortByPrice={sortByPrice}
+      />
       <div className={style.scrollContainer}>
-        {products.length > 0 ? (
+        {Filteredproducts.length > 0 ? (
           <div className={style.productsGrid}>
-            {products.map((product, index) => (
+            {Filteredproducts.map((product, index) => (
               <div
                 className={style.productCard}
                 key={index}
