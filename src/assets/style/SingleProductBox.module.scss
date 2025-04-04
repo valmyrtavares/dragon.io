@@ -281,24 +281,30 @@
 @media (max-width: 650px) {
     .SingleProductBox {
         width: 100%;
-        grid-template-columns: 1fr;
+         grid-template-columns: 1fr !important; 
+           
+        // grid-template-rows: 10% 40% 50%;
+        display: flex;
+        flex-direction: column-reverse;
         gap: 10px;
         padding: 10px;
-
         .containerSideMenu {
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            margin: 0 -5%;
+                width: 90%;
 
             .imageThumbnails {
                 max-width: 60vw;
                     overflow-x: auto;
                     display: flex;
-                    flex-direction: row;
+                    // flex-direction: row;
                     gap: 10px;
                     padding-right: 5px;
 
                 .thumbnail {
+                    display:flex;
                     img {
                         width: auto;
                         height: 100px;
@@ -319,6 +325,8 @@
 
         .productDetails {
             padding: 5px;
+            width: 90%;
+            margin:0 -5%;
 
             h2, h3 {
                 font-size: 1rem;

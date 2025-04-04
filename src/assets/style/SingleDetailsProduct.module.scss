@@ -41,3 +41,38 @@
 
     }
 }
+    @media (max-width: 650px) {
+.singleDetailsProductContainer {
+    width: 100%;
+    margin:-10%;
+    top: 10%;
+        left: 11%;
+    height: 80vh;
+    padding: 7%;
+
+    .productDetails {
+        padding: 5px;
+        width: 90%;
+        margin:0 -5%;
+    
+        h2, h3 {
+            font-size: 1rem;
+        }
+       
+    }
+    .title {
+        font-size: 25px;
+        margin: -4px -9px;
+    
+    }
+    
+    .price {
+        font-size: 25px;
+        margin: -20px -12px;
+    
+    }
+    }
+
+}
+      
+

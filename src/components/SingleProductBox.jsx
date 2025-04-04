@@ -86,9 +86,9 @@ const SingleProductBox = () => {
     setShowClient(true);
   };
 
-  return (
-    <div className={style.container}>
-      <div className={style.SingleProductBox}>
+  if (!isMobile) {
+    return (
+      <div className={style.container}>
         {showclient && (
           <PopupCustomerDetails
             customer={selectedCustomer}
@@ -101,35 +101,104 @@ const SingleProductBox = () => {
             setSingleDetailsProduct={setSingleDetailsProduct}
           />
         )}
-        <div className={style.containerSideMenu}>
-          <div className={style.imageThumbnails}>
-            {images &&
-              images.length > 0 &&
-              images.map((image, index) => (
-                <div
-                  key={index}
-                  className={style.thumbnail}
-                  onClick={() => setSelectedImage(image)}
-                >
-                  <img src={image} alt={`Thumbnail ${index + 1}`} />
+        <div className={style.SingleProductBox}>
+          <div className={style.containerSideMenu}>
+            <div className={style.imageThumbnails}>
+              {images &&
+                images.length > 0 &&
+                images.map((image, index) => (
+                  <div
+                    key={index}
+                    className={style.thumbnail}
+                    onClick={() => setSelectedImage(image)}
+                  >
+                    <img src={image} alt={`Thumbnail ${index + 1}`} />
+                  </div>
+                ))}
+            </div>
+          </div>
+          <div className={style.mainImage}>
+            <div
+              className={style.zoomContainer}
+              onMouseMove={handleMouseMove}
+              style={{
+                backgroundRepeat: 'no-repeat',
+                backgroundImage: `url(${selectedImage})`,
+                backgroundPosition: zoom.backgroundPosition,
+              }}
+            >
+              <img src={selectedImage} alt="Selected" />
+            </div>
+          </div>
+          {productSelected && (
+            <div className={style.productDetails}>
+              <div className={style.mainItems}>
+                <div className={style.titleContainer}>
+                  <h3 className={style.title}>PC {productSelected.title}</h3>
                 </div>
-              ))}
-          </div>
+                <div className={style.specialSpecifications}>
+                  <h2>
+                    <span>{productSelected.cpu}, </span>
+                    <span>{productSelected.motherBoard}, </span>
+                    <span>{productSelected.memory}, </span>
+                    <span>{productSelected.motherBoard}, </span>
+                    <span>{productSelected.memory} </span>
+                  </h2>
+                </div>
+                <div className={style.highlightPrice}>
+                  <h3 className={style.price}>R$ {productSelected.price},00</h3>
+                </div>
+                <button
+                  className={style.btnMoreDetailsPopup}
+                  onClick={() => setSingleDetailsProduct(true)}
+                >
+                  MAIS DETALHES
+                </button>
+                <button className={style.btnContact}>FALE CONOSCO</button>
+                <h2 className={style.productCode} title="Clique para copiar">
+                  Código do produto:{' '}
+                  <span
+                    onClick={() => {
+                      navigator.clipboard.writeText(productSelected.id);
+                      alert('Código copiado para a área de transferência!');
+                    }}
+                  >
+                    {productSelected.id}
+                  </span>
+                </h2>
+              </div>
+            </div>
+          )}
         </div>
-        <div className={style.mainImage}>
-          <div
-            className={style.zoomContainer}
-            onMouseMove={handleMouseMove}
-            style={{
-              backgroundRepeat: 'no-repeat',
-              backgroundImage: `url(${selectedImage})`,
-              backgroundPosition: zoom.backgroundPosition,
-            }}
-          >
-            <img src={selectedImage} alt="Selected" />
+        {!isMobile && login && (
+          <div className={style.adminContainer}>
+            {' '}
+            <button>
+              <Link to={`/form/${productSelected.id}`}>
+                Edição administrador
+              </Link>
+            </button>{' '}
+            <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
           </div>
-        </div>
-        {productSelected && (
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div className={style.container}>
+        {showclient && (
+          <PopupCustomerDetails
+            customer={selectedCustomer}
+            setClose={setShowClient}
+          />
+        )}
+        {singleDetailsProduct && (
+          <SingleDetailsProduct
+            productSelected={productSelected}
+            setSingleDetailsProduct={setSingleDetailsProduct}
+          />
+        )}
+        <div className={style.SingleProductBox}>
           <div className={style.productDetails}>
             <div className={style.mainItems}>
               <div className={style.titleContainer}>
@@ -167,19 +236,36 @@ const SingleProductBox = () => {
               </h2>
             </div>
           </div>
+          <div className={style.containerSideMenu}>
+            <div className={style.imageThumbnails}>
+              {images &&
+                images.length > 0 &&
+                images.map((image, index) => (
+                  <div
+                    key={index}
+                    className={style.thumbnail}
+                    onClick={() => setSelectedImage(image)}
+                  >
+                    <img src={image} alt={`Thumbnail ${index + 1}`} />
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+        {isMobile && login && (
+          <div className={style.adminContainer}>
+            {' '}
+            <button>
+              <Link to={`/form/${productSelected.id}`}>
+                Edição administrador
+              </Link>
+            </button>{' '}
+            <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
+          </div>
         )}
       </div>
-      {!isMobile && login && (
-        <div className={style.adminContainer}>
-          {' '}
-          <button>
-            <Link to={`/form/${productSelected.id}`}>Edição administrador</Link>
-          </button>{' '}
-          <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
-        </div>
-      )}
-    </div>
-  );
+    );
+  }
 };
 
 export default SingleProductBox;

@@ -23,7 +23,7 @@ const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
             Processador:{''} <span>{productSelected.cpu}</span>
           </h2>
           <h2>
-            Marca do processdor:{''}{' '}
+            productDetails Marca do processdor:{''}{' '}
             <span>{productSelected.processorBrand}</span>
           </h2>
           <h2>
