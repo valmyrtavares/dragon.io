@@ -1,3 +1,20 @@
+.containerGlobal{
+    .searchField{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        gap: 10px;
+        input {
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 30%;
+            box-sizing: border-box;
+        }
+    }
+
 .containerFilteredProducts{
     display: flex;
     flex-wrap: wrap;
@@ -32,6 +49,7 @@
                 box-sizing: border-box;
             }
     }
+}
 }
 @media (max-width: 600px) {
     .containerFilteredProducts {

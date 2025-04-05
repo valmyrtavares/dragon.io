@@ -67,12 +67,25 @@ const ShowCase = () => {
     setFilteredProducts(sortedProducts);
   };
 
+  const filterByIdProduct = (value) => {
+    if (value !== '') {
+      products.filter((product) => {
+        if (product.id === value) {
+          setFilteredProducts([product]);
+        }
+      });
+    } else {
+      setFilteredProducts(products);
+    }
+  };
+
   return (
     <div className={style.showcaseContainer}>
       <h1>Vitrine de Produtos</h1>
       <FilterSearch
         filteredProducts={filteredProducts}
         sortByPrice={sortByPrice}
+        filterByIdProduct={filterByIdProduct}
       />
       <div className={style.scrollContainer}>
         {Filteredproducts.length > 0 ? (
