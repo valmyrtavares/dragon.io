@@ -69,6 +69,15 @@ const SingleProductBox = () => {
 
   // Functions javascript
 
+  const callSeller = () => {
+    const phoneNumber = '551132229446'; // Coloque aqui o número com DDI (55), DDD (11), e o número (999999999)
+    const message = `Olá, gostaria de saber mais sobre o produto ${productSelected.title}, com id: ${productSelected.id}.`;
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(url, '_blank'); // Abre em nova aba
+  };
+
   const handleMouseMove = (e) => {
     const { left, top, width, height } = e.target.getBoundingClientRect();
     const x = ((e.pageX - left) / width) * 100;
@@ -81,6 +90,7 @@ const SingleProductBox = () => {
   };
 
   const bringCustomer = () => {
+    debugger;
     console.log('cliente selecionado:', selectedCustomer);
     console.log('produto selecionado:', productSelected);
     setShowClient(true);
@@ -154,7 +164,9 @@ const SingleProductBox = () => {
                 >
                   MAIS DETALHES
                 </button>
-                <button className={style.btnContact}>FALE CONOSCO</button>
+                <button className={style.btnContact} onClick={callSeller}>
+                  FALE CONOSCO
+                </button>
                 <h2 className={style.productCode} title="Clique para copiar">
                   Código do produto:{' '}
                   <span
@@ -222,7 +234,9 @@ const SingleProductBox = () => {
               >
                 MAIS DETALHES
               </button>
-              <button className={style.btnContact}>FALE CONOSCO</button>
+              <button className={style.btnContact} onClick={callSeller}>
+                FALE CONOSCO
+              </button>
               <h2 className={style.productCode} title="Clique para copiar">
                 Código do produto:{' '}
                 <span
