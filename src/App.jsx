@@ -7,6 +7,7 @@ import SingleProductBox from './components/SingleProductBox';
 import CreateCustomer from './components/forms/CreateCustomer';
 import UserRules from './components/rules/userRules';
 import { GlobalProvider } from './GlobalProvider';
+import CustomerList from './components/customer/customerList';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/singleProduct/:id" element={<SingleProductBox />} />
           <Route path="/register" element={<CreateCustomer />} />
           <Route path="/user-rules" element={<UserRules />} />
+          <Route path="/customers" element={<CustomerList />} />
           <Route path="*" element={<ShowCase />} />
         </Routes>
       </Router>

@@ -56,11 +56,7 @@ const Header = () => {
               <img src={LogoImage} alt="Logo dragon" />
             </Link>
           </li>
-          {/* <li>
-            <Link to="https://dragoncomputadores.com.br/">
-              <img src={LogoImage} alt="Logo dragon" />{' '}
-            </Link>
-          </li> */}
+
           <li>
             <Link to="/">Vitrine</Link>
           </li>
@@ -69,6 +65,11 @@ const Header = () => {
               Quero Vender
             </a>
           </li>
+          {login && (
+            <li>
+              <Link to="/customers">Clientes</Link>
+            </li>
+          )}
         </ul>
         {login ? (
           <h3 className={style.logout} onClick={logout}>
