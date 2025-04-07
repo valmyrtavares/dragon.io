@@ -31,19 +31,24 @@ const PopupCustomerDetails = ({ customer, setClose }) => {
           <div>Loading...</div>
         ) : (
           <div>
-            <h2>Customer Details</h2>
-            <div
-              className={styles.detail}
-              onClick={() => copyToClipboard(customer.cnpj)}
-            >
-              <strong>CNPJ:</strong> {customer.cnpj}
-            </div>
-            <div
-              className={styles.detail}
-              onClick={() => copyToClipboard(customer.cpf)}
-            >
-              <strong>CPF:</strong> {customer.cpf}
-            </div>
+            <h2>Detalhes do Cliente</h2>
+            {customer.cnpj && (
+              <div
+                className={styles.detail}
+                onClick={() => copyToClipboard(customer.cnpj)}
+              >
+                <strong>CNPJ:</strong>
+                {customer.cnpj ? customer.cnpj : ''}
+              </div>
+            )}
+            {customer.cpf && (
+              <div
+                className={styles.detail}
+                onClick={() => copyToClipboard(customer.cpf)}
+              >
+                <strong>CPF:</strong> {customer.cpf}
+              </div>
+            )}
             <div
               className={styles.detail}
               onClick={() => copyToClipboard(customer.email)}
@@ -54,19 +59,19 @@ const PopupCustomerDetails = ({ customer, setClose }) => {
               className={styles.detail}
               onClick={() => copyToClipboard(customer.name)}
             >
-              <strong>Name:</strong> {customer.name}
+              <strong>Nome:</strong> {customer.name}
             </div>
             <div
               className={styles.detail}
               onClick={() => copyToClipboard(customer.phone)}
             >
-              <strong>Phone:</strong> {customer.phone}
+              <strong>Telefone / Whatsapp:</strong> {customer.phone}
             </div>
             <div
               className={styles.detail}
               onClick={() => copyToClipboard(customer.purchaseDate)}
             >
-              <strong>Purchase Date:</strong> {customer.purchaseDate}
+              <strong>Data da compra:</strong> {customer.purchaseDate}
             </div>
           </div>
         )}

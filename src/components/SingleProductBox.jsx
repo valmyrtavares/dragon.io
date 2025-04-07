@@ -90,7 +90,6 @@ const SingleProductBox = () => {
   };
 
   const bringCustomer = () => {
-    debugger;
     console.log('cliente selecionado:', selectedCustomer);
     console.log('produto selecionado:', productSelected);
     setShowClient(true);
