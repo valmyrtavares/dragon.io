@@ -92,7 +92,9 @@ const ShowCase = () => {
           <div className={style.productsGrid}>
             {Filteredproducts.map((product, index) => (
               <div
-                className={style.productCard}
+                className={`${style.productCard} ${
+                  product.adApproved === false ? style.cardNotAvaiable : ''
+                }`}
                 key={index}
                 onClick={() => displaySingleProduct(product.id)}
               >
