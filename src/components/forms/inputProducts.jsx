@@ -41,7 +41,6 @@ const InputProducts = () => {
     graphicsCardBrand: '',
     motherBoard: '',
     cpuText: '',
-    storage: '',
     tower: '',
     adApproved: false,
     font: '',
@@ -76,7 +75,6 @@ const InputProducts = () => {
             processorBrand: storedProduct.processorBrand,
             graphicsCardBrand: storedProduct.graphicsCardBrand,
             cpuText: storedProduct.cpuText,
-            storage: storedProduct.storage,
             tower: storedProduct.tower,
             font: storedProduct.font,
             memory: storedProduct.memory,
@@ -170,6 +168,21 @@ const InputProducts = () => {
 
   const saveForm = () => {
     if (OpenCloseConfirmSaveMessage === false) {
+      console.log('formData', formData);
+      const missingFields = Object.keys(formData).filter(
+        (key) =>
+          key !== 'link' &&
+          (formData[key] === '' || formData[key] === undefined)
+      );
+
+      if (missingFields.length > 0) {
+        alert(
+          `Os seguintes campos precisam ser preenchidos: ${missingFields.join(
+            ', '
+          )}`
+        );
+        return;
+      }
       setOpenCloseConfirmSaveMessage(true);
       return;
     }
@@ -185,18 +198,16 @@ const InputProducts = () => {
 
     e.preventDefault();
     formData.price = formData.price.replace('R$ ', '').replace(',00', '');
-    const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    //const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       formData.customerCpf = formatCpf(formData.customerCpf);
-      storedProducts[id] = formData;
+      // storedProducts[id] = formData;
       updateDataInCollection('products', id, formData);
-      //localStorage.setItem('products', JSON.stringify(storedProducts));
       navigate('/');
       return;
     }
     formData.customerCpf = formatCpf(cpf);
-    storedProducts.push(formData);
-    //localStorage.setItem('products', JSON.stringify(storedProducts));
+    // storedProducts.push(formData);
     addDataToCollection('products', formData);
     setFormData({
       id: '',
@@ -204,7 +215,6 @@ const InputProducts = () => {
       price: '',
       cpu: '',
       motherBoard: '',
-      storage: '',
       tower: '',
       cpuText: '',
       processorBrand: '',
@@ -236,11 +246,8 @@ const InputProducts = () => {
   // const removeSize = (str) => (str.length > 6 ? str.slice(0, 6) + '...' : str);
 
   const DeleteCard = (openClosePopup) => {
-    // const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (id) {
       if (openClosePopup) {
-        // storedProducts.splice(id, 1);
-        // localStorage.setItem('products', JSON.stringify(storedProducts));
         deleteDataFromCollection('products', id);
         setOpenCloseConfirmDeleteMessage(false);
         navigate('/');
@@ -453,8 +460,13 @@ const InputProducts = () => {
             />
           </div>
           <div className={style.formGroup}>
-            <label htmlFor="images">Imagens:</label>
-            <input type="file" onChange={handleFileChange} />
+            <label htmlFor="images">Imagens:( png, jpg, jpeg )</label>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              accept="image/png, image/jpeg, image/jpg"
+            />
+
             <progress value={progress} max="100" />
             {url && (
               <img

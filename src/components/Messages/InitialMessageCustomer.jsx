@@ -87,7 +87,6 @@ const InitialMessageCustomer = ({ setCloseMessage, message }) => {
             />
           )}
         </div>
-        setClose={setBriefMessage}
         {!firstMessage && (
           <div className={style.containerCpf}>
             <h1>
