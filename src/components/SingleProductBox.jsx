@@ -144,7 +144,12 @@ const SingleProductBox = () => {
             <div className={style.productDetails}>
               <div className={style.mainItems}>
                 <div className={style.titleContainer}>
-                  <h3 className={style.title}>PC {productSelected.title}</h3>
+                  <h3 className={style.title}>
+                    PC{' '}
+                    {productSelected.title === 'Edição de Video'
+                      ? 'Video'
+                      : productSelected.title}
+                  </h3>
                 </div>
                 <div className={style.specialSpecifications}>
                   <h2>
