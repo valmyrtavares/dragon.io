@@ -10,6 +10,14 @@ const CustomerList = () => {
       try {
         const data = await getListData('customer');
         setCustomers(data);
+        const products = await getListData('products');
+        const updatedCustomers = data.map((customer) => {
+          const customerProducts = products
+            .filter((product) => product.customerCpf === customer.cpf)
+            .map((product) => product.id);
+          return { ...customer, productIds: customerProducts };
+        });
+        setCustomers(updatedCustomers);
       } catch (error) {
         console.error('Error fetching customer data:', error);
       }
@@ -17,6 +25,9 @@ const CustomerList = () => {
 
     fetchCustomers();
   }, []);
+  React.useEffect(() => {
+    console.log('Clientes atualizados  ', customers);
+  }, [customers]);
 
   return (
     <div className={styles.customerList}>
@@ -34,8 +45,8 @@ const CustomerList = () => {
         <tbody>
           {customers.map((customer) => (
             <tr key={customer.id}>
-              <td>{customer.nome}</td>
-              <td>{customer.celular}</td>
+              <td>{customer.name}</td>
+              <td>{customer.phone}</td>
               <td>{customer.cpf}</td>
               <td>{customer.cnpj}</td>
               <td>{customer.email}</td>

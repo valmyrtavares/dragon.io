@@ -27,7 +27,7 @@ const Footer = () => {
         </p>
       </div>
       <div className={style.zapFooter}>
-        <p>Ou se preferir fale agora mesmo conconos pelo WhatsApp </p>
+        <p>Ou se preferir fale agora mesmo conosco pelo WhatsApp </p>
         <button className={style.btnContactFooter} onClick={callSeller}>
           WHATSAPP
         </button>
