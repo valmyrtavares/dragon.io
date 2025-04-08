@@ -94,7 +94,7 @@ const ShowCase = () => {
               <div
                 className={`${style.productCard} ${
                   product.adApproved === false ? style.cardNotAvaiable : ''
-                }`}
+                } ${style.hoverEffect}`}
                 key={index}
                 onClick={() => displaySingleProduct(product.id)}
               >
