@@ -101,21 +101,10 @@
                 align-items: center;
                 justify-content: center;
                 font-family: 'Montserrat', sans-serif;
+                background-color:#f2f2f2;
                 
         
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-image: url('../image/dragon-background.png');
-                    background-size: cover;
-                    background-position: center;
-                    opacity: 0.2; // Opacidade apenas no background
-                    z-index: 0; // Mantém a imagem atrás do conteúdo
-                }
+        
         
                 .titleContainer,
                 .specialSpecifications,
@@ -129,9 +118,9 @@
                 }                
            
                 .titleContainer h3 {
-                    font-size: 5rem;
-                    color: #e56b02;
-                    font-family: impact, sans-serif;
+                    font-size: 4rem;
+                    color: #2f2f2b;
+                    font-family: #0a6b0a;
                     margin: 0;
                     font-weight: bold;
                     transition: transform 0.5s ease-in-out; // Suaviza tanto a ida quanto a volta
@@ -147,8 +136,8 @@
                 }
         
                 .specialSpecifications h2 span {
-                    color: #e56b02;
-                    font-weight: bold;
+                    color: #8f8f8d;
+                   
                     font-size: 2rem;
                 } 
                 .specialSpecifications h2{
@@ -159,32 +148,119 @@
                     transform: scale(1.15); // Cresce um pouco mais
                 }
 
-                .btnMoreDetailsPopup{
-                    background-color:#e56b02;
+                         .btnMoreDetailsPopup {
+                        background-color:#2f2f2b ;
+                            z-index: 15;
+                            color: white;
+                            font-size: 1rem;
+                            padding: 10px 20px;
+                            width: 30%;
+                            margin: 30px 35%;
+                            border: none;
+                            border-radius: 0;
+                            position: relative;
+                            perspective: 500px;
+                            transform: rotateX(8deg) rotateY(-8deg);
+                            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+                            transition: transform 0.7s ease, box-shadow 0.7s ease, background-color 0.7s ease;
+            
+                             // Efeito ao passar o mouse
+                        &:hover {
+                                transform: rotateX(0deg) rotateY(0deg) scale(1.02);
+                                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                                background-color: #0a6b0a;
+                        
+                                &::before {
+                                    background-color: #0a6b0a;
+                                }
+                        
+                                &::after {
+                                    background-color: #0a6b0a;
+                                }
+                            }
+            
+                             // Face inferior
+                             &::before {
+                                content: "";
+                                    position: absolute;
+                                    bottom: -7px;
+                                    left: 5px;
+                                    width: 100%;
+                                    height: 8px;
+                                    background: #2f2f2b;
+                                    transform: skewX(50deg);
+                                    z-index: -1;
+                             }
+            
+                             // Face lateral direita
+                             &::after {
+                                content: "";
+                                    position: absolute;
+                                    top: 2px;
+                                    right: -9px;
+                                    width: 8px;
+                                    height: 100%;
+                                    background: #2f2f2b;
+                                    transform: skewY(45deg);
+                                    z-index: -1;
+                             }
+                         }
+                 
+                
+                .btnContact{
+                background-color: #2f2f2b;
                     z-index: 15;
                     color: white;
                     font-size: 1rem;
                     padding: 10px 20px;
-                    width:30%;
-                    margin:30px 35%;
-                    border-radius: 15px;
-                    transition: transform 0.5s ease-in-out;
-                }
-                .btnMoreDetailsPopup:hover {
-                    transform: scale(1.15); // Cresce um pouco mais
-                }   
-                
-                .btnContact{
-                    background-color:#e56b02;
-                    z-index: 15;
-                    color: white;
-                    font-size: 1rem;
-                    padding: 15px 20px;
-                    width:90%;
-                    opacity: 1;
-                    margin:30px 5%;
-                    border-radius: 15px;
-                    transition: transform 0.5s ease-in-out;
+                    width: 70%;
+                    margin: 30px 35%;
+                    border: none;
+                    border-radius: 0;
+                    position: relative;
+                    perspective: 500px;
+                    transform: rotateX(8deg) rotateY(-8deg);
+                    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+                    transition: transform 0.7s ease, box-shadow 0.7s ease, background-color 0.7s ease;
+                    &:hover {
+                            transform: rotateX(0deg) rotateY(0deg) scale(1.02);
+                            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                            background-color: #0a6b0a;
+                    
+                            &::before {
+                                background-color: #0a6b0a;
+                            }
+                    
+                            &::after {
+                                background-color: #0a6b0a;
+                            }
+                        }
+                    
+                        // Face inferior
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            bottom: -7px;
+                            left: 5px;
+                            width: 100%;
+                            height: 8px;
+                            background: #2f2f2b;
+                            transform: skewX(45deg);
+                            z-index: -1;
+                        }
+                    
+                        // Face lateral direita
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 2px;
+                            right: -9px;
+                            width: 8px;
+                            height: 100%;
+                            background: #2f2f2b;
+                            transform: skewY(45deg);
+                            z-index: -1;
+                        }
                 }
 
                 .btnContact:hover {
@@ -196,9 +272,12 @@
                     text-align: start;             
                     
                     .price {
-                        font-size: 3.5rem;                       
-                        color: #ff6500;
+                        font-size: 3.5rem;   
+                        background-color:#f9a402;
+                        color: white;
+                        border-radius: 1rem;
                         margin: 20px 10px;
+                        padding: 0px 9px;
                         transition: transform 0.5s ease-in-out;
                     }
                     .price:hover {
@@ -239,10 +318,10 @@
                 position: relative;
                 font-size: 1.2rem;
                 z-index: 15;
-                color: #333;
+                color: #2f2f2b;
                 margin:0;
                 font-weight: bold;
-                color:#e56b02;
+              
                 cursor:pointer;
             .tooltip {
                     position: fixed; // Mantém o tooltip na tela, sem empurrar nada
