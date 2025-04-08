@@ -1,5 +1,5 @@
 import style from '../assets/style/Header.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import ConfirmMessage from './Messages/InitialMessageCustomer';
 import Login from './forms/Login';
 import React, { useContext } from 'react';
@@ -14,6 +14,12 @@ const Header = () => {
   // const navigate = useNavigate();
   const { login, setLogin } = useContext(GlobalContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isSellPage =
+    location.pathname === '/rules' ||
+    location.pathname === '/form' ||
+    location.pathname === '/register';
 
   const handleNavigation = (event) => {
     event.preventDefault(); // Impede a navegação automática do Link
@@ -48,26 +54,39 @@ const Header = () => {
       <nav className={style.nav}>
         <ul className={style.navList}>
           <li>
-            <Link
+            <NavLink
               to="https://dragoncomputadores.com.br/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <img src={LogoImage} alt="Logo dragon" />
-            </Link>
+            </NavLink>
           </li>
 
           <li>
-            <Link to="/">Vitrine</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? style.active : '')}
+              to="/"
+            >
+              Vitrine
+            </NavLink>
           </li>
           <li>
-            <a href="" onClick={handleNavigation}>
+            <button
+              className={isSellPage ? style.active : ''}
+              onClick={handleNavigation}
+            >
               Quero Vender
-            </a>
+            </button>
           </li>
           {login && (
             <li>
-              <Link to="/customers">Clientes</Link>
+              <NavLink
+                className={({ isActive }) => (isActive ? style.active : '')}
+                to="/customers"
+              >
+                Clientes
+              </NavLink>
             </li>
           )}
         </ul>
