@@ -1,9 +1,12 @@
 import React from 'react';
 import { getListData } from '../../api/Api';
 import styles from '../../assets/style/CustomerList.module.scss';
+import PopupCustomerDetails from './popupCustomerDetails';
 
 const CustomerList = () => {
   const [customers, setCustomers] = React.useState([]);
+  const [customerPopup, setCustomerPopup] = React.useState(false);
+  const [ownCustomer, setOwnCustomer] = React.useState({});
 
   React.useEffect(() => {
     const fetchCustomers = async () => {
@@ -25,12 +28,20 @@ const CustomerList = () => {
 
     fetchCustomers();
   }, []);
-  React.useEffect(() => {
-    console.log('Clientes atualizados  ', customers);
-  }, [customers]);
+  const showProducts = (customer) => {
+    setOwnCustomer(customer);
+    setCustomerPopup(true);
+  };
 
   return (
     <div className={styles.customerList}>
+      {customerPopup && (
+        <PopupCustomerDetails
+          customer={ownCustomer}
+          setClose={setCustomerPopup}
+        />
+      )}
+
       <table className={styles.table}>
         <thead>
           <tr>
@@ -51,7 +62,10 @@ const CustomerList = () => {
               <td>{customer.cnpj}</td>
               <td>{customer.email}</td>
               <td>
-                <button className={styles.viewProductsButton}>
+                <button
+                  className={styles.viewProductsButton}
+                  onClick={() => showProducts(customer)}
+                >
                   Ver Produtos
                 </button>
               </td>

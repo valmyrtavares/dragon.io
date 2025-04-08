@@ -7,7 +7,7 @@ const PopupCustomerDetails = ({ customer, setClose }) => {
     customer = customer[0];
   }
   React.useEffect(() => {
-    console.log('Customer', customer);
+    console.log('Customer objeto', customer);
   }, [customer]);
 
   const copyToClipboard = (value) => {
@@ -73,6 +73,16 @@ const PopupCustomerDetails = ({ customer, setClose }) => {
             >
               <strong>Data da compra:</strong> {customer.purchaseDate}
             </div>
+            {customer.productIds && customer.productIds.length > 0 && (
+              <div className={styles.detail}>
+                <strong>Produtos:</strong>
+                <ul>
+                  {customer.productIds.map((productId) => (
+                    <li key={productId}>{productId}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -88,6 +98,7 @@ PopupCustomerDetails.propTypes = {
     name: PropTypes.string,
     phone: PropTypes.string,
     purchaseDate: PropTypes.string,
+    productIds: PropTypes.array, // Assuming productIds is an array of product IDs
   }).isRequired,
   setClose: PropTypes.func.isRequired,
 };
