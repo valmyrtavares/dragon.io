@@ -1,0 +1,37 @@
+@use './mixins' as *;
+
+.footerContainer {
+    display: grid;
+    column-gap: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 50px 0;
+    border-bottom: 1px black solid;
+
+    .footerLogo {
+        p {
+            margin: 10px 0;
+        }
+    }
+
+    .emailFooter {
+        h2 {
+            @include title(1.5rem);
+            margin: 0;
+        }
+    }
+
+    .zapFooter {
+        .btnContactFooter {
+            @include button-3d($width: 80%, $margin: 0 10%);
+        }
+    }
+
+    .footerLogo,
+    .emailFooter,
+    .zapFooter {
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: $bg-default;
+        }
+    }
+}

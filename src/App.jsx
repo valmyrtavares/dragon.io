@@ -8,11 +8,12 @@ import CreateCustomer from './components/forms/CreateCustomer';
 import UserRules from './components/rules/userRules';
 import { GlobalProvider } from './GlobalProvider';
 import CustomerList from './components/customer/customerList';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
     <GlobalProvider>
-      <Router basename="/dragon.io">
+      <Router basename="/">
         <Header />
         <Routes>
           <Route path="/" element={<ShowCase />} />
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/customers" element={<CustomerList />} />
           <Route path="*" element={<ShowCase />} />
         </Routes>
+        <Footer />
       </Router>
     </GlobalProvider>
   );

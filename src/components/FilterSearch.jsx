@@ -68,7 +68,7 @@ const FilterSearch = ({ filteredProducts, sortByPrice, filterByIdProduct }) => {
           </select>
         </div>
         <div className={style.formGroup}>
-          <button onClick={sortByPrice}>
+          <button className={style.sortByPrice} onClick={sortByPrice}>
             Selecione do menor para o maior preço
           </button>
         </div>

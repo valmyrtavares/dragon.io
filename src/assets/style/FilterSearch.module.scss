@@ -1,3 +1,5 @@
+@use './mixins' as *;
+
 .containerGlobal{
     .searchField{
         display: flex;
@@ -15,41 +17,44 @@
         }
     }
 
-.containerFilteredProducts{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-    margin-top: 20px;
-    align-items: center;
-    .formGroup{
-        display:flex;
-        flex-direction: column;
-        margin: 5vh 0;
-        .imagePreview {
-                max-width: 44px;
-            }
-        
+    .containerFilteredProducts{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+        margin-top: 20px;
+        align-items: center;
+        .formGroup{
+            display:flex;
+            flex-direction: column;
+            margin: 5vh 0;
             flex: 1;
             margin-right: 10px;
-        
-            label {
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #333;
+            .sortByPrice{              
+                @include button-3d(100%, 0, #2f2f2b, #0a6b0a);
             }
-        
-            input,
-            select {
-                padding: 10px;
-                font-size: 17px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                width: 100%;
-                box-sizing: border-box;
-            }
+            // .imagePreview {
+            //         max-width: 44px;
+            //     }
+            
+            
+                label {
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    color: #333;
+                }
+            
+                input,
+                select {
+                    padding: 10px;
+                    font-size: 17px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+        }
     }
-}
 }
 @media (max-width: 600px) {
     .containerFilteredProducts {

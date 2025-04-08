@@ -6,8 +6,8 @@ $color-letter-title:#2f2f2b;
 $font-family: Montserrat;
 $bg-title-color:#f9a402;
 
-@mixin title(){
-    font-size: 4rem;
+@mixin title( $font-size:4rem){
+    font-size: $font-size;
     color: #2f2f2b;
     font-family: Montserrat;
     margin: 0;
