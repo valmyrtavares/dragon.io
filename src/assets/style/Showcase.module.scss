@@ -1,3 +1,5 @@
+@use "./mixins" as *;
+
 .showcaseContainer {
     h1 {
         font-size: 2.5rem;
@@ -30,12 +32,12 @@
                 transform: translate(-50%, -50%)
             }
         }
-      
+        
         .productCard {
+            background-color:$bg-default;
             padding: 9px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
+            border-radius: 8px;           
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 200px; // ou outro tamanho fixo adequado
             display: flex;
@@ -45,17 +47,15 @@
                margin-bottom: 10px;
                color: #007bff;
             }
-            .title{
-                
+            .title{                
                 font-size: 18px;
-                color: #333;
+                color: $color-letter-title;
+                font-family: $font-family;
                 margin: 14px 0;
             }
             .price{
-                font-size: 18px;
-                
-                color: #ff6500;
-                margin: -20px 10px;
+                @include title-with-background(18px, 7px);               
+                margin: -6px 10px;
 
             }
             p {
