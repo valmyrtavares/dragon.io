@@ -1,0 +1,54 @@
+@mixin button-3d( $width: 30%, $margin: 30px 35%, $bg-color: #2f2f2b, $hover-color: #0a6b0a,) {
+    background-color: $bg-color;
+    z-index: 15;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    width: $width;
+    margin: $margin;
+    border: none;
+    border-radius: 0;
+    position: relative;
+    perspective: 500px;
+    transform: rotateX(8deg) rotateY(-8deg);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.7s ease, box-shadow 0.7s ease, background-color 0.7s ease;
+
+    &:hover {
+        transform: rotateX(0deg) rotateY(0deg) scale(1.02);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        background-color: $hover-color;
+
+        &::before {
+            background-color: $hover-color;
+        }
+
+        &::after {
+            background-color: $hover-color;
+        }
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -7px;
+        left: 5px;
+        width: 100%;
+        height: 8px;
+        background: $bg-color;
+        transform: skewX(50deg);
+        z-index: -1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: -9px;
+        width: 8px;
+        height: 100%;
+        background: $bg-color;
+        transform: skewY(45deg);
+        z-index: -1;
+    }
+}

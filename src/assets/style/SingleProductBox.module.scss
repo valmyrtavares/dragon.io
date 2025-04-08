@@ -1,3 +1,5 @@
+@import './mixins';
+
 .container{
 
     .SingleProductBox {
@@ -148,124 +150,16 @@
                     transform: scale(1.15); // Cresce um pouco mais
                 }
 
-                         .btnMoreDetailsPopup {
-                        background-color:#2f2f2b ;
-                            z-index: 15;
-                            color: white;
-                            font-size: 1rem;
-                            padding: 10px 20px;
-                            width: 30%;
-                            margin: 30px 35%;
-                            border: none;
-                            border-radius: 0;
-                            position: relative;
-                            perspective: 500px;
-                            transform: rotateX(8deg) rotateY(-8deg);
-                            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-                            transition: transform 0.7s ease, box-shadow 0.7s ease, background-color 0.7s ease;
-            
-                             // Efeito ao passar o mouse
-                        &:hover {
-                                transform: rotateX(0deg) rotateY(0deg) scale(1.02);
-                                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-                                background-color: #0a6b0a;
-                        
-                                &::before {
-                                    background-color: #0a6b0a;
-                                }
-                        
-                                &::after {
-                                    background-color: #0a6b0a;
-                                }
-                            }
-            
-                             // Face inferior
-                             &::before {
-                                content: "";
-                                    position: absolute;
-                                    bottom: -7px;
-                                    left: 5px;
-                                    width: 100%;
-                                    height: 8px;
-                                    background: #2f2f2b;
-                                    transform: skewX(50deg);
-                                    z-index: -1;
-                             }
-            
-                             // Face lateral direita
-                             &::after {
-                                content: "";
-                                    position: absolute;
-                                    top: 2px;
-                                    right: -9px;
-                                    width: 8px;
-                                    height: 100%;
-                                    background: #2f2f2b;
-                                    transform: skewY(45deg);
-                                    z-index: -1;
-                             }
-                         }
+                .btnMoreDetailsPopup {
+                    @include button-3d();
+                }
                  
                 
                 .btnContact{
-                background-color: #2f2f2b;
-                    z-index: 15;
-                    color: white;
-                    font-size: 1rem;
-                    padding: 10px 20px;
-                    width: 70%;
-                    margin: 30px 35%;
-                    border: none;
-                    border-radius: 0;
-                    position: relative;
-                    perspective: 500px;
-                    transform: rotateX(8deg) rotateY(-8deg);
-                    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-                    transition: transform 0.7s ease, box-shadow 0.7s ease, background-color 0.7s ease;
-                    &:hover {
-                            transform: rotateX(0deg) rotateY(0deg) scale(1.02);
-                            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-                            background-color: #0a6b0a;
-                    
-                            &::before {
-                                background-color: #0a6b0a;
-                            }
-                    
-                            &::after {
-                                background-color: #0a6b0a;
-                            }
-                        }
-                    
-                        // Face inferior
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            bottom: -7px;
-                            left: 5px;
-                            width: 100%;
-                            height: 8px;
-                            background: #2f2f2b;
-                            transform: skewX(45deg);
-                            z-index: -1;
-                        }
-                    
-                        // Face lateral direita
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: 2px;
-                            right: -9px;
-                            width: 8px;
-                            height: 100%;
-                            background: #2f2f2b;
-                            transform: skewY(45deg);
-                            z-index: -1;
-                        }
+                @include button-3d();
                 }
 
-                .btnContact:hover {
-                    transform: scale(1.15); // Cresce um pouco mais
-                }
+               
             }
              
                 .highlightPrice{
@@ -342,17 +236,14 @@
         }
     }
         .adminContainer {
-            column-gap: 10px;
             display: flex;
-            justify-content: space-around;
-            margin-top:40px;
-
-            button,
-            a {
-                background-color: green;
-                min-width: 200px;
-                max-width: 400px;
-                color: white;
+            justify-content: space-between; // ou center/start/end
+            gap: 10px;
+            button{
+                @include button-3d($width: 300px, $margin: 100px);                     
+                flex: 1;
+                
+    margin: 0;   
             }
         }
 

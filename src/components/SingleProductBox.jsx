@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { getDataById, getDataByField } from '../api/Api';
 import { formatCpf } from '../helper/Helper'; // Importa a função formatDate
 import SingleDetailsProduct from './SingleDetailsProduct';
+import { useNavigate } from 'react-router-dom';
 
 const SingleProductBox = () => {
   const [selectedImage, setSelectedImage] = React.useState('');
@@ -20,6 +21,7 @@ const SingleProductBox = () => {
 
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchProducts = async () => {
@@ -189,10 +191,8 @@ const SingleProductBox = () => {
         {!isMobile && login && (
           <div className={style.adminContainer}>
             {' '}
-            <button>
-              <Link to={`/form/${productSelected.id}`}>
-                Edição administrador
-              </Link>
+            <button onClick={() => navigate(`/form/${productSelected.id}`)}>
+              Edição administrador
             </button>{' '}
             <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
           </div>
