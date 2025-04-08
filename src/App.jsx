@@ -12,7 +12,7 @@ import CustomerList from './components/customer/customerList';
 const App = () => {
   return (
     <GlobalProvider>
-      <Router basename="/">
+      <Router basename="/dragon.io">
         <Header />
         <Routes>
           <Route path="/" element={<ShowCase />} />

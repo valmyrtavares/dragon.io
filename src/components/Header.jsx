@@ -17,7 +17,7 @@ const Header = () => {
   const location = useLocation();
 
   const isSellPage =
-    location.pathname === '/rules' ||
+    location.pathname === '/user-rules' ||
     location.pathname === '/form' ||
     location.pathname === '/register';
 
