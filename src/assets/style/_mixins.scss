@@ -1,3 +1,30 @@
+
+
+$bg-default: #f2f2f2;
+$color-letter: #8f8f8d;
+$color-letter-title:#2f2f2b;
+$font-family: Montserrat;
+
+@mixin title(){
+    font-size: 4rem;
+    color: #2f2f2b;
+    font-family: Montserrat;
+    margin: 0;
+    font-weight: bold;
+}
+
+@mixin title-with-background($font-size: 3.5rem){
+    display: inline-block;    
+    font-size:$font-size;
+    background-color: #f9a402;
+    color: white;
+    border-radius: 1rem;
+    margin: 20px 10px;
+    padding: 0px 9px;
+    transition: transform 0.5s ease-in-out;
+       
+}
+
 @mixin button-3d( $width: 30%, $margin: 30px 35%, $bg-color: #2f2f2b, $hover-color: #0a6b0a,) {
     background-color: $bg-color;
     z-index: 15;

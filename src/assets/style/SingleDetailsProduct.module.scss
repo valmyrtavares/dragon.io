@@ -1,3 +1,6 @@
+@import './mixins.scss';
+
+
 .singleDetailsProductContainer{
     width:50%;
     margin:0 20%;
@@ -6,37 +9,36 @@
     position:fixed;
     top: 10%;
     left: 10%;
-    background-color: #FEFEDF;
+    background-color:$bg-default; ;
     z-index: 30;
     .productDetails{
         text-align: start;
         padding:15px;
         .titleContainer h3 {
-            font-size: 5rem;
-            color: #e56b02;
-            font-family: impact, sans-serif;
-            margin: 0;
-            font-weight: bold;
-            text-align: center;
+            @include title-with-background();   
+            text-align: center;    
         }
         h2{
-            color:#e56b02;
+            color: $color-letter;
+            font-weight: 300;
             span{
                 font-weight: bold;
-                color:black;
+                color:$color-letter-title;
+                p{
+                    width: 50%;
+                }
             }
         }
         .specificationsTitle{
-            font-size: 2rem;
-            color: #e56b02;
-            font-weight: bold;
-            .hugeText{
-                font-size: 1.2rem;
-                color:black;
-                font-family: arial;
-                font-weight: normal;
+            @include title-with-background($font-size:2rem);
+         
+        }
+        .hugeText{
+            font-size: 1.2rem;
+            color:$color-letter-title;
+            font-family: $font-family;
+            font-weight: normal;
 
-            }
         }
 
     }

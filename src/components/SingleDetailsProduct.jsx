@@ -50,41 +50,36 @@ const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
           <h2>
             fonte: <span>{productSelected.font}</span>
           </h2>
-
           <h2>
             gabinete:<span>{productSelected.tower}</span>
           </h2>
-
           <h2>
             Refrigeração:<span>{productSelected.cooling}</span>
           </h2>
-
           <h2>
             Cabos :<span>{productSelected.amoutCables}</span>
           </h2>
           <h2>
             Data de compra :<span>{formatDate(productSelected.ages)}</span>
           </h2>
-
-          <h3 className={style.specificationsTitle}>
-            Descrição da Placa mãe :
-            <div className={style.hugeText}>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: productSelected.motherBoardText,
-                }}
-              />
-            </div>
-          </h3>
+          <h3 className={style.specificationsTitle}>Descrição da Placa mãe</h3>
+          <div className={style.hugeText}>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: productSelected.motherBoardText,
+              }}
+            />
+          </div>
           <h3 className={style.specificationsTitle}>
             Descrição do processador :
-            <div className={style.hugeText}>
-              <span
-                className={style.hugeText}
-                dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
-              />
-            </div>
           </h3>
+
+          <div className={style.hugeText}>
+            <span
+              className={style.hugeText}
+              dangerouslySetInnerHTML={{ __html: productSelected.cpuText }}
+            />
+          </div>
         </div>
       )}
     </div>
