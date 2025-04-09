@@ -1,5 +1,6 @@
 import style from '../assets/style/Footer.module.scss';
 import LogoImage from '../assets/image/Logo.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const callSeller = () => {
@@ -10,7 +11,9 @@ const Footer = () => {
   return (
     <footer className={style.footerContainer}>
       <div className={style.footerLogo}>
-        <img src={LogoImage} alt="Logo dragon" />
+        <Link to="https://dragoncomputadores.com.br/">
+          <img src={LogoImage} alt="Logo dragon" />
+        </Link>
         <p>
           &copy; {new Date().getFullYear()} R. Álvares Penteado, 177 – Centro
           Histórico de São Paulo, São Paulo – SP, 01012-001
