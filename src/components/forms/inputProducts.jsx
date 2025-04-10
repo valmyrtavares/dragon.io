@@ -14,6 +14,8 @@ import {
   getDataById,
   updateDataInCollection,
   deleteDataFromCollection,
+  getDataByField,
+  sendEmail,
 } from '../../api/Api';
 
 const MAX_LENGTH = 350; // Defina o limite de caracteres
@@ -190,7 +192,7 @@ const InputProducts = () => {
     handleSubmit();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (!e || typeof e.preventDefault !== 'function') {
       // Se e não existir ou não for um evento válido, criar um mock
       e = { preventDefault: () => {} };
@@ -207,8 +209,11 @@ const InputProducts = () => {
       return;
     }
     formData.customerCpf = formatCpf(cpf);
+    debugger;
     // storedProducts.push(formData);
-    addDataToCollection('products', formData);
+    const idCreated = await addDataToCollection('products', formData);
+    await prepareEmail(idCreated);
+
     setFormData({
       id: '',
       title: '',
@@ -234,6 +239,23 @@ const InputProducts = () => {
   };
   const formatCpf = (cpf) => {
     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  };
+
+  const prepareEmail = async (id) => {
+    const customerCpf = formatCpf(cpf);
+    const currentCustomer = await getDataByField(
+      'customer',
+      'cpf',
+      customerCpf
+    );
+    console.log('EMAIL   ', currentCustomer.email);
+    console.log('ID DO PRODUTO   ', id);
+    try {
+      await sendEmail(currentCustomer.email, id); // Envia o email com o ID do produto
+      console.log('Email enviado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao enviar o email:', error);
+    }
   };
 
   // Função para remover a imagem
@@ -281,6 +303,7 @@ const InputProducts = () => {
         />
       )}
       <h2>Formulário para máquinas Dragon</h2>
+      <button onClick={sendEmail}>Clique de mandar email</button>
       <form className={style.formContainer}>
         <div className={style.formRow}>
           <div className={style.formGroup}>

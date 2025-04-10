@@ -2,6 +2,7 @@ import React from 'react';
 import { getListData } from '../../api/Api';
 import styles from '../../assets/style/CustomerList.module.scss';
 import PopupCustomerDetails from './popupCustomerDetails';
+import { syncProductIdsWithCustomers } from '../../api/Api';
 
 const CustomerList = () => {
   const [customers, setCustomers] = React.useState([]);
@@ -28,7 +29,9 @@ const CustomerList = () => {
 
     fetchCustomers();
   }, []);
+
   const showProducts = (customer) => {
+    syncProductIdsWithCustomers(customer.productIds);
     setOwnCustomer(customer);
     setCustomerPopup(true);
   };

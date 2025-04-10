@@ -103,6 +103,19 @@ export async function updateObjectBySpecificKey(
   }
 }
 
+export async function syncProductIdsWithCustomers(productIds) {
+  const collectionName = 'customer';
+  const customers = await getListData(collectionName);
+
+  for (const customer of customers) {
+    if (JSON.stringify(customer.productIds) !== JSON.stringify(productIds)) {
+      await updateDataInCollection(collectionName, customer.id, { productIds });
+    }
+  }
+
+  return `Customer productIds synchronized successfully.`;
+}
+
 export const uploadImage = (file, setProgress, setUrl, setForm) => {
   return new Promise((resolve, reject) => {
     if (!file) return reject('Nenhum arquivo selecionado.');
@@ -137,4 +150,20 @@ export const uploadImage = (file, setProgress, setUrl, setForm) => {
       }
     );
   });
+};
+
+export const sendEmail = async (toEmail, id) => {
+  try {
+    await addDoc(collection(db, 'mail'), {
+      to: toEmail,
+      message: {
+        subject: 'Confirmação do produto no site Dragon Computadores',
+        text: `O seu produto foi confirmado e está disponível no site Dragon Computadores. O ID do produto é ${id}.`,
+      },
+    });
+
+    console.log('Email adicionado à fila com sucesso!');
+  } catch (error) {
+    console.error('Erro ao adicionar email na fila:', error);
+  }
 };
