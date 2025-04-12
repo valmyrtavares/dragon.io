@@ -94,10 +94,6 @@ const InputProducts = () => {
     fetchObjectProduct();
   }, []);
 
-  React.useEffect(() => {
-    console.log('FormData atualizado   ', formData);
-  }, [formData]); // Adicione um efeito colateral para verificar o formData atualizado
-
   const handleChange = (e) => {
     let { id, value } = e.target;
 
@@ -105,6 +101,12 @@ const InputProducts = () => {
       value = value.replace(/\D/g, ''); // Remove non-numeric characters
       value = (parseFloat(value) / 100).toFixed(2); // Format as a decimal with two places
       value = `R$ ${value.replace('.', ',')}`; // Add "R$" and replace dot with comma
+    }
+    if (formData.customerCpf === '') {
+      formData.customerCpf = cpf.replace(
+        /(\d{3})(\d{3})(\d{3})(\d{2})/,
+        '$1.$2.$3-$4'
+      );
     }
 
     if (
@@ -209,7 +211,7 @@ const InputProducts = () => {
       return;
     }
     formData.customerCpf = formatCpf(cpf);
-    debugger;
+
     // storedProducts.push(formData);
     const idCreated = await addDataToCollection('products', formData);
     await prepareEmail(idCreated);
@@ -250,6 +252,7 @@ const InputProducts = () => {
     );
     console.log('EMAIL   ', currentCustomer.email);
     console.log('ID DO PRODUTO   ', id);
+    debugger;
     try {
       await sendEmail(currentCustomer.email, id); // Envia o email com o ID do produto
       console.log('Email enviado com sucesso!');
@@ -303,7 +306,7 @@ const InputProducts = () => {
         />
       )}
       <h2>Formulário para máquinas Dragon</h2>
-      <button onClick={sendEmail}>Clique de mandar email</button>
+
       <form className={style.formContainer}>
         <div className={style.formRow}>
           <div className={style.formGroup}>
