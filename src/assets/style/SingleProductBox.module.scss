@@ -115,8 +115,8 @@
                     z-index: 1;
                     width: 100%;
                     justify-content: center;
-                        display: flex;
-                        align-items: center;
+                    display: flex;
+                    align-items: center;
                 }                
            
                 .titleContainer h3 {
@@ -140,14 +140,14 @@
                 .specialSpecifications h2 span {
                     color: #8f8f8d;
                    
-                    font-size: 2rem;
+                    font-size: 1.3rem;
                 } 
                 .specialSpecifications h2{
                     transition: transform 0.5s ease-in-out;
                 }
 
                 .specialSpecifications h2:hover {
-                    transform: scale(1.15); // Cresce um pouco mais
+                    transform: scale(1.05); // Cresce um pouco mais
                 }
 
                 .btnMoreDetailsPopup {
