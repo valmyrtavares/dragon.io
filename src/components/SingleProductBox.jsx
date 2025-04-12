@@ -152,6 +152,17 @@ const SingleProductBox = () => {
                       : productSelected.title}
                   </h3>
                 </div>
+                <h2 className={style.productCode} title="Clique para copiar">
+                  Código do produto:{' '}
+                  <span
+                    onClick={() => {
+                      navigator.clipboard.writeText(productSelected.id);
+                      alert('Código copiado para a área de transferência!');
+                    }}
+                  >
+                    {productSelected.id}
+                  </span>
+                </h2>
                 <div className={style.specialSpecifications}>
                   <h2>
                     <span>{productSelected.cpu}, </span>
@@ -173,17 +184,6 @@ const SingleProductBox = () => {
                 <button className={style.btnContact} onClick={callSeller}>
                   FALE CONOSCO
                 </button>
-                <h2 className={style.productCode} title="Clique para copiar">
-                  Código do produto:{' '}
-                  <span
-                    onClick={() => {
-                      navigator.clipboard.writeText(productSelected.id);
-                      alert('Código copiado para a área de transferência!');
-                    }}
-                  >
-                    {productSelected.id}
-                  </span>
-                </h2>
               </div>
             </div>
           )}
