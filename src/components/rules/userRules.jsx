@@ -67,6 +67,7 @@ const UserRules = () => {
           adress="/form"
         />
       )}
+      <h2>Regras de Uso para Anunciantes na Plataforma Dragon Computadores</h2>
       <div className={style.navigationLinks}>
         <ul>
           <li>
@@ -98,7 +99,6 @@ const UserRules = () => {
         </ul>
       </div>
 
-      <h2>Regras de Uso para Anunciantes na Plataforma Dragon Computadores</h2>
       <ul id="objetivo">
         1. Objetivo:
         <li>
