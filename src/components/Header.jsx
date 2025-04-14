@@ -52,17 +52,16 @@ const Header = () => {
         )}
       </div>
       <nav className={style.nav}>
+        <div>
+          <NavLink
+            to="https://dragoncomputadores.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={LogoImage} alt="Logo dragon" />
+          </NavLink>
+        </div>
         <ul className={style.navList}>
-          <li>
-            <NavLink
-              to="https://dragoncomputadores.com.br/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={LogoImage} alt="Logo dragon" />
-            </NavLink>
-          </li>
-
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? style.active : '')}
