@@ -22,7 +22,7 @@ const Footer = () => {
       <div className={style.emailFooter}>
         <h2>Contato</h2>
         <p>Atendimento: Seg~Sex 10:00h as 18:00h Sábado: 10:00h as 14:00h</p>
-        <p>
+        <p className={style.email}>
           Email:{' '}
           <a href="mailto:contato@dragoncomputadores.com.br">
             contato@dragoncomputadores.com.br

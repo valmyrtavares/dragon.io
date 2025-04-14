@@ -18,6 +18,21 @@
             @include title(1.5rem);
             margin: 0;
         }
+
+        .email {
+            transition: transform 0.7s ease, color 0.7s ease;
+
+            &:hover {
+                transform: scale(1.05);
+                color: orange;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                display: inline-block;
+            }
+        }
     }
 
     .zapFooter {
@@ -26,12 +41,5 @@
         }
     }
 
-    .footerLogo,
-    .emailFooter,
-    .zapFooter {
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: $bg-default;
-        }
-    }
+   
 }

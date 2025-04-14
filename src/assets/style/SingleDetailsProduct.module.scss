@@ -1,79 +1,97 @@
 @use './mixins' as *;
 
 
-.singleDetailsProductContainer{
-    width:35%;
-    margin:0 20%;
-    height: 70vh;
-    overflow-y: auto;
-    position:fixed;
-    border-radius: 4%;
-    top: 10%;
-    left: 10%;
-    background-color:$bg-default; ;
-    z-index: 30;
-    .productDetails{
-        text-align: start;
-        padding:15px;
-        .titleContainer h3 {
-            @include title-with-background();   
-            text-align: center;    
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); // fundo escuro com opacidade
+    z-index: 20; // menor que o do popup, mas maior que o restante da página
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .closeBtnFixed {
+        position: absolute;
+        top: 41px;
+        right: 782px;
+        z-index: 31; // maior que o popup
+        button{
+            color:white;
         }
-        h2{
-            color: $color-letter;
-            font-weight: 300;
-            span{
-                font-weight: bold;
-                color:$color-letter-title;
-                p{
-                    width: 50%;
+    }
+    .singleDetailsProductContainer{
+        width:35%;
+        margin:0 20%;
+        height: 70vh;
+        overflow-y: auto;
+        position:fixed;
+        border-radius: 4%;
+        top: 10%;
+        left: 10%;
+        background-color:$bg-default; 
+        z-index: 30;
+        .productDetails{
+            text-align: start;
+            padding:15px;
+            .titleContainer h3 {
+                @include title-with-background();   
+                text-align: center;    
+            }
+            h2{
+                color: $color-letter;
+                font-weight: 300;
+                span{
+                    font-weight: bold;
+                    color:$color-letter-title;
+                    p{
+                        width: 50%;
+                    }
                 }
             }
+            .specificationsTitle{
+                @include title-with-background($font-size:2rem);
+                
+            }
+            .hugeText{
+                font-size: 1.2rem;
+                color:$color-letter-title;
+                font-family: $font-family;
+                font-weight: normal;
+                
+            }
+            
         }
-        .specificationsTitle{
-            @include title-with-background($font-size:2rem);
-         
-        }
-        .hugeText{
-            font-size: 1.2rem;
-            color:$color-letter-title;
-            font-family: $font-family;
-            font-weight: normal;
-
-        }
-
     }
 }
     @media (max-width: 650px) {
-.singleDetailsProductContainer {
+    .singleDetailsProductContainer {
     width: 100%;
     margin:-10%;
     top: 10%;
         left: 11%;
     height: 80vh;
     padding: 7%;
-
-    .productDetails {
-        padding: 5px;
-        width: 90%;
-        margin:0 -5%;
-    
-        h2, h3 {
-            font-size: 1rem;
+        .productDetails {
+            padding: 5px;
+            width: 90%;
+            margin:0 -5%;
+        
+            h2, h3 {
+                font-size: 1rem;
+            }
+        
         }
-       
-    }
-    .title {
-        font-size: 25px;
-        margin: -4px -9px;
-    
-    }
-    
-    .price {
-        font-size: 25px;
-        margin: -20px -12px;
-    
-    }
+        .title {
+            font-size: 25px;
+            margin: -4px -9px;
+        }
+        .price {
+            font-size: 25px;
+            margin: -20px -12px;
+        
+        }
     }
 
 }
