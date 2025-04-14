@@ -7,6 +7,7 @@ import CloseButton from '../CloseButton';
 const Login = ({ setOpenClose }) => {
   const [password, setPassword] = React.useState('');
   const { setLogin } = useContext(GlobalContext);
+  const [showPassword, setShowPassword] = React.useState(false);
 
   React.useEffect(() => {
     if (localStorage.getItem('login') === 'true') {
@@ -18,6 +19,10 @@ const Login = ({ setOpenClose }) => {
 
   const handleChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   const handleSubmit = (e) => {
@@ -46,12 +51,21 @@ const Login = ({ setOpenClose }) => {
         <label className={styles.label}>
           Password:
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             value={password}
             onChange={handleChange}
             className={styles.input}
           />
         </label>
+        <label className={styles.showPassword}>
+          Confira a senha
+          <input
+            type="checkbox"
+            checked={showPassword}
+            onChange={toggleShowPassword}
+          />
+        </label>
+
         <button type="submit">Submit</button>
       </form>
     </div>
