@@ -34,12 +34,11 @@
         }
         
         .productCard {
-            background-color:$bg-default;
+            background-color:white;
             cursor:pointer;
-            padding: 9px;
-            border: 1px solid #ddd;
+            padding: 9px;            
             border-radius: 8px;           
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
             width: 200px; // ou outro tamanho fixo adequado
             display: flex;
             flex-direction: column;
