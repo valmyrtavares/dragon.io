@@ -203,7 +203,9 @@ const UserRules = () => {
       <p>
         3 Quando a venda for concluída,{' '}
         <span style={{ fontWeight: 'bold' }}>
-          cobramos uma taxa de 20% sobre o valor final do anúncio.
+          cobramos uma taxa de 20% sobre o valor final do anúncio, o total da
+          venda menos os 20% da taxa de serviço se torna crédito para a compra
+          de outros produtos na Dragon Computadores.
         </span>
       </p>
       <h2>Termo de Reconhecimento</h2>

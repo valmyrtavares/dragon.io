@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 const App = () => {
   return (
     <GlobalProvider>
-      <Router basename="/dragon.io">
+      <Router basename="/">
         <Header />
         <Routes>
           <Route path="/" element={<ShowCase />} />
