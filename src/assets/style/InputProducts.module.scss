@@ -85,7 +85,7 @@
             display: grid;
             grid-template-rows: 1fr 1fr;
             .textareaColumn {
-                    margin: 29px 0;
+                    margin: 45px 0;
                         display: grid;
                         grid-template-rows: 1fr 1fr;
                         align-items: end;
@@ -97,7 +97,8 @@
                     }
                     .textField{
                         height: 20vh;
-                            overflow-y: auto;
+                        overflow-y: auto;
+                        background: white;
 
                         
                     }
