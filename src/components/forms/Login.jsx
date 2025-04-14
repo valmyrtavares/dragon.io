@@ -22,7 +22,7 @@ const Login = ({ setOpenClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const correctPassword = '1234'; // Replace with your actual password
+    const correctPassword = 'jadeucerto'; // Replace with your actual password
     if (password === correctPassword) {
       localStorage.setItem('login', 'true');
       setLogin(true);

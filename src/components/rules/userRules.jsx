@@ -10,6 +10,29 @@ const UserRules = () => {
   const [successMessage, setSuccessMessage] = React.useState(false);
   const { cpf } = useContext(GlobalContext);
 
+  React.useEffect(() => {
+    const handleSmoothScroll = (event) => {
+      const target = event.target;
+      if (
+        target.tagName === 'A' &&
+        target.getAttribute('href').startsWith('#')
+      ) {
+        event.preventDefault();
+        const elementId = target.getAttribute('href').substring(1);
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleSmoothScroll);
+
+    return () => {
+      document.removeEventListener('click', handleSmoothScroll);
+    };
+  }, []);
+
   const handleChange = async (event) => {
     const checked = event.target.checked;
     setIsAccepted(checked);
@@ -44,8 +67,39 @@ const UserRules = () => {
           adress="/form"
         />
       )}
+      <div className={style.navigationLinks}>
+        <ul>
+          <li>
+            <a href="#objetivo">Objetivos</a>
+          </li>
+          <li>
+            <a href="#responsabilidades-anunciante">
+              Responsabilidades do Anunciante
+            </a>
+          </li>
+          <li>
+            <a href="#uso-plataforma">Uso da Plataforma</a>
+          </li>
+          <li>
+            <a href="#servicos-avaliacao">Serviços de Avaliação</a>
+          </li>
+          <li>
+            <a href="#responsabilidades-dragon">Responsabilidades da Dragon</a>
+          </li>
+          <li>
+            <a href="#penalidades">Penalidades</a>
+          </li>
+          <li>
+            <a href="#vigencia-alteracoes">Vigência e Alterações</a>
+          </li>
+          <li>
+            <a href="#como-funciona">Como funciona</a>
+          </li>
+        </ul>
+      </div>
+
       <h2>Regras de Uso para Anunciantes na Plataforma Dragon Computadores</h2>
-      <ul>
+      <ul id="objetivo">
         1. Objetivo:
         <li>
           Estabelecer as diretrizes e resposabilidades dos anunciantes que
@@ -53,7 +107,7 @@ const UserRules = () => {
           computadores usados.
         </li>
       </ul>
-      <ul>
+      <ul id="responsabilidades-anunciante">
         2. 2. Responsabilidades do Anunciante:
         <li>
           Veracidade das Informações: Todas as informações e imagens publicadas
@@ -72,7 +126,7 @@ const UserRules = () => {
           Computadores, conforme acordado previamente.
         </li>
       </ul>
-      <ul>
+      <ul id="uso-plataforma">
         3. Uso da Plataforma:
         <li>
           A Dragon Computadores disponibiliza a plataforma como um serviço de
@@ -88,7 +142,7 @@ const UserRules = () => {
           computadores.
         </li>
       </ul>
-      <ul>
+      <ul id="servicos-avaliacao">
         4. Serviços de Avaliação:
         <li>
           A Dragon Computadores oferece o serviço de avaliação das condições dos
@@ -101,7 +155,7 @@ const UserRules = () => {
           base em testes técnicos, mas sem qualquer garantia futura.
         </li>
       </ul>
-      <ul>
+      <ul id="responsabilidades-dragon">
         5. Responsabilidade da Dragon Computadores:
         <li>
           A Dragon Computadores atua como facilitadora, oferecendo a plataforma
@@ -112,7 +166,7 @@ const UserRules = () => {
           Conteúdo publicado pelos anunciantes (informações, imagens, etc.).
         </li>
       </ul>
-      <ul>
+      <ul id="penalidades">
         6. Penalidades por Descumprimento:
         <li>
           Anúncios que violarem estas regras, incluindo a divulgação de produtos
@@ -130,7 +184,7 @@ const UserRules = () => {
         com todas as regras aqui estabelecidas, assumindo total responsabilidade
         pelo conteúdo de seus anúncios e pelas obrigações descritas.
       </p>
-      <h2>8. Vigência e Alterações:</h2>
+      <h2 id="vigencia-alteracoes">8. Vigência e Alterações:</h2>
       <p>
         Estas regras entram em vigor a partir da data de publicação e podem ser
         alteradas a qualquer momento pela Dragon Computadores, com aviso prévio
@@ -143,7 +197,7 @@ const UserRules = () => {
         nossos clientes anunciarem seus equipamentos usados diretamente em nosso
         site.
       </p>
-      <h2>Como funciona?</h2>
+      <h2 id="como-funciona">Como funciona?</h2>
       <p>1 Você cadastra seu computador para revenda.</p>
       <p>2 Nós anunciamos para milhares de compradores em potencial.</p>
       <p>
