@@ -51,6 +51,7 @@ const Login = ({ setOpenClose }) => {
             onChange={handleChange}
             className={styles.input}
           />
+          <p>{password}</p>
         </label>
         <button type="submit">Submit</button>
       </form>
