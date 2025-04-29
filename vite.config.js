@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'docs', // Diretório de saída do build
+    outDir: 'docs', // ou 'dist', se preferir
   },
-  base: './', // Define o caminho base para arquivos estáticos
+  base: '/recycle/', // Caminho base correto para funcionar em subpasta
 });
