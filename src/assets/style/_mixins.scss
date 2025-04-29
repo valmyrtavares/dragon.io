@@ -80,3 +80,34 @@ $bg-title-color:#f9a402;
         z-index: -1;
     }
 }
+
+@mixin contact-button($bg: forestgreen, $text-color: white, $icon-bg: #075e54, $icon-url: '../image/WhatsApp.svg.webp') {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    background-color: $bg;
+    color: $text-color;
+    border: none;
+    border-radius: 5px;
+    padding: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+
+    .whatsappLogo {
+        width: 40px;
+        height: 50px;
+        background-color: $icon-bg;
+        background-image: url($icon-url);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        border-radius: 6px;
+    }
+
+    span {
+        text-align: left;
+        padding-left: 10px;
+        color: $text-color;
+    }
+}

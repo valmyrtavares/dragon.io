@@ -6,6 +6,7 @@ export const GlobalProvider = ({ children }) => {
   const [currentCustomer, setCurrentCustomer] = React.useState({});
   const [cpf, setCpf] = React.useState(''); // 🔹 Estado para armazenar o CPF
   const [login, setLogin] = React.useState(''); // 🔹 Estado para armazenar o CPF
+  const [isMobile, setIsMobile] = React.useState(false); // 🔹 Estado para armazenar o CPF
 
   return (
     <GlobalContext.Provider
@@ -16,6 +17,8 @@ export const GlobalProvider = ({ children }) => {
         setCpf,
         setLogin,
         login,
+        isMobile,
+        setIsMobile,
       }}
     >
       {children}
