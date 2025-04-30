@@ -1,11 +1,11 @@
 {
-  "homepage": "/recycle",
+  "homepage": "https://valmyrtavares.github.io/dragon.io",
   "name": "dragon",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.local.js",
     "build:hostinger": "vite build --config vite.config.hostinger.js",
     "build:gh": "vite build --config vite.config.github.js",
     "lint": "eslint .",
