@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'docs', // ou 'dist', se preferir
+    outDir: 'docs',
   },
-  base: '/recycle/', // Caminho base correto para funcionar em subpasta
+  base: '/dragon.io/', // Caminho correto para funcionar no GitHub Pages
 });
