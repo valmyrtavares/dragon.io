@@ -1,6 +1,9 @@
 @use './mixins' as *;
 
 .containerGlobal{
+    width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     .searchField{
         display: flex;
         justify-content: center;
@@ -12,7 +15,8 @@
             font-size: 17px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 30%;
+        width: 100%;
+            max-width: 400px;
             box-sizing: border-box;
         }
     }
@@ -28,7 +32,8 @@
             display:flex;
             flex-direction: column;
             margin: 5vh 0;
-            flex: 1;
+            
+            min-width: 0;
             margin-right: 10px;
             .sortByPrice{              
                 @include button-3d(100%, 0, #2f2f2b, #0a6b0a);
@@ -57,11 +62,15 @@
     }
 }
 @media (max-width: 600px) {
-    .containerFilteredProducts {
-        flex-direction: column;
-        gap:0;
-        .formGroup{
-            margin:1vh 0;
+    .containerGlobal{
+    width: 90%;
+        .containerFilteredProducts {
+            flex-direction: column;
+            gap:0;
+            .formGroup{
+                margin:1vh 0 !important
+                ;
+            }
         }
     }
 }
