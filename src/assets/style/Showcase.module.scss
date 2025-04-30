@@ -1,5 +1,11 @@
 @use "./mixins" as *;
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .showcaseContainer {
     h1 {
         font-size: 2.5rem;
@@ -149,7 +155,31 @@
     margin: 5px 0;
     border-radius: 4px;
 }
-
+@media (max-width: 450px){
+    .scrollContainer{
+        max-width: 300px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        .productsGrid {
+            box-sizing: border-box;
+            max-width: 300px;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            .containerImages {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr); // ou 2 se preferir
+                    gap: 10px;
+                    justify-items: center;
+            
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+        }
+    }
+}
 
 
 
