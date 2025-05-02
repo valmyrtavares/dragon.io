@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 const App = () => {
   return (
     <GlobalProvider>
-      <Router basename="/">
+      <Router basename="/recycle">
         <Header />
         <Routes>
           <Route path="/" element={<ShowCase />} />
