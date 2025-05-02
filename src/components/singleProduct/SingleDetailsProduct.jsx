@@ -12,7 +12,11 @@ const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
   return (
     <div className={style.popupOverlay}>
       <div className={style.closeBtnFixed}>
-        <CloseButton setOpenClose={setSingleDetailsProduct} />
+        <CloseButton
+          setOpenClose={setSingleDetailsProduct}
+          right="14%"
+          top="15PX"
+        />
       </div>
       <div className={style.singleDetailsProductContainer}>
         {productSelected && (

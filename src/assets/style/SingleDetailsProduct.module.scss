@@ -65,12 +65,19 @@
         }
     }
 }
+
     @media (max-width: 650px) {
+
+        .popupOverlay {
+            .singleDetailsProductContainer {
+                width: 90%;
+                margin: 0 5%;
+                top: 10%;
+                left: 0%;
+        
+        }
+    }
     .singleDetailsProductContainer {
-    width: 100%;
-    margin:-10%;
-    top: 10%;
-        left: 11%;
     height: 80vh;
     padding: 7%;
         .productDetails {
