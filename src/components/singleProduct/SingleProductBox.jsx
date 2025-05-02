@@ -1,12 +1,12 @@
 import style from '../assets/style/SingleProductBox.module.scss';
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import PopupCustomerDetails from './customer/popupCustomerDetails';
-import { GlobalContext } from '../GlobalContext'; //
+import PopupCustomerDetails from '../customer/popupCustomerDetails';
+import { GlobalContext } from '../../GlobalContext'; //
 import { useContext } from 'react';
-import { getDataById, getDataByField } from '../api/Api';
-import { formatCpf } from '../helper/Helper'; // Importa a função formatDate
-import SingleDetailsProduct from './SingleDetailsProduct';
+import { getDataById, getDataByField } from '../../api/Api';
+import { formatCpf } from '../../helper/Helper'; // Importa a função formatDate
+import SingleDetailsProduct from '../SingleDetailsProduct';
 import { useNavigate } from 'react-router-dom';
 
 const SingleProductBox = () => {
