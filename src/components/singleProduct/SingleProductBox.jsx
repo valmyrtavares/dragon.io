@@ -1,13 +1,14 @@
-import style from '../assets/style/SingleProductBox.module.scss';
+import style from '../../assets/style/SingleProductBox.module.scss';
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PopupCustomerDetails from '../customer/popupCustomerDetails';
 import { GlobalContext } from '../../GlobalContext'; //
 import { useContext } from 'react';
 import { getDataById, getDataByField } from '../../api/Api';
 import { formatCpf } from '../../helper/Helper'; // Importa a função formatDate
-import SingleDetailsProduct from '../SingleDetailsProduct';
+import SingleDetailsProduct from './SingleDetailsProduct';
 import { useNavigate } from 'react-router-dom';
+import SingleProductBoxMobilePhone from './SingleProductMobile/SingleProductBoxMobilePhone';
 
 const SingleProductBox = () => {
   const [selectedImage, setSelectedImage] = React.useState('');
@@ -201,87 +202,12 @@ const SingleProductBox = () => {
     );
   } else {
     return (
-      <div className={style.container}>
-        {showclient && (
-          <PopupCustomerDetails
-            customer={selectedCustomer}
-            setClose={setShowClient}
-          />
-        )}
-        {singleDetailsProduct && (
-          <SingleDetailsProduct
-            productSelected={productSelected}
-            setSingleDetailsProduct={setSingleDetailsProduct}
-          />
-        )}
-        <div className={style.SingleProductBox}>
-          <div className={style.productDetails}>
-            <div className={style.mainItems}>
-              <div className={style.titleContainer}>
-                <h3 className={style.title}>PC {productSelected.title}</h3>
-              </div>
-              <div className={style.specialSpecifications}>
-                <h2>
-                  <span>{productSelected.cpu}, </span>
-                  <span>{productSelected.motherBoard}, </span>
-                  <span>{productSelected.memory}, </span>
-                  <span>{productSelected.motherBoard}, </span>
-                  <span>{productSelected.memory} </span>
-                </h2>
-              </div>
-              <div className={style.highlightPrice}>
-                <h3 className={style.price}>R$ {productSelected.price},00</h3>
-              </div>
-              <button
-                className={style.btnMoreDetailsPopup}
-                onClick={() => setSingleDetailsProduct(true)}
-              >
-                MAIS DETALHES
-              </button>
-              <button className={style.btnContact} onClick={callSeller}>
-                FALE CONOSCO
-              </button>
-              <h2 className={style.productCode} title="Clique para copiar">
-                Código do produto:{' '}
-                <span
-                  onClick={() => {
-                    navigator.clipboard.writeText(productSelected.id);
-                    alert('Código copiado para a área de transferência!');
-                  }}
-                >
-                  {productSelected.id}
-                </span>
-              </h2>
-            </div>
-          </div>
-          <div className={style.containerSideMenu}>
-            <div className={style.imageThumbnails}>
-              {images &&
-                images.length > 0 &&
-                images.map((image, index) => (
-                  <div
-                    key={index}
-                    className={style.thumbnail}
-                    onClick={() => setSelectedImage(image)}
-                  >
-                    <img src={image} alt={`Thumbnail ${index + 1}`} />
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-        {isMobile && login && (
-          <div className={style.adminContainer}>
-            {' '}
-            <button>
-              <Link to={`/form/${productSelected.id}`}>
-                Edição administrador
-              </Link>
-            </button>{' '}
-            <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
-          </div>
-        )}
-      </div>
+      <SingleProductBoxMobilePhone
+        selectedCustomer={selectedCustomer}
+        productSelected={productSelected}
+        images={images}
+        bringCustomer={bringCustomer}
+      />
     );
   }
 };

@@ -40,7 +40,7 @@ const Footer = () => {
         {isMobile ? (
           <button className={style.btnContactFooterMobile} onClick={callSeller}>
             <div className={style.whatsappLogo}></div>
-            <span>FaleConosco</span>
+            <span>Fale Conosco</span>
           </button>
         ) : (
           <button className={style.btnContactFooter} onClick={callSeller}>

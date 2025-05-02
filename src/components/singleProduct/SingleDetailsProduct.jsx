@@ -1,8 +1,8 @@
-import style from '../assets/style/SingleDetailsProduct.module.scss';
+import style from '../../assets/style/SingleDetailsProduct.module.scss';
 import PropTypes from 'prop-types';
-import { formatDate } from '../helper/Helper'; // Importa a função formatDate
+import { formatDate } from '../../helper/Helper'; // Importa a função formatDate
 import React from 'react';
-import CloseButton from './CloseButton';
+import CloseButton from '../CloseButton';
 
 const SingleDetailsProduct = ({ productSelected, setSingleDetailsProduct }) => {
   React.useEffect(() => {

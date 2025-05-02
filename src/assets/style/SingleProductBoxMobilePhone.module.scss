@@ -1,0 +1,292 @@
+@use './mixins' as *;
+
+.containerMobile{
+
+    .SingleProductBox {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+      
+        .containerMobileImages{
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-content: center;
+            .mainImage {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 90vw; // 90% da largura da tela
+                aspect-ratio: 3 / 4; // ligeiramente mais alto que largo (formato retrato)
+                margin: 5px auto;
+                background-color: #f0f0f0; // cor de fundo opcional caso a imagem esteja ausente
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    object-fit: cover;
+
+                    // Garante que imagens pequenas não distorçam
+                    width: auto;
+                    height: auto;
+
+                    // Para evitar estourar o container
+                    min-width: 100%;
+                    min-height: 100%;
+                }
+            }
+            .imageThumbnails {
+                width: 90vw;
+                margin: 10px auto;
+                overflow-x: auto;
+                overflow-y: hidden;
+                display: flex;
+                justify-content: center; // Centraliza o conteúdo quando não ultrapassa o container
+                gap: 16px;
+                padding: 10px 5px;
+        
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+        
+                // Estiliza a barra de rolagem (opcional)
+                &::-webkit-scrollbar {
+                    height: 8px;
+                }
+        
+                &::-webkit-scrollbar-thumb {
+                    background-color: rgba(0, 0, 0, 0.3);
+                    border-radius: 4px;
+                }
+        
+                .thumbnail {
+                    flex: 0 0 auto; // Impede que o item encolha ou cresça
+                    width: 30px;
+                    height: 30px;
+                    border: solid 1px black;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    background-color: #f9f9f9;
+                    transition: transform 0.2s ease-in-out;
+        
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+        
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+        
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+        .titleContainer h3 {
+            text-align: center;
+            font-size: 4rem;
+            color: #2f2f2b;
+            font-family: Montserrat;
+            margin: 0;
+            font-weight: bold;
+           
+        }
+        .productCode {
+           text-align: center;
+            font-size: 20px;
+            z-index: 15;
+            color: #2f2f2b;
+            margin: 0;
+            font-weight: bold;
+            cursor: pointer;
+            span {
+                font-weight: bold;
+
+            }
+        }
+        .productDetails {
+            .mainItems {
+                position: relative; // Permite que o pseudo-elemento fique sobreposto corretamente
+                overflow: hidden; // Evita que o background vaze
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Montserrat', sans-serif;
+                .titleContainer,
+                .specialSpecifications,
+                .highlightPrice {
+                    position: relative; // Para que fiquem acima do fundo opaco
+                    z-index: 1;
+                    width: 100%;
+                    justify-content: center;
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    padding: 20px 0;
+                }
+                .specialSpecifications h2 span {
+                    padding: 3%;
+                    color:#333542;
+                    font-size: 24px;
+                }
+                .btnContainer{
+                    width: 100%;
+                    display:grid;
+                    grid-template-rows: 1fr 1fr;
+                    row-gap: 15px;
+                    .btnMoreDetailsPopup {
+                        @include contact-button($bg: black, $icon-bg:black, $icon-url:'../../assets/image/info.png');
+                    }
+                    .btnContact {
+                        @include contact-button();
+                    }
+                }
+            }
+            .highlightPrice {
+                text-align: start;
+
+                .price {
+                    font-size: 42px;
+                    background-color: #f9a402;
+                    color: white;
+                    border-radius: 1rem;
+                    margin: 0px 10px;
+                    padding: 0px 9px;
+                    transition: transform 0.5s ease-in-out;
+                }
+
+                .price:hover {
+                    transform: scale(1.15); // Cresce um pouco mais
+                }
+            }
+
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            gap: 10px;
+            padding: 10px;
+            z-index: 1; // Garante que os detalhes do produto fiquem acima da imagem principal
+
+            .hugeText {
+                max-height: 30vh;
+                overflow-y: auto;
+                border: 1px solid black;
+                background-color: #f9f9f9;
+                border-radius: 20px;
+            }
+
+
+            h2,
+            h3 {
+                font-size: 1.2rem;
+                color: #333;
+                margin: 0;
+                font-weight: bold;
+
+                span {
+                    font-weight: normal;
+
+                }
+            }
+
+            h3 {
+                padding: 1%;
+            }
+
+        }
+        
+    }
+        .adminContainer {
+            display: flex;
+            justify-content: space-between; // ou center/start/end
+            gap: 10px;
+            button{
+                @include button-3d($width: 300px, $margin: 100px);                     
+                flex: 1;
+                
+    margin: 0;   
+            }
+        }
+
+}
+// @media (max-width: 650px) {
+//     .SingleProductBox {
+//         width: 100%;
+//          grid-template-columns: 1fr !important; 
+           
+//         // grid-template-rows: 10% 40% 50%;
+//         display: flex;
+//         flex-direction: column-reverse;
+//         gap: 10px;
+//         padding: 10px;
+//         .containerSideMenu {
+//             flex-direction: row;
+//             justify-content: center;
+//             align-items: center;
+//             margin: 0 -5%;
+//                 width: 90%;
+
+//             .imageThumbnails {
+//                 max-width: 60vw;
+//                     overflow-x: auto;
+//                     display: flex;
+//                     // flex-direction: row;
+//                     gap: 10px;
+//                     padding-right: 5px;
+
+//                 .thumbnail {
+//                     display:flex;
+//                     img {
+//                         width: auto;
+//                         height: 100px;
+//                     }
+//                 }
+//             }
+//         }
+
+//         .mainImage {
+//             display: flex;
+//             flex-direction: column;
+//             img {
+//                 max-width: 100%;
+//                 max-height: 300px;
+//                 margin-bottom: 3px;
+//             }
+//         }
+
+//         .productDetails {
+//             padding: 5px;
+//             width: 90%;
+//             margin:0 -5%;
+
+//             h2, h3 {
+//                 font-size: 1rem;
+//             }
+           
+//         }
+//         .title {
+//             font-size: 25px;
+//             margin: -4px -9px;
+
+//         }
+
+//         .price {
+//             font-size: 25px;
+//             margin: -20px -12px;
+
+//         }
+//     }
+// }

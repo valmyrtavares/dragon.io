@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ShowCase from './components/ShowCase';
 import InpuProducts from './components/forms/inputProducts';
 import Header from './components/Header';
-import SingleProductBox from './components/SingleProductBox';
+import SingleProductBox from './components/singleProduct/SingleProductBox';
 import CreateCustomer from './components/forms/CreateCustomer';
 import UserRules from './components/rules/userRules';
 import { GlobalProvider } from './GlobalProvider';
