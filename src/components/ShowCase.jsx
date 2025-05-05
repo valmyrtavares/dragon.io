@@ -82,9 +82,9 @@ const ShowCase = () => {
 
   return (
     <div className={style.showcaseContainer}>
-      <h1>Vitrine de Produtos</h1>
+      <h1>Vitrine </h1>
       <div>
-        <p onClick={() => setShowFilterSearch((prev) => !prev)}>Filtros</p>
+        <p onClick={() => setShowFilterSearch((prev) => !prev)}>Busca</p>
       </div>
       {showFIlterSearch && (
         <FilterSearch
