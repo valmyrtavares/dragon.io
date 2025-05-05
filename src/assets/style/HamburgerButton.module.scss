@@ -1,0 +1,33 @@
+.mobile {
+    width: 32px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    position: relative;
+    cursor: pointer;
+
+    &::before,
+    &::after,
+    span {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: black;
+        transition: 0.3s ease;
+    }
+
+    &::before {
+        top: 0;
+    }
+
+    span {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &::after {
+        bottom: 0;
+    }
+}

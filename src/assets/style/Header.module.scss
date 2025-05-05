@@ -1,5 +1,55 @@
 @use './mixins' as *;
 
+.headerBtnMobileContainer{
+    .btnMobileContainer{
+        padding-top: 2%;
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;    }
+        .nav {
+            // display: flex;
+            // justify-content: space-between;
+            // background-color: #efefef;
+            // align-items: center;
+            .navList {
+                    display: flex;
+                    background-color: #efefef;
+                    flex-direction: column;
+                    list-style: none;
+                    align-items: center;
+                    margin: 0;
+                    padding: 2%;
+            
+                    .active {
+                        color: $bg-title-color;
+                        border-bottom: 2px solid $bg-title-color;
+                        font-weight: bold;
+                    }
+            
+                    li {
+                        margin:10px 0;
+            
+                        button {
+                            padding: 0 !important;
+                        }
+            
+                        a,
+                        button {
+                            text-decoration: none;
+                            font-size: 18px;
+                            background-color: transparent;
+                            color: #333;
+                            font-weight: 600;
+                        }
+                    }
+                    .login{
+                        background-color: transparent !important;
+                    }
+            
+                }
+        }
+}
 .header {
     background-color: #ffffff;
     padding: 10px 20px;
