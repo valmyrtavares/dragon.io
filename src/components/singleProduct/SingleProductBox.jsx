@@ -206,7 +206,7 @@ const SingleProductBox = () => {
         selectedCustomer={selectedCustomer}
         productSelected={productSelected}
         images={images}
-        bringCustomer={bringCustomer}
+        // bringCustomer={bringCustomer}
       />
     );
   }

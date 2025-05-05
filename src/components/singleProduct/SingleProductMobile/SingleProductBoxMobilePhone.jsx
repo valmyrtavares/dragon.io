@@ -12,12 +12,13 @@ const SingleProductBoxMobilePhone = ({
   selectedCustomer,
   productSelected,
   images,
-  bringCustomer,
+  //bringCustomer,
 }) => {
   const [showclient, setShowClient] = React.useState(false);
   const [singleDetailsProduct, setSingleDetailsProduct] = React.useState(false);
   const { login } = useContext(GlobalContext);
   const [selectedImage, setSelectedImage] = React.useState('');
+
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 650);
   React.useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -26,6 +27,10 @@ const SingleProductBoxMobilePhone = ({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  React.useEffect(() => {
+    console.log('Produto selecionado:', images);
+    console.log('Cliente selecionado:', selectedCustomer);
+  }, [selectedCustomer, productSelected]); // Atualiza a imagem selecionada quando as imagens mudam'
 
   const handleResize = () => {
     setIsMobile(window.innerWidth < 650);
@@ -34,6 +39,11 @@ const SingleProductBoxMobilePhone = ({
     console.log('Produto selecionado:', images);
     setSelectedImage(images[0]);
   }, []); // Atualiza a imagem selecionada quando as imagens mudam
+
+  const bringCustomerInsideMobile = () => {
+    setShowClient(true);
+    // bringCustomer();
+  };
 
   return (
     <div className={style.containerMobile}>
@@ -130,7 +140,9 @@ const SingleProductBoxMobilePhone = ({
           <button>
             <Link to={`/form/${productSelected.id}`}>Edição administrador</Link>
           </button>{' '}
-          <button onClick={bringCustomer}>Detalhes do Cliente</button>{' '}
+          <button onClick={bringCustomerInsideMobile}>
+            Detalhes do Cliente
+          </button>{' '}
         </div>
       )}
     </div>
