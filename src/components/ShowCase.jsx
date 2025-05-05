@@ -11,6 +11,7 @@ const ShowCase = () => {
   const [Filteredproducts, setFilteredProducts] = useState([]);
   const navigate = useNavigate();
   const { login } = useContext(GlobalContext);
+  const [showFIlterSearch, setShowFilterSearch] = useState(false);
 
   useEffect(() => {
     bringProducts();
@@ -82,11 +83,16 @@ const ShowCase = () => {
   return (
     <div className={style.showcaseContainer}>
       <h1>Vitrine de Produtos</h1>
-      <FilterSearch
-        filteredProducts={filteredProducts}
-        sortByPrice={sortByPrice}
-        filterByIdProduct={filterByIdProduct}
-      />
+      <div>
+        <p onClick={() => setShowFilterSearch((prev) => !prev)}>Filtros</p>
+      </div>
+      {showFIlterSearch && (
+        <FilterSearch
+          filteredProducts={filteredProducts}
+          sortByPrice={sortByPrice}
+          filterByIdProduct={filterByIdProduct}
+        />
+      )}
       <div className={style.scrollContainer}>
         {Filteredproducts.length > 0 ? (
           <div className={style.productsGrid}>
